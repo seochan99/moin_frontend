@@ -11,7 +11,7 @@ import Profile from "./pages/profile/Profile";
 
 import AiServiceDetail from "./pages/ai/AiServiceDetail";
 
-import NotFoundError from "./pages/error/NotFound";
+import NotFoundError from "./pages/errors/NotFound";
 import Login from "./pages/auths/Login";
 
 const router = createBrowserRouter([
