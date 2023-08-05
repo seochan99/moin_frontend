@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from "./style";
-import Banner from "./banner";
+import Banner from "./Banner";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
