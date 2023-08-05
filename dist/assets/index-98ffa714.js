@@ -625,7 +625,24 @@ Error generating stack: `+o.message+`
 `,af=B.img`
   width: 3rem;
   height: 3rem;
-`,mx="data:image/png;base64,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",Cm="/assets/moin_logo-06bb1d8f.png",Tm=rm`
+`;function mx(){const e=Fl(),t=()=>{localStorage.removeItem("userInfo"),e("/"),window.location.reload()};return k.jsx(Em,{children:k.jsx(Ks,{onClick:t,children:"로그아웃"})})}function gx(){const t=Zi().state.item;return k.jsx(k.Fragment,{children:t.name})}const vx=B.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #f5f5f5;
+`,yx=B.h1`
+  font-size: 3rem;
+  font-weight: 700;
+  color: #333;
+`,wx=B.p`
+  font-size: 1.5rem;
+`,Sx=B.p`
+  font-size: 1rem;
+  color: grey;
+`;function xx(){const e=Dh();return k.jsxs(vx,{children:[k.jsx(yx,{children:"Oops!"}),k.jsx(wx,{children:"Sorry, an unexpected error has occurred"}),k.jsx(Sx,{children:e.statusText||e.message})]})}const Ex="data:image/png;base64,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",Cm="/assets/moin_logo-06bb1d8f.png",Tm=rm`
   from {
     opacity: 0;
     transform: translateY(-2rem);
@@ -634,7 +651,7 @@ Error generating stack: `+o.message+`
     opacity: 1;
     transform: translateY(0);
   }
-`,gx=B.div`
+`,Cx=B.div`
   animation: ${Tm} 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -688,42 +705,25 @@ Error generating stack: `+o.message+`
   margin-top: 1rem;
   color: ${e=>e.isValid?"#00C24E":"#FF5D47"};
   font-size: 1.3rem;
-`;const vx=B.h2`
+`;const Tx=B.h2`
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 8rem;
-`,yx=B.h2`
+`,kx=B.h2`
   font-size: 2.5rem;
   font-weight: 700;
   margin: 2.5rem 0rem 2rem 0rem;
-`,wx=B.div`
+`,Px=B.div`
   animation: ${Tm} 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
   align-items: center;
-`,Sx=B.strong`
+`,Lx=B.strong`
   font-weight: 900;
   font-size: 4rem;
   color: ${Kt.primary1};
-`,xx=B.img`
+`,Mx=B.img`
   height: 6rem;
   object-fit: cover;
   margin-bottom: 3rem;
-`;function Ex(){return k.jsxs(wx,{children:[k.jsx(xx,{src:Cm,alt:"MO:IN"}),k.jsx(yx,{children:"내가 찾던 인공지능 서비스,"}),k.jsxs(vx,{children:[k.jsx(Sx,{children:"MO:IN"})," 에 모이다!"]})]})}function Cx(e){const{handleInputChange:t,loginData:n}=e;return k.jsxs(gx,{children:[k.jsx(sf,{required:!0,placeholder:"이메일을 입력하세요.",type:"email",name:"email",onChange:t,value:n.email,isValid:!!n.email}),k.jsx(sf,{required:!0,placeholder:"비밀번호를 입력하세요.",type:"password",name:"pwd",onChange:t,value:n.pwd,isValid:!!n.pwd})]})}function Tx(){const e=Fl(),[t,n]=R.useState(null),[r,i]=R.useState({email:"",pwd:""});R.useEffect(()=>{n(JSON.parse(localStorage.getItem("userInfo")))},[]);const o=a=>{const{name:u,value:d}=a.target;i(p=>({...p,[u]:d}))},l=a=>{a.preventDefault();const{email:u,pwd:d}=r;if(u===""||d===""){alert("이메일과 비밀번호를 입력해주세요.");return}n({email:u,pwd:d}),localStorage.setItem("userInfo",JSON.stringify({email:u,pwd:d})),e("/"),window.location.reload()},s=()=>{n(null),localStorage.removeItem("userInfo")};return k.jsx(k.Fragment,{children:k.jsx(Em,{children:t?k.jsxs(k.Fragment,{children:[k.jsxs(dx,{children:[" ",t.email,"님 환영합니다. "]}),k.jsx(Ks,{onClick:s,children:" 로그아웃 "})]}):k.jsx(k.Fragment,{children:k.jsxs(fx,{onSubmit:l,children:[k.jsx(Ex,{}),k.jsx(Cx,{handleInputChange:o,loginData:r}),k.jsxs(px,{children:[k.jsx(Ks,{type:"submit",children:"MO:IN에 로그인"}),k.jsx(hx,{type:"button",onClick:()=>{console.log("계정생성")},children:"MOIN에 가입하고 더 많은 서비스를 누려보세요!"}),k.jsxs(of,{onClick:()=>{console.log("자체회원가입")},children:[k.jsx(af,{src:Cm,alt:"구글 로고"}),k.jsx(lf,{style:{margin:"0 auto"},children:"Moin 회원가입"})]}),k.jsxs(of,{onClick:()=>{console.log("구글계정생성")},children:[k.jsx(af,{src:mx,alt:"구글 로고"}),k.jsx(lf,{style:{margin:"0 auto"},children:"Google 로그인"})]})]})]})})})})}function kx(){const e=Fl(),t=()=>{localStorage.removeItem("userInfo"),e("/"),window.location.reload()};return k.jsx(Em,{children:k.jsx(Ks,{onClick:t,children:"로그아웃"})})}function Px(){const t=Zi().state.item;return k.jsx(k.Fragment,{children:t.name})}const Lx=B.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  background-color: #f5f5f5;
-`,Mx=B.h1`
-  font-size: 3rem;
-  font-weight: 700;
-  color: #333;
-`,Rx=B.p`
-  font-size: 1.5rem;
-`,zx=B.p`
-  font-size: 1rem;
-  color: grey;
-`;function Ix(){const e=Dh();return k.jsxs(Lx,{children:[k.jsx(Mx,{children:"Oops!"}),k.jsx(Rx,{children:"Sorry, an unexpected error has occurred"}),k.jsx(zx,{children:e.statusText||e.message})]})}const _x=Sy([{path:"/",element:k.jsx(j1,{}),children:[{path:"",element:k.jsx(ox,{})},{path:"community",element:k.jsx(lx,{})},{path:"notice",element:k.jsx(ax,{})},{path:"suggestion",element:k.jsx(sx,{})},{path:"about",element:k.jsx(ux,{})},{path:"login",element:k.jsx(Tx,{})},{path:"mypage",element:k.jsx(kx,{})},{path:"AiService/:AiId",element:k.jsx(Px,{})}],errorElement:k.jsx(Ix,{})}]);Fa.createRoot(document.getElementById("root")).render(k.jsx(X.StrictMode,{children:k.jsx(dy,{router:_x})}));
+`;function Rx(){return k.jsxs(Px,{children:[k.jsx(Mx,{src:Cm,alt:"MO:IN"}),k.jsx(kx,{children:"내가 찾던 인공지능 서비스,"}),k.jsxs(Tx,{children:[k.jsx(Lx,{children:"MO:IN"})," 에 모이다!"]})]})}function zx(e){const{handleInputChange:t,loginData:n}=e;return k.jsxs(Cx,{children:[k.jsx(sf,{required:!0,placeholder:"이메일을 입력하세요.",type:"email",name:"email",onChange:t,value:n.email,isValid:!!n.email}),k.jsx(sf,{required:!0,placeholder:"비밀번호를 입력하세요.",type:"password",name:"pwd",onChange:t,value:n.pwd,isValid:!!n.pwd})]})}function Ix(){const e=Fl(),[t,n]=R.useState(null),[r,i]=R.useState({email:"",pwd:""});R.useEffect(()=>{n(JSON.parse(localStorage.getItem("userInfo")))},[]);const o=a=>{const{name:u,value:d}=a.target;i(p=>({...p,[u]:d}))},l=a=>{a.preventDefault();const{email:u,pwd:d}=r;if(u===""||d===""){alert("이메일과 비밀번호를 입력해주세요.");return}n({email:u,pwd:d}),localStorage.setItem("userInfo",JSON.stringify({email:u,pwd:d})),e("/"),window.location.reload()},s=()=>{n(null),localStorage.removeItem("userInfo")};return k.jsx(k.Fragment,{children:k.jsx(Em,{children:t?k.jsxs(k.Fragment,{children:[k.jsxs(dx,{children:[" ",t.email,"님 환영합니다. "]}),k.jsx(Ks,{onClick:s,children:" 로그아웃 "})]}):k.jsx(k.Fragment,{children:k.jsxs(fx,{onSubmit:l,children:[k.jsx(Rx,{}),k.jsx(zx,{handleInputChange:o,loginData:r}),k.jsxs(px,{children:[k.jsx(Ks,{type:"submit",children:"MO:IN에 로그인"}),k.jsx(hx,{type:"button",onClick:()=>{console.log("계정생성")},children:"MOIN에 가입하고 더 많은 서비스를 누려보세요!"}),k.jsxs(of,{onClick:()=>{console.log("자체회원가입")},children:[k.jsx(af,{src:Cm,alt:"구글 로고"}),k.jsx(lf,{style:{margin:"0 auto"},children:"Moin 회원가입"})]}),k.jsxs(of,{onClick:()=>{console.log("구글계정생성")},children:[k.jsx(af,{src:Ex,alt:"구글 로고"}),k.jsx(lf,{style:{margin:"0 auto"},children:"Google 로그인"})]})]})]})})})})}const _x=Sy([{path:"/",element:k.jsx(j1,{}),children:[{path:"",element:k.jsx(ox,{})},{path:"community",element:k.jsx(lx,{})},{path:"notice",element:k.jsx(ax,{})},{path:"suggestion",element:k.jsx(sx,{})},{path:"about",element:k.jsx(ux,{})},{path:"login",element:k.jsx(Ix,{})},{path:"mypage",element:k.jsx(mx,{})},{path:"AiService/:AiId",element:k.jsx(gx,{})}],errorElement:k.jsx(xx,{})}]);Fa.createRoot(document.getElementById("root")).render(k.jsx(X.StrictMode,{children:k.jsx(dy,{router:_x})}));

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import * as SAuth from "../auth/style";
+import * as SAuth from "../auths/style";
 
 function Profile() {
   const navigate = useNavigate();

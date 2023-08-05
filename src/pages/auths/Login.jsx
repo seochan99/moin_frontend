@@ -6,8 +6,8 @@ import * as S from "./style";
 import GoogleIcon from "../../assets/images/icon/google.png";
 import MoinIcon from "../../assets/images/moin_logo.png";
 // 컴포넌트
-import AuthLoginTitle from "../../components/auth/authLogin/AuthLoginTitle";
-import AuthLoginForm from "../../components/auth/authLogin/AuthLoginForm";
+import AuthLoginTitle from "../../components/auths/authLogin/AuthLoginTitle";
+import AuthLoginForm from "../../components/auths/authLogin/AuthLoginForm";
 
 // AuthLoginForm.jsx 가져오기
 
