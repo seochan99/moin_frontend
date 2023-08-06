@@ -13,16 +13,16 @@ export const MainWrapper = styled.div`
 export const MainTitleWrapper = styled.div`
   display: flex;
   width: 100%;
-  padding: 10px;
+  padding: 1rem;
   justify-content: space-between;
-  margin-top: 60px;
+  margin-top: 6rem;
 `;
 
 export const MainTitle = styled.h1`
-  /* font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: #333; */
-`;
-export const MainDescription = styled.p`
-  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${props => props.theme.colors.primary1};
 `;

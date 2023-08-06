@@ -1,17 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./style";
 
 import { useNavigate } from "react-router-dom";
 import Star from "../../star/Star";
 import Like from "../../like/Like";
+import Keyword from "./keyword/Keyword";
 
 function AiService({ item }) {
   // 함수 수정할게용....
-  const keywordColor = {
-    챗봇: "#FFB6A7",
-    과제: "#98ADF2",
-    논문: "#FFD494"
-  };
 
   const navigate = useNavigate();
 
@@ -41,16 +37,7 @@ function AiService({ item }) {
           </S.AiServiceStarDescription>
         </S.AiServiceStar>
         {/* 키워드 */}
-        <S.AiServiceKeywords>
-          {item.keyword.map((keyword, idx) => (
-            <S.AiServiceKeyword
-              key={idx}
-              style={{ backgroundColor: keywordColor[keyword] }}
-            >
-              {keyword}
-            </S.AiServiceKeyword>
-          ))}
-        </S.AiServiceKeywords>
+        <Keyword keyword={item.keyword} keywordSize={"1rem"} />
       </S.AiServiceBody>
       {/* 좋아요 */}
       <S.AiServiceFooter>

@@ -6,11 +6,11 @@ import { AiFillStar } from "react-icons/ai";
 function Star({ starNum, starSize }) {
   return (
     <S.StarWrapper>
-      {[1, 2, 3, 4, 5].map(index => (
+      {[1, 2, 3, 4, 5].map(idx => (
         <AiFillStar
-          key={index}
+          key={idx}
           size={starSize}
-          color={index <= starNum ? "#FFD600" : "#D9D9D9"}
+          color={idx <= starNum ? "#FFD600" : "#D9D9D9"}
         />
       ))}
     </S.StarWrapper>

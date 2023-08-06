@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style";
 
 import AiService from "./AiService";
+import ListView from "../../paging/ListView";
 
 function MainAiServiceList() {
   const [data, setData] = useState([]);
@@ -28,6 +29,237 @@ function MainAiServiceList() {
         like_cnt: 403,
         rating_point: 3,
         rating_cnt: 332
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4,
+        rating_cnt: 202
       }
     ];
     setData(aiData);
@@ -37,9 +269,9 @@ function MainAiServiceList() {
     <>
       <S.MainAiServiceListWrapper>
         <S.MainAiServices>
-          {data.map((item, idx) => (
-            <AiService key={idx} item={item} />
-          ))}
+          <ListView items={data} postPerPage={12}>
+            <AiService />
+          </ListView>
         </S.MainAiServices>
       </S.MainAiServiceListWrapper>
     </>

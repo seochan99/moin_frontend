@@ -1,9 +1,12 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { AiServiceDetailIntro } from "../../components/aiServiceDetail/aiServiceDetailIntro/AiServiceDetailIntro";
+
 function AiServiceDetail() {
-  const location = useLocation();
-  const item = location.state.item;
-  return <>{item.name}</>;
+  return (
+    <>
+      <AiServiceDetailIntro />
+    </>
+  );
 }
 
 export default AiServiceDetail;

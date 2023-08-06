@@ -5,7 +5,7 @@ export const MainCategoryWrapper = styled.div`
   align-items: center;
   justify-content: start;
   height: 30px;
-  margin: 5px 0px;
+  margin: 0.5rem 0;
 
   /* border-radius: 20px;
   border: 5px solid;
@@ -20,6 +20,7 @@ export const MainCategoryWrapper = styled.div`
 `;
 
 export const MainCategoryTitle = styled.div`
+  font-size: 1.5rem;
   width: 60px;
   flex-shrink: 0;
   color: ${props => props.theme.colors.primary1};
@@ -41,9 +42,10 @@ export const MainCategoryTagListWrapper = styled.div`
 `;
 
 export const MainCategoryTagWrapper = styled.div`
+  font-size: 1.5rem;
   height: 100%;
-  padding: 0px 15px;
-  margin: 0px 5px;
+  padding: 0 1.5rem;
+  margin: 0 0.5rem;
   flex-shrink: 0;
 
   border-radius: 9px;

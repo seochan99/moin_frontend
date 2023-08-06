@@ -4,7 +4,9 @@ import MainSearch from "../../components/main/mainSearch/MainSearch";
 import AiServiceList from "../../components/main/mainAiList/MainAiServiceList";
 import MainBannerList from "../../components/main/mainBanner/MainBannerList";
 import MainCategory from "../../components/main/mainCategory/MainCategory";
-import MainSelector from "../../components/main/mainSelector/MainSelector";
+import Selector from "../../components/selector/Selector";
+
+import { AiOutlineSearch } from "react-icons/ai";
 
 function Main() {
   const categories = [
@@ -24,8 +26,6 @@ function Main() {
   ];
   return (
     <S.MainWrapper>
-      {/* <S.MainTitle>타이틀</S.MainTitle> */}
-      {/* <S.MainDescription>설명</S.MainDescription> */}
       <MainBannerList />
 
       <MainSearch />
@@ -36,8 +36,10 @@ function Main() {
       <MainCategory category={categories[1]} />
 
       <S.MainTitleWrapper>
-        <S.MainTitle>모아보기</S.MainTitle>
-        <MainSelector />
+        <S.MainTitle>
+          <AiOutlineSearch size={"25px"} /> 모아보기
+        </S.MainTitle>
+        <Selector />
       </S.MainTitleWrapper>
 
       <AiServiceList />
