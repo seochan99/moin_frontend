@@ -1,10 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import * as S from "./style";
+
+// 컴포넌트
 import { AiServiceDetailIntro } from "../../components/aiServiceDetail/aiServiceDetailIntro/AiServiceDetailIntro";
+import { AiServiceDetailReview } from "../../components/aiServiceDetail/aiServiceDetailComment/aiServiceDetailReview/AiServiceDetailReview";
+import { AiServiceDetailTip } from "../../components/aiServiceDetail/aiServiceDetailComment/aiServiceDetailTip/AiServiceDetailTip";
 
 function AiServiceDetail() {
+  // 탭 기능 구현
+  const [currentTab, setCurrentTab] = useState(0);
+
+  const tabContents = [<AiServiceDetailReview />, <AiServiceDetailTip />];
+
+  const selectMenuHandler = index => {
+    setCurrentTab(index);
+  };
+
   return (
     <>
       <AiServiceDetailIntro />
+
+      <S.AiServiceDetailCommentWrap>
+        <S.AiServiceDetailCommentCategory>
+          <S.AiServiceDetailCommentCategoryTabMenu>
+            <S.AiServiceDetailCommentCategoryMenuItem
+              isActive={currentTab === 0}
+              onClick={() => selectMenuHandler(0)}
+            >
+              이용후기
+            </S.AiServiceDetailCommentCategoryMenuItem>
+            <S.AiServiceDetailCommentCategoryMenuItem
+              isActive={currentTab === 1}
+              onClick={() => selectMenuHandler(1)}
+            >
+              이용꿀팁
+            </S.AiServiceDetailCommentCategoryMenuItem>
+          </S.AiServiceDetailCommentCategoryTabMenu>
+        </S.AiServiceDetailCommentCategory>
+        {tabContents[currentTab]}
+      </S.AiServiceDetailCommentWrap>
     </>
   );
 }

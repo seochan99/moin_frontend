@@ -6,13 +6,12 @@ export const AiServiceDetailWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10rem;
   color: ${colors.black};
 `;
 
 export const AiServiceDetailBanner = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 47rem;
   background-color: rgba(0, 10, 65, 0.97);
   position: absolute;
