@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as S from "./style";
 
 import AiService from "./AiService";
-import ListView from "../../paging/ListView";
+import ListView from "../../common/paging/ListView";
 
 function MainAiServiceList() {
   const [data, setData] = useState([]);

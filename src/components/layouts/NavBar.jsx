@@ -13,7 +13,7 @@ export default function NavBar() {
     }
   }, []);
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   return (
     <S.NavBarWrapper>

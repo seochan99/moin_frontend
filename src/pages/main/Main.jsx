@@ -4,7 +4,7 @@ import MainSearch from "../../components/main/mainSearch/MainSearch";
 import AiServiceList from "../../components/main/mainAiList/MainAiServiceList";
 import MainBannerList from "../../components/main/mainBanner/MainBannerList";
 import MainCategory from "../../components/main/mainCategory/MainCategory";
-import Selector from "../../components/selector/Selector";
+import Selector from "../../components/common/selector/Selector";
 
 import { AiOutlineSearch } from "react-icons/ai";
 

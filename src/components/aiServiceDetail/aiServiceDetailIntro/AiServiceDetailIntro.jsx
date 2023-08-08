@@ -6,8 +6,8 @@ import ShareIcon from "../../../assets/images/icon/share.png";
 import CompanyIcon from "../../../assets/images/icon/company.png";
 
 // 컴포넌트
-import Like from "../../../components/like/Like";
-import Star from "../../../components/star/Star";
+import Like from "../../common/like/Like";
+import Star from "../../common/star/Star";
 
 export function AiServiceDetailIntro() {
   const [introContent, setIntroContent] = useState([]);

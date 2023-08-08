@@ -9,6 +9,7 @@ export const MainAiServiceListWrapper = styled.div`
   width: 100%;
 
   position: relative;
+  padding: 0 1rem;
   padding-bottom: 6rem;
   margin-bottom: 1rem;
 `;
