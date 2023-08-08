@@ -30,9 +30,9 @@ function Main() {
 
       <MainSearch />
 
-      {/* 직군 */}
+      {/* 직군 카테고리 */}
       <MainCategory category={categories[0]} />
-      {/* 키워드 */}
+      {/* 키워드 카테고리 */}
       <MainCategory category={categories[1]} />
 
       <S.MainTitleWrapper>

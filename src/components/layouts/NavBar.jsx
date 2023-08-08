@@ -1,13 +1,19 @@
-import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { userState } from "../../context/authState";
 import * as S from "./style";
+import { useEffect } from "react";
 
 export default function NavBar() {
-  const [userInfo, setUserInfo] = useState(null);
-
-  // (임시) 유저 정보 LocalStorage에 저장하기
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+  // 로그인 정보 불러오기
   useEffect(() => {
-    setUserInfo(JSON.parse(localStorage.getItem("userInfo")));
+    const storedUserInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (storedUserInfo) {
+      setUserInfo(storedUserInfo);
+    }
   }, []);
+
+  console.log(userInfo);
 
   return (
     <S.NavBarWrapper>

@@ -15,13 +15,17 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-js-pagination": "^3.0.3",
     "react-router-dom": "^6.14.2",
+    "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "styled-components": "^6.0.5",
-    "swiper": "^10.1.0"
+    "swiper": "^10.1.0",
+    "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

@@ -4,7 +4,7 @@ import App from "./App";
 
 import Main from "./pages/main/Main";
 import Community from "./pages/community/Community";
-import Notice from "./pages/notice/About";
+import Notice from "./pages/notice/Notice";
 import Suggestion from "./pages/suggestion/Suggestion";
 import About from "./pages/about/About";
 import Profile from "./pages/profile/Profile";
