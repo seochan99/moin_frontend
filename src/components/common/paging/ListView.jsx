@@ -1,4 +1,5 @@
 import React, { useState, useEffect, cloneElement } from "react";
+import * as S from "./style";
 
 import Paging from "./Paging";
 
@@ -20,7 +21,14 @@ function ListView({ items, postPerPage, children }) {
     setIndexOfLastPost(currentpage * postPerPage);
     setIndexOfFirstPost(indexOfLastPost - postPerPage);
     setCurrentPosts(items.slice(indexOfFirstPost, indexOfLastPost));
-  }, [count, currentpage, indexOfFirstPost, indexOfLastPost, postPerPage]);
+  }, [
+    items,
+    count,
+    currentpage,
+    indexOfFirstPost,
+    indexOfLastPost,
+    postPerPage
+  ]);
 
   const setPage = e => {
     setCurrentpage(e);
@@ -28,11 +36,13 @@ function ListView({ items, postPerPage, children }) {
 
   return (
     <>
-      {currentPosts && items.length > 0
-        ? currentPosts.map((item, idx) => {
-            return childrenWithProps(item, idx);
-          })
-        : console.log("게시글이 없습니다.")}
+      {currentPosts && items.length > 0 ? (
+        currentPosts.map((item, idx) => {
+          return childrenWithProps(item, idx);
+        })
+      ) : (
+        <S.PagingNoPage>게시된 글이 아직 없습니다!</S.PagingNoPage>
+      )}
 
       <Paging
         page={currentpage}

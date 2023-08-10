@@ -1,21 +1,8 @@
-import { styled, keyframes } from "styled-components";
-import { ReactComponent as MypageBook } from "../../assets/images/icon/mypageBook.svg";
-import colors from "../../style/theme";
-
-const fadeInAnimation = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(-2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+import { styled } from "styled-components";
+import colors from "../../../style/theme";
 
 // 전체 width 차지
 export const ProfileWrapper = styled.div`
-  /* animation: ${fadeInAnimation} 0.5s ease-in-out; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -64,14 +51,6 @@ export const ProfileBannerHeaderTitle = styled.div`
   font-weight: 700;
   line-height: normal;
 `;
-// MypageBook
-export const MypageBookImg = styled(MypageBook)`
-  display: flex;
-  width: 17rem;
-  height: 12rem;
-  margin-top: 16.5rem;
-`;
-
 export const myPageUserIcon = styled.img`
   display: flex;
   width: 3rem;
@@ -88,7 +67,7 @@ export const ProfileInfoWrapper = styled.div`
   width: 100%;
   margin-top: 13rem;
   margin-bottom: 13rem;
-  animation: ${fadeInAnimation} 0.5s ease-in-out;
+  /* border: 1px solid black; */
 `;
 
 export const ProfileInfoHeaderWrapper = styled.div`

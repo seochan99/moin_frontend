@@ -9,7 +9,7 @@ export const MainAiServiceListWrapper = styled.div`
   width: 100%;
 
   position: relative;
-  padding: 0 1rem;
+
   padding-bottom: 6rem;
   margin-bottom: 1rem;
 `;
@@ -25,11 +25,8 @@ export const MainAiServices = styled.div`
   width: 100%;
   margin: 2rem 0;
   display: grid;
-  @media (max-width: 576px) {
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 576px) {
+
+  @media (max-width: 768px) {
     grid-template-rows: 2fr;
     grid-template-columns: 1fr 1fr;
   }

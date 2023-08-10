@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import * as S from "./style";
 
 // 컴포넌트
-import Selector from "../../../selector/Selector";
-import Paging from "../../../paging/Paging";
+import Selector from "../../../common/selector/Selector";
+import Paging from "../../../common/paging/Paging";
 
 export function AiServiceDetailTip() {
   const [tipContent, setTipContent] = useState([]);

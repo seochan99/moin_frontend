@@ -13,6 +13,11 @@ import AiServiceDetail from "./pages/ai/AiServiceDetail";
 
 import NotFoundError from "./pages/errors/NotFound";
 import Login from "./pages/auths/Login";
+import ProfileFavorite from "./pages/profile/profileFavorite/ProfileFavorite";
+import ProfileComment from "./pages/profile/profileComment/ProfileComment";
+import ProfilePost from "./pages/profile/profilePost/ProfilePost";
+import ProfileModify from "./pages/profile/profileModify/ProfileModify";
+import ProfileMain from "./pages/profile/profileMain/ProfileMain";
 
 const router = createBrowserRouter([
   {
@@ -45,8 +50,31 @@ const router = createBrowserRouter([
       },
       {
         path: "mypage",
-        element: <Profile />
+        element: <Profile />,
+        children: [
+          {
+            path: "",
+            element: <ProfileMain />
+          },
+          {
+            path: "favorite",
+            element: <ProfileFavorite />
+          },
+          {
+            path: "comment",
+            element: <ProfileComment />
+          },
+          {
+            path: "post",
+            element: <ProfilePost />
+          },
+          {
+            path: "modify",
+            element: <ProfileModify />
+          }
+        ]
       },
+
       {
         path: "AiService/:AiId",
         element: <AiServiceDetail />

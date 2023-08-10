@@ -8,8 +8,6 @@ import NavBar from "./components/layouts/NavBar";
 
 const Wrapper = styled.div`
   margin: 0 auto;
-  /* 굳이 가로 패딩을 wrapper에서 줄 필요없을듯함  */
-  /* padding: 0px 1rem; */
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -20,8 +18,8 @@ const Wrapper = styled.div`
 const Layout = () => {
   return (
     <>
+      <NavBar />
       <Wrapper>
-        <NavBar />
         <Outlet />
       </Wrapper>
     </>

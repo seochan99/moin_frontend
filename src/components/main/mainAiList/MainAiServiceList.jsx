@@ -269,7 +269,7 @@ function MainAiServiceList() {
     <>
       <S.MainAiServiceListWrapper>
         <S.MainAiServices>
-          <ListView items={data} postPerPage={12}>
+          <ListView items={data} postPerPage={4}>
             <AiService />
           </ListView>
         </S.MainAiServices>
