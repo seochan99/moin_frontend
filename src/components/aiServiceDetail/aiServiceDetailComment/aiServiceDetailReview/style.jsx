@@ -122,10 +122,12 @@ export const AiServiceDetailReviewCommentFormWrite = styled.form`
 `;
 
 export const AiServiceDetailReviewCommentFormWriteTextArea = styled.textarea`
-  width: 86rem;
+  width: 89rem;
   height: 9rem;
   padding: 1rem;
+  padding-left: 1.5rem;
   resize: none;
+  border-radius: 20px;
   border: 1px solid #aeafb9;
   font-size: 1.8rem;
   margin-right: 1rem;
@@ -139,7 +141,12 @@ export const AiServiceDetailReviewCommentFormWriteTextArea = styled.textarea`
 export const AiServiceDetailReviewCommentFormWriteButton = styled.button`
   width: 80px;
   height: 9rem;
+  border-radius: 20px;
   border: 1px solid #aeafb9;
+  color: #acacac;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 500;
 `;
 
 // 이용 후기 목록
@@ -210,7 +217,7 @@ export const AiServiceDetailReviewMyLi = styled.li`
   width: 95rem;
   flex-direction: row;
   padding: 2.6rem;
-  border-radius: 10px;
+  border-radius: 20px;
   background: rgba(178, 191, 235, 0.39);
   margin-top: 2.2rem;
   margin-left: 5rem;

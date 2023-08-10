@@ -49,4 +49,5 @@ export const AiServiceDetailCommentCategoryMenuItem = styled.li`
   color: ${props => (props.isActive ? "#4285f4" : "black")};
   border-bottom: ${props => (props.isActive ? "3px solid #4285f4" : "none")};
   margin-left: 3rem;
+  margin-bottom: -0.3rem;
 `;

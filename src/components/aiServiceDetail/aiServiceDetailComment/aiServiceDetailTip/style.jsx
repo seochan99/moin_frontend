@@ -18,19 +18,32 @@ export const AiServiceDetailTipHeader = styled.div`
 `;
 
 export const AiServiceDetailTipHeaderWrite = styled.div`
+  cursor: pointer;
+
+  :hover {
+    color: white;
+    background-color: #4285f4;
+  }
+`;
+
+export const AiServiceDetailTipHeaderWriteContent = styled.div`
   display: flex;
   font-size: 2rem;
   font-weight: 500;
   color: #4285f4;
 
   border-radius: 10px;
-  border: 1px solid #4285f4;
+  border: 2px solid #4285f4;
   padding: 0.7rem 1rem;
   margin-right: 88rem;
+
+  :hover {
+    color: white;
+    background-color: #4285f4;
+  }
 `;
 
 export const StyledPencilIcon = styled(BiSolidPencil)`
-  color: #4285f4;
   font-size: 2rem;
   margin-right: 0.5rem;
 `;

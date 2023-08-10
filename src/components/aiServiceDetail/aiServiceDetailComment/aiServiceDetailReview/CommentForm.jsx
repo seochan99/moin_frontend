@@ -43,7 +43,7 @@ const CommentForm = ({ onSubmit }) => {
               minLength={10}
               maxLength={300}
               required
-              placeholder="(최소 10자 - 최대 300자)"
+              placeholder="당신의 후기를 남겨주세요"
             />
             {/* 비회원일 때 비밀번호 입력받기 */}
             {/* <input

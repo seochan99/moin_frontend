@@ -14,7 +14,7 @@ function Keyword({ keyword, keywordSize }) {
           key={idx}
           style={{
             backgroundColor: keywordColor[item],
-            fontSize: { keywordSize }
+            fontSize: keywordSize
           }}
         >
           {item}

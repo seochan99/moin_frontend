@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import colors from "../../../style/theme";
+import { Link } from "react-router-dom";
 
 export const AiServiceDetailWrap = styled.div`
   display: flex;
@@ -30,6 +31,11 @@ export const AiServiceDetailShare = styled.div`
   margin-top: 2.9rem;
   margin-right: 3.5rem;
   justify-content: right;
+  cursor: pointer;
+
+  :hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const AiServiceDetailShareImg = styled.img`
@@ -37,6 +43,9 @@ export const AiServiceDetailShareImg = styled.img`
   width: 4rem;
   height: 4rem;
 `;
+
+// 클립보드
+export const CopyToClipboardElement = styled.text``;
 
 export const AiServiceDetailRegistrant = styled.div`
   display: flex;
@@ -55,7 +64,6 @@ export const AiServiceDetailContent = styled.div`
 export const AiServiceThumbnail = styled.div`
   display: flex;
   border-radius: 10px;
-  border: 1px solid #000;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 `;
@@ -163,23 +171,31 @@ export const AiServiceDetailContentDescriptionKeyword = styled.div`
   padding: 0.5rem 1rem;
 `;
 
+// export const StyledKeyword = styled(Keyword)`
+//   font-weight: 700;
+// `;
+
 export const AiServiceDetailContentDescriptionBottom = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
 export const AiServiceDetailContentDescriptionBottomLink = styled.div`
-  margin-top: 3.8rem;
+  margin-top: 2.5rem;
+  :hover {
+    color: white;
+    background-color: #4285f4;
+  }
 `;
 
-export const AiServiceDetailContentDescriptionBottomLinkBox = styled.div`
+export const StyledLink = styled(Link)`
   display: flex;
-  font-size: 1.3rem;
-  font-weight: 700;
   border: 0.2rem solid #4285f4;
   border-radius: 5px;
   padding: 0.9rem 1.1rem;
   color: #4285f4;
+  font-size: 1.3rem;
+  font-weight: 700;
 `;
 
 export const AiServiceDetailContentDescriptionBottomHeart = styled.div`
@@ -193,7 +209,7 @@ export const AiServiceDetailContentDescriptionBottomHeart = styled.div`
 
 export const AiServiceDetailContentDescriptionBottomHeartIcon = styled.div`
   display: flex;
-  margin-top: 2.5rem;
+  margin-top: 0.8rem;
 `;
 
 export const AiServiceDetailContentDescriptionBottomHeartCnt = styled.div`
@@ -201,4 +217,23 @@ export const AiServiceDetailContentDescriptionBottomHeartCnt = styled.div`
   text-align: center;
   font-size: 1.4rem;
   font-weight: 400;
+`;
+
+// 조회수 추가
+
+export const AiServiceDetailContentDescriptionEndWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const AiServiceDetailContentDescriptionViews = styled.div`
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 600;
+`;
+
+// 좋아요 버튼 기능
+export const LikeButton = styled.button`
+  display: flex;
 `;

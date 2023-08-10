@@ -120,6 +120,9 @@ export function AiServiceDetailTip() {
     setTipContent(tipData);
   }, []);
 
+  // 댓글 데이터를 최신순으로 정렬
+  const sortedComments = tipContent.slice().reverse();
+
   //Paging
 
   // 한 페이지당 보여줄 댓글 수
@@ -131,7 +134,7 @@ export function AiServiceDetailTip() {
   // 현재 페이지의 댓글 목록 계산
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = tipContent.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = sortedComments.slice(indexOfFirstItem, indexOfLastItem);
 
   // 페이지 변경 핸들러
   const handlePageChange = pageNumber => {
@@ -143,8 +146,10 @@ export function AiServiceDetailTip() {
       <S.AiServiceDetailTipWrap>
         <S.AiServiceDetailTipHeader>
           <S.AiServiceDetailTipHeaderWrite>
-            <S.StyledPencilIcon />
-            글쓰기
+            <S.AiServiceDetailTipHeaderWriteContent>
+              <S.StyledPencilIcon />
+              글쓰기
+            </S.AiServiceDetailTipHeaderWriteContent>
           </S.AiServiceDetailTipHeaderWrite>
           <S.AiServiceDetailTipHeaderSort>
             <Selector /> {/* 임시로 넣어둠 */}
@@ -195,7 +200,7 @@ export function AiServiceDetailTip() {
         <S.AiServiceDetailTipPaging>
           <Paging
             page={currentPage}
-            count={tipContent.length}
+            count={sortedComments.length}
             postPerPage={itemsPerPage}
             setPage={handlePageChange}
           />
