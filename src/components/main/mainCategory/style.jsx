@@ -50,9 +50,20 @@ export const MainCategoryTagWrapper = styled.div`
 
   border-radius: 9px;
   border: 0.5px solid;
-  border-color: ${props => props.theme.colors.gray4};
 
-  color: ${props => props.theme.colors.primary2};
+  border-color: ${props =>
+    props.$isActive ? props.theme.colors.primary2 : props.theme.colors.gray4};
+
+  background-color: ${props =>
+    props.$isActive ? props.theme.colors.primary2 : props.theme.colors.bg};
+
+  color: ${props =>
+    props.$isActive ? props.theme.colors.bg : props.theme.colors.primary2};
+
+  &:hover {
+    background-color: ${props =>
+      props.$isActive ? props.theme.colors.primary2 : props.theme.colors.gray2};
+  }
   display: flex;
   justify-content: start;
   align-items: center;

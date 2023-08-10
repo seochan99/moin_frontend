@@ -64,7 +64,7 @@ export const SignUpInput = styled.input`
   }
   /* Your styling here */
   border-bottom: ${props =>
-    props.isValid ? "0.1rem solid #000000" : "0.1rem solid red"};
+    props.real == "true" ? "0.1rem solid #000000" : "0.1rem solid red"};
   /* Additional styling based on validity */
 `;
 
@@ -73,11 +73,11 @@ export const SignUpInputWrapper = styled.div`
   flex-direction: column;
   margin-bottom: 6rem;
 `;
-export const MessageText = styled.span`
-  margin-top: 1rem;
-  color: ${props => (props.isValid ? "#00C24E" : "#FF5D47")};
-  font-size: 1.3rem;
-`;
+// export const MessageText = styled.span`
+//   margin-top: 1rem;
+//   color: ${props => (props.real == "true" ? "#00C24E" : "#FF5D47")};
+//   font-size: 1.3rem;
+// `;
 
 /* ------- 로그인 타이틀 컴포넌트 스타일 ------- */
 export const LoginTitleText = styled.h2`

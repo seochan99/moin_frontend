@@ -7,6 +7,7 @@ export const MainAiServiceListWrapper = styled.div`
   justify-content: start;
 
   width: 100%;
+  flex-grow: 1;
 
   position: relative;
 
@@ -38,7 +39,7 @@ export const MainAiServices = styled.div`
     grid-template-rows: 4fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-  grid-gap: 10px;
+  grid-gap: 4rem 2rem;
 `;
 
 export const AiServiceWrapper = styled.div`
@@ -52,6 +53,10 @@ export const AiServiceWrapper = styled.div`
   border-radius: 10px;
   width: 100%;
   flex-shrink: 0;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const AiServiceThumbnail = styled.div`

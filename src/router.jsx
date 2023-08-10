@@ -12,12 +12,16 @@ import Profile from "./pages/profile/Profile";
 import AiServiceDetail from "./pages/ai/AiServiceDetail";
 
 import NotFoundError from "./pages/errors/NotFound";
-import Login from "./pages/auths/Login";
+import AuthLogin from "./pages/auths/authLogin/AuthLogin";
 import ProfileFavorite from "./pages/profile/profileFavorite/ProfileFavorite";
 import ProfileComment from "./pages/profile/profileComment/ProfileComment";
 import ProfilePost from "./pages/profile/profilePost/ProfilePost";
 import ProfileModify from "./pages/profile/profileModify/ProfileModify";
 import ProfileMain from "./pages/profile/profileMain/ProfileMain";
+import Auth from "./pages/auths/auth/auth";
+import AuthReset from "./pages/auths/authReset/AuthReset";
+import AuthSignup from "./pages/auths/authSignup/AuthSignup";
+import ProfileChangePassword from "./pages/profile/profileChangePassword/ProfileChangePassword";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +50,21 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <Login />
+        element: <AuthLogin />
+      },
+      {
+        path: "auth",
+        element: <Auth />,
+        children: [
+          {
+            path: "create",
+            element: <AuthSignup />
+          },
+          {
+            path: "reset",
+            element: <AuthReset />
+          }
+        ]
       },
       {
         path: "mypage",
@@ -55,6 +73,10 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <ProfileMain />
+          },
+          {
+            path: "changepassword",
+            element: <ProfileChangePassword />
           },
           {
             path: "favorite",
@@ -78,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "AiService/:AiId",
         element: <AiServiceDetail />
+      },
+      {
+        path: "search",
+        element: <Search />
       }
     ],
     errorElement: <NotFoundError />

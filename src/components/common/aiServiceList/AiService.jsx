@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import * as S from "./style";
 
 import { useNavigate } from "react-router-dom";
-import Star from "../../common/star/Star";
-import Like from "../../common/like/Like";
-import Keyword from "../../common/keyword/Keyword";
+import Star from "../star/Star";
+import Like from "../like/Like";
+import Keyword from "../keyword/Keyword";
 
 function AiService({ item }) {
   // 함수 수정할게용....

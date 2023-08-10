@@ -29,6 +29,11 @@ function ProfileMain() {
     // window.location.reload();
   };
 
+  const handleChangePassword = () => {
+    navigate("/mypage/changepassword");
+    // // 페이지 새로고침
+    // window.location.reload();
+  };
   return (
     <>
       {/* 프로필 헤더  */}
@@ -40,9 +45,14 @@ function ProfileMain() {
           </S.ProfileInfoHeaderTitleName>
           님의 마이페이지
         </S.ProfileInfoHeaderTitle>
-        <S.ProfileInfoHeaderButton onClick={handleLogout}>
-          로그아웃
-        </S.ProfileInfoHeaderButton>
+        <S.ProfileInfoHeaderButtonWrapper>
+          <S.ProfileInfoHeaderButton onClick={handleChangePassword}>
+            암호변경
+          </S.ProfileInfoHeaderButton>
+          <S.ProfileInfoHeaderButton onClick={handleLogout}>
+            로그아웃
+          </S.ProfileInfoHeaderButton>
+        </S.ProfileInfoHeaderButtonWrapper>
       </S.ProfileInfoHeaderWrapper>
       {/* 프로필 내용물 박스  */}
       <S.ProfileInfoContentWrapper>

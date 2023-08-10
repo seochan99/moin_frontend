@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const MainSearchWrapper = styled.div`
+export const SearchInputWrapper = styled.form`
   display: flex;
   align-items: center;
   justify-content: start;
@@ -8,7 +8,7 @@ export const MainSearchWrapper = styled.div`
   margin: 1rem 0;
   padding: 0 2rem;
   border-radius: 20px;
-  border: 5px solid;
+  border: 0.5rem solid;
   border-color: ${props => props.theme.colors.primary2};
 
   color: ${props => props.theme.colors.primary2};
@@ -20,7 +20,7 @@ export const MainSearchWrapper = styled.div`
   }
 `;
 
-export const MainSearchInput = styled.input`
+export const SearchInput = styled.input`
   flex-grow: 1;
   padding: 0 1rem;
 `;

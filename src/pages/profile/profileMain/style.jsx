@@ -103,6 +103,12 @@ export const ProfileInfoHeaderButton = styled.button`
     background-color: #f2f2f2;
   }
 `;
+export const ProfileInfoHeaderButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+`;
 
 export const ProfileInfoHeaderTitleName = styled.div`
   font-size: 2.5rem;
