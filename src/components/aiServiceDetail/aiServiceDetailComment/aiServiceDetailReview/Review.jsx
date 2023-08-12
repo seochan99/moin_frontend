@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
+import * as S from "./style";
+
 import axios from "axios";
 import { userState } from "../../../../context/authState";
 
@@ -9,12 +11,8 @@ import { useRecoilState } from "recoil";
 function Review() {
   // 회원 정보
   const [userInfo, setUserInfo] = useRecoilState(userState);
-  console.log("userInfo");
-  console.log(userInfo);
 
   const [comments, setComments] = useState([
-    // { id: 1, text: "첫 번째 댓글입니다.", isMember: false },
-    // { id: 2, text: "두 번째 댓글입니다.", isMember: false, password: "1234" }
     {
       id: 1,
       ai: "챗GPT",
@@ -23,6 +21,38 @@ function Review() {
       created_at: "2023-08-03T01:43:09.639646"
     }
   ]);
+
+  // 내 댓글
+  const [myComments, setMyComments] = useState([
+    {
+      id: 1,
+      ai: "ho",
+      is_tmp: false,
+      writer: "admin",
+      content: "1새 댓글~~",
+      created_at: "2023/08/11 02:52",
+      updated_at: "2023/08/11 02:52"
+    },
+    {
+      id: 2,
+      ai: "ho",
+      is_tmp: false,
+      writer: "admin",
+      content: "2새 댓글~~",
+      created_at: "2023/08/11 02:52",
+      updated_at: "2023/08/11 02:52"
+    },
+    {
+      id: 2,
+      ai: "ho",
+      is_tmp: false,
+      writer: "admin",
+      content: "3새 댓글~~",
+      created_at: "2023/08/11 02:52",
+      updated_at: "2023/08/11 02:52"
+    }
+  ]);
+
   /** 
   useEffect(() => {
     axios
@@ -69,7 +99,7 @@ function Review() {
 
   return (
     <>
-      {<CommentForm onSubmit={handleSubmitComment} />}
+      <CommentForm onSubmit={handleSubmitComment} userInfo={userInfo} />
 
       <CommentList
         comments={comments}
@@ -78,6 +108,8 @@ function Review() {
           handleDeleteComment(commentId);
           setShowForm(true); // 댓글 삭제 후 댓글 작성 폼 보이도록 설정
         }}
+        userInfo={userInfo}
+        myComments={myComments}
       />
     </>
   );

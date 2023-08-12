@@ -1,4 +1,7 @@
-import { styled } from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+// 컴포넌트
+import Modal from "react-modal"; // 모달창
 
 export const AiServiceDetailReviewWrap = styled.div`
   display: flex;
@@ -115,14 +118,15 @@ export const AiServiceDetailReviewStarAvgContentSubmit = styled.div``;
 // 댓글 작성하는 곳
 export const AiServiceDetailReviewCommentFormWrite = styled.form`
   display: flex;
+  flex-direction: column;
   margin-top: 2rem;
-  margin-left: 2rem;
+  /* margin-left: 2rem; */
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const AiServiceDetailReviewCommentFormWriteTextArea = styled.textarea`
-  width: 89rem;
+  width: 95rem;
   height: 9rem;
   padding: 1rem;
   padding-left: 1.5rem;
@@ -152,7 +156,7 @@ export const AiServiceDetailReviewCommentFormWriteButton = styled.button`
 // 이용 후기 목록
 export const AiServiceDetailReviewListLi = styled.li`
   display: flex;
-  flex-direction: column;
+
   padding: 2.6rem;
   border-bottom: 2px solid #f0f0f0;
 `;
@@ -202,7 +206,8 @@ export const AiServiceDetailReviewCommentFormTitle = styled.div`
   align-items: center;
 `;
 export const AiServiceDetailReviewCommentFormTitleIcon = styled.img`
-  width: 4rem;
+  width: 2.3rem;
+  margin-right: 0.8rem;
 `;
 
 export const AiServiceDetailReviewCommentFormTitleText = styled.div`
@@ -286,7 +291,7 @@ export const AiServiceDetailReviewMyButtonEdit = styled.div`
   width: 6.7rem;
   height: 3.7rem;
 `;
-export const AiServiceDetailReviewMyButtonDelete = styled.div`
+export const AiServiceDetailReviewMyButtonDelete = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -300,6 +305,10 @@ export const AiServiceDetailReviewMyButtonDelete = styled.div`
   width: 6.7rem;
   height: 3.7rem;
   margin-left: 1rem;
+
+  &:hover {
+    background: #6a6a70;
+  }
 `;
 
 // 이용후기 댓글 수정 폼
@@ -309,4 +318,188 @@ export const AiServiceDetailReviewCommentFormWriteMy = styled.div`
   margin-left: 5rem;
   justify-content: center;
   align-items: center;
+`;
+
+// 이용후기 헤더 추가
+export const ReviewHeader = styled.div`
+  display: flex;
+  margin-top: 7.5rem;
+  margin-left: 3rem;
+`;
+export const ReviewHeaderText = styled.div`
+  display: flex;
+  color: #4285f4;
+  font-size: 2rem;
+  font-weight: 700;
+`;
+export const ReviewHeaderIcon = styled.img`
+  display: flex;
+  width: 2.8rem;
+  margin-right: 0.8rem;
+`;
+
+// 비회원 비밀번호
+export const AiServiceDetailReviewMyButtonNotUser = styled.div`
+  display: flex;
+  margin-right: 0;
+`;
+
+export const AiServiceDetailReviewMyButtonDeleteNotUser = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 0.8rem;
+  background: #aeafb9;
+  padding: 0.7rem 1rem;
+  width: 6.7rem;
+  height: 3.7rem;
+  margin-left: -5rem;
+  &:hover {
+    background: #6a6a70;
+  }
+`;
+
+export const AiServiceDetailReviewCommentFormWritePwd = styled.input`
+  display: flex;
+
+  border-radius: 20px;
+  border: 1px solid #aeafb9;
+
+  width: 21rem;
+  height: 5.3rem;
+  padding: 1rem;
+  padding-left: 1.5rem;
+  resize: none;
+  border-radius: 20px;
+  border: 1px solid #aeafb9;
+  font-size: 1.8rem;
+  font-weight: 500;
+  font-family: inherit;
+
+  margin-bottom: 1.3rem;
+
+  ::placeholder {
+    color: #acacac;
+  }
+`;
+
+export const AiServiceDetailReviewCommentFormWriteContent = styled.div`
+  display: flex;
+`;
+
+// 내 댓글 더보기 버튼 생성
+const slideDown = keyframes`
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 1000px; /* 적절한 최대 높이 설정 */
+    opacity: 1;
+  }
+`;
+
+export const MyCommentsWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const MoreButtonWrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const MoreButton = styled.button`
+  display: flex;
+  color: #aeafb9;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.3rem;
+`;
+
+export const SlideCommentsWrap = styled.div`
+  max-height: 0; // 처음에 안보이게
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out; //접는 속도
+
+  &.show {
+    max-height: 100rem;
+    transition: max-height 0.5s ease-in-out; //펼치는 속도
+  }
+`;
+
+// 비회원 삭제 모달창
+export const NotUserDeleteModal = styled(Modal)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50rem;
+  height: 30rem;
+
+  overlay {
+    background-color: rgba(255, 2, 2, 0.5);
+    z-index: 1000;
+  }
+`;
+
+export const NotUserDeleteModalContentWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100rem;
+  height: 30rem;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+`;
+
+export const NotUserDeleteModalContentTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #4285f4;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+`;
+
+export const NotUserDeleteModalContentButtonWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+`;
+
+export const NotUserDeleteModalContentButtonConfirm = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #000;
+  padding: 1rem 4rem;
+  margin-right: 2rem;
+`;
+
+export const NotUserDeleteModalContentButtonCancle = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #000;
+  padding: 1rem 4rem;
 `;
