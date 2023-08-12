@@ -8,7 +8,9 @@ import CompanyIcon from "../../../assets/images/icon/company.png";
 // 컴포넌트
 import Like from "../../common/like/Like";
 import Star from "../../common/star/Star";
+
 import { CopyToClipboard } from "react-copy-to-clipboard/src"; // 클립보드
+
 import Keyword from "../../common/keyword/Keyword";
 
 export function AiServiceDetailIntro() {
@@ -102,35 +104,26 @@ export function AiServiceDetailIntro() {
                 {/* 별점 */}
                 <S.AiServiceDetailContentDescriptionStar>
                   <S.AiServiceDetailContentDescriptionStarIcon>
-                    <Star
-                      starNum={introItem.rating_point}
-                      starSize={"2.4rem"}
-                    />
+                    <Star starNum={introItem.rating_point} starSize={2.4} />
                   </S.AiServiceDetailContentDescriptionStarIcon>
                   <S.AiServiceDetailContentDescriptionStarCnt>
                     ({introItem.rating_cnt})
                   </S.AiServiceDetailContentDescriptionStarCnt>
                 </S.AiServiceDetailContentDescriptionStar>
 
-                <S.AiServiceDetailContentDescriptionEndWrap>
-                  {/* 조회수 */}
-                  <S.AiServiceDetailContentDescriptionViews>
-                    조회 {introItem.views.toLocaleString()}
-                  </S.AiServiceDetailContentDescriptionViews>
-
-                  {/* 키워드 */}
-                  <S.AiServiceDetailContentDescriptionKeywordWrap>
-                    {/* {introItem.keyword.map((keyword, index) => (
+                {/* 키워드 */}
+                <S.AiServiceDetailContentDescriptionKeywordWrap>
+                  <Keyword
+                    keyword={introItem.keyword}
+                    keywordFontSize={"1.5rem"}
+                  />
+                  {/* {introItem.keyword.map((keyword, index) => (
                     <S.AiServiceDetailContentDescriptionKeyword key={index}>
                       {keyword}
                     </S.AiServiceDetailContentDescriptionKeyword>
                   ))} */}
-                    <Keyword
-                      keyword={introItem.keyword}
-                      keywordSize={"1.4rem"}
-                    />
-                  </S.AiServiceDetailContentDescriptionKeywordWrap>
-                </S.AiServiceDetailContentDescriptionEndWrap>
+                </S.AiServiceDetailContentDescriptionKeywordWrap>
+
                 <S.AiServiceDetailContentDescriptionBottom>
                   {/* 서비스 바로가기 */}
                   <S.AiServiceDetailContentDescriptionBottomLink>

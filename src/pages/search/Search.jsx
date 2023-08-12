@@ -36,9 +36,9 @@ function Search() {
 
   return (
     <S.SearchWrapper>
+      <SearchForm />
       <S.SearchTitleWrapper>
         <S.SearchTitle>
-          <AiOutlineSearch size={"25px"} style={{ marginRight: "5px" }} />
           {searchTerm}
           <S.SearchTitleGray> 에 대한 검색 결과입니다.</S.SearchTitleGray>
         </S.SearchTitle>

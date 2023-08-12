@@ -31,7 +31,7 @@ function AiService({ item }) {
         <S.AiServiceDescription>{item.content}</S.AiServiceDescription>
         {/* 별점 */}
         <S.AiServiceStar>
-          <Star starNum={item.rating_point} starSize={"20px"} />
+          <Star starNum={item.rating_point} starSize={2} />
           <S.AiServiceStarDescription>
             ({item.rating_cnt})
           </S.AiServiceStarDescription>

@@ -7,6 +7,7 @@ export const SearchWrapper = styled.div`
   justify-content: start;
   height: 100%;
   padding: 0 1rem;
+  margin-top: 2rem;
   max-width: 1178px;
   width: 100%;
 `;

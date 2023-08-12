@@ -23,6 +23,7 @@ import AuthReset from "./pages/auths/authReset/AuthReset";
 import AuthSignup from "./pages/auths/authSignup/AuthSignup";
 import ProfileChangePassword from "./pages/profile/profileChangePassword/ProfileChangePassword";
 import Search from "./pages/search/Search";
+
 const router = createBrowserRouter([
   {
     path: "/",

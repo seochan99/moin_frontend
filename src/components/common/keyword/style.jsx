@@ -15,11 +15,12 @@ export const KeywordWrapper = styled.div`
 `;
 
 export const KeywordTag = styled.div`
+  font-size: ${props => props.fontSize};
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem 1rem;
-  margin: 0.25rem;
+  margin: 0.5rem;
   border-radius: 3px;
   background-color: black;
   color: white;

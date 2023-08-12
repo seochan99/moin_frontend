@@ -6,6 +6,7 @@ export const SearchInputWrapper = styled.form`
   justify-content: start;
   height: 50px;
   margin: 1rem 0;
+  margin-bottom: 1.5rem;
   padding: 0 2rem;
   border-radius: 20px;
   border: 0.5rem solid;

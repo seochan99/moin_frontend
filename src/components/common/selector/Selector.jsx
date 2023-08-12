@@ -1,12 +1,18 @@
 import React from "react";
 import * as S from "./style";
 
-function Selector() {
+function Selector({ options, getCurrentOption }) {
+  const onChagne = e => {
+    getCurrentOption(e.target.value);
+  };
   return (
     <>
-      <S.SelectorSelect>
-        <S.SelectorOption value="recent">최신 순</S.SelectorOption>
-        <S.SelectorOption value="rate">평점 순</S.SelectorOption>
+      <S.SelectorSelect onChange={onChagne}>
+        {options.map((option, idx) => (
+          <S.SelectorOption value={option.value} key={idx}>
+            {option.title}
+          </S.SelectorOption>
+        ))}
       </S.SelectorSelect>
     </>
   );

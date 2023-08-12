@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 
-function Keyword({ keyword, keywordSize }) {
+function Keyword({ keyword, keywordFontSize, keywordFontWeight = "400" }) {
   const keywordColor = {
     챗봇: "#FFB6A7",
     과제: "#98ADF2",
@@ -12,10 +12,10 @@ function Keyword({ keyword, keywordSize }) {
       {keyword.map((item, idx) => (
         <S.KeywordTag
           key={idx}
-          style={{
-            backgroundColor: keywordColor[item],
-            fontSize: keywordSize
-          }}
+          style={{ backgroundColor: keywordColor[item] }}
+          fontSize={keywordFontSize}
+          fontWeight={keywordFontWeight}
+
         >
           {item}
         </S.KeywordTag>

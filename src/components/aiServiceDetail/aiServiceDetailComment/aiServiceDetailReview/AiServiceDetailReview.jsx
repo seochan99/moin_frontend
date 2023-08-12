@@ -26,7 +26,7 @@ export function AiServiceDetailReview() {
             </S.AiServiceDetailReviewStarMyHeader>
             <S.AiServiceDetailReviewStarMyContent>
               <S.AiServiceDetailReviewStarMyContentIcon>
-                <Star starNum={3} starSize={"2.4rem"} />
+                <Star starNum={3} starSize={2.4} />
               </S.AiServiceDetailReviewStarMyContentIcon>
               <S.AiServiceDetailReviewStarMyContentSubmit>
                 등록
@@ -58,7 +58,7 @@ export function AiServiceDetailReview() {
                 </S.AiServiceDetailReviewStarAvgContentResultCnt>
               </S.AiServiceDetailReviewStarAvgContentResult>
               <S.AiServiceDetailReviewStarAvgContentIcon>
-                <Star starNum={3} starSize={"2.4rem"} />
+                <Star starNum={3} starSize={2.4} />
               </S.AiServiceDetailReviewStarAvgContentIcon>
             </S.AiServiceDetailReviewStarAvgContent>
           </S.AiServiceDetailReviewStarAvg>
