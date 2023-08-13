@@ -3,8 +3,10 @@ import * as S from "./style";
 
 // 컴포넌트
 import Modal from "react-modal"; // 모달창
+import EditDelete from "../../../common/editDelete/EditDelete";
 
 const Comment = ({
+  key,
   content,
   onUpdate,
   onDelete,
@@ -39,6 +41,12 @@ const Comment = ({
     onSubmit(password);
     setPassword("");
     handleDelete();
+  };
+
+  const handleEditSubmit = e => {
+    e.preventDefault();
+    onSubmit(editedComment);
+    setEditedComment("");
   };
 
   const handleDelete = async () => {
@@ -113,15 +121,46 @@ const Comment = ({
                 </S.AiServiceDetailReviewMyContent>
               </S.AiServiceDetailReviewMyWrap>
               <S.AiServiceDetailReviewMyButton>
-                <S.AiServiceDetailReviewMyButtonEdit onClick={handleEdit}>
+                <EditDelete
+                  isWriter={true}
+                  id={key}
+                  handleEdit={handleEdit}
+                  handleDelete={handleDeleteButton}
+                  isBlue={true}
+                />
+                {/* <S.AiServiceDetailReviewMyButtonEdit onClick={handleEdit}>
                   수정
                 </S.AiServiceDetailReviewMyButtonEdit>
                 <S.AiServiceDetailReviewMyButtonDelete
                   onClick={handleDeleteButton}
                 >
                   삭제
-                </S.AiServiceDetailReviewMyButtonDelete>
+                </S.AiServiceDetailReviewMyButtonDelete> */}
               </S.AiServiceDetailReviewMyButton>
+
+              {/* 삭제 모달 */}
+              <S.NotUserDeleteModal
+                isOpen={isModalOpen}
+                onRequestClose={() => setIsModalOpen(false)}
+                contentLabel="댓글 삭제 확인"
+                ariaHideApp={false}
+              >
+                <S.NotUserDeleteModalContentWrap>
+                  <S.DeleteModalContentTitle>
+                    정말로 삭제하시겠습니까?
+                  </S.DeleteModalContentTitle>
+                  <S.DeleteModalContentButtonWrap>
+                    <S.NotUserDeleteModalContentButtonConfirm type="submit">
+                      확인
+                    </S.NotUserDeleteModalContentButtonConfirm>
+                    <S.NotUserDeleteModalContentButtonCancle
+                      onClick={() => setIsModalOpen(false)}
+                    >
+                      취소
+                    </S.NotUserDeleteModalContentButtonCancle>
+                  </S.DeleteModalContentButtonWrap>
+                </S.NotUserDeleteModalContentWrap>
+              </S.NotUserDeleteModal>
             </S.AiServiceDetailReviewMyLi>
           </>
         )}
@@ -150,12 +189,15 @@ const Comment = ({
           <S.AiServiceDetailReviewListLi>
             <S.AiServiceDetailReviewMyWrap>
               <S.AiServiceDetailReviewListHeader>
-                <S.AiServiceDetailReviewListWriter>
-                  {writer}
-                </S.AiServiceDetailReviewListWriter>
-                <S.AiServiceDetailReviewListDate>
-                  {formattedDate}
-                </S.AiServiceDetailReviewListDate>
+                <S.AiServiceDetailReviewListHeaderWrapper>
+                  <S.AiServiceDetailReviewListWriter>
+                    {writer}
+                  </S.AiServiceDetailReviewListWriter>
+                  <S.AiServiceDetailReviewListDate>
+                    {formattedDate}
+                  </S.AiServiceDetailReviewListDate>
+                </S.AiServiceDetailReviewListHeaderWrapper>
+                <EditDelete isWriter={true} id={3} />
               </S.AiServiceDetailReviewListHeader>
               <S.AiServiceDetailReviewListContent>
                 {content}

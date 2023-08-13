@@ -1,5 +1,14 @@
 import { styled, keyframes } from "styled-components";
-
+const fadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 // 전체 width 차지
 export const ProfileWrapper = styled.div`
   display: flex;
@@ -11,6 +20,7 @@ export const ProfileWrapper = styled.div`
 
 export const ProfileBanner = styled.div`
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 30rem;
   background-color: rgba(0, 10, 65, 0.97);
@@ -19,10 +29,13 @@ export const ProfileBanner = styled.div`
 export const ProfileBannerHeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin-left: 17rem;
-  margin-right: 17rem;
+  max-width: 1178px;
   width: 100%;
   justify-content: space-between;
+  @media (max-width: 1200px) {
+    width: 90%;
+  }
+  animation: ${fadeInAnimation} 0.5s ease-in-out;
 `;
 export const ProfileBannerHeaderContainer = styled.div`
   margin-top: 18rem;

@@ -38,15 +38,6 @@ export default function AuthLogin() {
     }));
   };
 
-  // 로그인 정보 불러오기
-  useEffect(() => {
-    const storedUserInfo = JSON.parse(localStorage.getItem("userInfo"));
-    if (storedUserInfo) {
-      setUserInfo(storedUserInfo);
-    }
-  }, []);
-
-  // 로그인 후 이동 페이지 -> 메인 페이지
   const handleSubmit = async event => {
     event.preventDefault();
     const { email, pwd } = loginData;
@@ -58,28 +49,23 @@ export default function AuthLogin() {
     }
 
     try {
-      // post 보내기 (로그인)
-
-      // 서버 연결시
-      /* 
-      console.log("zz");
-      const response = await axios.post("auth/login/", {
-        username: "hi",
+      const response = await axios.post("auth/login", {
         email: email,
         password: pwd
       });
-      console.log(response);
-      // accessToken 받아오기
-      const accessToken = response.data.accessToken;
-      */
 
-      // 서버 연결없는 임시
-      const accessToken = "sadsadsadasd231z#$#!@";
+      // accessToken 받아오기
+      const accessToken = response.data.token.access;
+      const refreshToken = response.data.token.refresh;
+      console.log(response);
+      const nickname = response.data.user.nickname;
 
       // 로그인 성공 시
       setUserInfo({
         email: email,
-        accessToken: accessToken
+        nickname: nickname,
+        accessToken: accessToken,
+        refreshToken: refreshToken // 저장 추가
       });
 
       // 로컬스토리지에 저장
@@ -87,19 +73,16 @@ export default function AuthLogin() {
         "userInfo",
         JSON.stringify({
           email: email,
-          accessToken: accessToken
+          nickname: nickname,
+          accessToken: accessToken,
+          refreshToken: refreshToken // 저장 추가
         })
       );
-
-      console.log(userInfo);
 
       alert("로그인에 성공했습니다.");
 
       // 메인 페이지로 이동
       navigate("/");
-
-      // // 페이지 새로고침
-      // window.location.reload();
     } catch (error) {
       // Handle login error (e.g., display an error message)
       console.error("Login failed:", error.message);

@@ -51,6 +51,7 @@ export default function NavBar() {
     if (isMobile) {
       sideBarClose();
     }
+    window.scrollTo(0, 0);
   }, [location]);
 
   const setMenu = () => {
@@ -58,7 +59,7 @@ export default function NavBar() {
       <S.NavLink
         to={menu.link}
         key={idx}
-        $isActive={location.pathname == menu.link}
+        $isActive={location.pathname.startsWith(menu.link)}
       >
         {menu.title}
       </S.NavLink>
@@ -116,11 +117,11 @@ export default function NavBar() {
               <S.NavSideBarHeader>
                 {userInfo ? (
                   <S.NavLink to={`/mypage`} $isActive={true}>
-                    홍길동 님
+                    {userInfo.nickname} 님 {" >"}
                   </S.NavLink>
                 ) : (
                   <S.NavLink to={`/login`} $isActive={true}>
-                    로그인하세요!
+                    로그인하세요! {" >"}
                   </S.NavLink>
                 )}
               </S.NavSideBarHeader>

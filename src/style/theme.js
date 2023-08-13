@@ -1,5 +1,4 @@
-import { css } from "styled-components";
-
+import { keyframes, css } from "styled-components";
 // const colors = {
 //   primary1: "#FF5D47",
 //   primary2: "#7230FF",
@@ -15,6 +14,17 @@ import { css } from "styled-components";
 //   gray7: "#E2E2E2",
 //   black: "#282828"
 // };
+
+export const fadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const colors = {
   primary1: "#4285F4",

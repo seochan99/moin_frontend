@@ -5,7 +5,7 @@ import ProfileHeader from "../../../components/profile/profileHeader/ProfileHead
 function ProfileFavorite() {
   return (
     <>
-      <ProfileHeader title="즐겨찾는 서비스" img={MypageStar} />
+      <ProfileHeader title="좋아요한 서비스" img={MypageStar} />
     </>
   );
 }

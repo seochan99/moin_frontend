@@ -25,8 +25,8 @@ const Layout = () => {
       <NavBar />
       <Wrapper>
         <Outlet />
-        <FooterBar />
       </Wrapper>
+      <FooterBar />
     </>
   );
 };

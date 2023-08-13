@@ -51,7 +51,7 @@ export const AiServiceDetailReviewStarMyContentIcon = styled.div`
   padding: 0.7rem 1.3rem;
 `;
 
-export const AiServiceDetailReviewStarMyContentSubmit = styled.div`
+export const AiServiceDetailReviewStarMyContentSubmit = styled.button`
   color: #aeafb9;
   text-align: center;
   font-size: 1.8rem;
@@ -60,6 +60,10 @@ export const AiServiceDetailReviewStarMyContentSubmit = styled.div`
   border-radius: 14px;
   padding: 1.5rem 1.3rem;
   margin-left: 1rem;
+
+  &:hover {
+    background-color: #ededed;
+  }
 `;
 
 export const AiServiceDetailReviewStarAvg = styled.div`
@@ -126,7 +130,7 @@ export const AiServiceDetailReviewCommentFormWrite = styled.form`
 `;
 
 export const AiServiceDetailReviewCommentFormWriteTextArea = styled.textarea`
-  width: 95rem;
+  width: 91rem;
   height: 9rem;
   padding: 1rem;
   padding-left: 1.5rem;
@@ -151,6 +155,10 @@ export const AiServiceDetailReviewCommentFormWriteButton = styled.button`
   text-align: center;
   font-size: 1.8rem;
   font-weight: 500;
+
+  &:hover {
+    background: #e8e8e8;
+  }
 `;
 
 // 이용 후기 목록
@@ -169,9 +177,15 @@ export const AiServiceDetailReviewMyWrap = styled.div`
 export const AiServiceDetailReviewListHeader = styled.div`
   display: flex;
   align-items: center;
-  flex-direction: row;
+  justify-content: space-between;
   margin-left: 3rem;
 `;
+
+export const AiServiceDetailReviewListHeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const AiServiceDetailReviewListWriter = styled.div`
   color: #282828;
   font-size: 2.2rem;
@@ -219,13 +233,13 @@ export const AiServiceDetailReviewCommentFormTitleText = styled.div`
 // 내 댓글
 export const AiServiceDetailReviewMyLi = styled.li`
   display: flex;
-  width: 95rem;
+  width: 100rem;
   flex-direction: row;
   padding: 2.6rem;
-  border-radius: 20px;
+  border-radius: 10px;
   background: rgba(178, 191, 235, 0.39);
   margin-top: 2.2rem;
-  margin-left: 5rem;
+  margin-left: 3rem;
 `;
 
 export const AiServiceDetailReviewMyHeader = styled.div`
@@ -256,28 +270,15 @@ export const AiServiceDetailReviewMyContent = styled.div`
   word-wrap: break-word;
 `;
 
-// 이용후기 목록
-export const AiServiceDetailReviewListWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  border-top: 2px solid #f0f0f0;
-  display: flex;
-  margin-top: 1.6rem;
-  width: 100%;
-`;
-
-export const AiServiceDetailReviewListUl = styled.ul`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
 // 이용후기 댓글 수정/삭제 버튼
 export const AiServiceDetailReviewMyButton = styled.div`
   display: flex;
-  margin-left: 2rem;
+  flex-grow: 1;
+  justify-content: flex-end;
+
+  margin-left: 5rem;
 `;
-export const AiServiceDetailReviewMyButtonEdit = styled.div`
+export const AiServiceDetailReviewMyButtonEdit = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -290,6 +291,10 @@ export const AiServiceDetailReviewMyButtonEdit = styled.div`
   padding: 0.7rem 1rem;
   width: 6.7rem;
   height: 3.7rem;
+
+  &:hover {
+    background: #2c5aa3;
+  }
 `;
 export const AiServiceDetailReviewMyButtonDelete = styled.button`
   display: flex;
@@ -315,7 +320,7 @@ export const AiServiceDetailReviewMyButtonDelete = styled.button`
 export const AiServiceDetailReviewCommentFormWriteMy = styled.div`
   display: flex;
   margin-top: 2rem;
-  margin-left: 5rem;
+  margin-left: 3rem;
   justify-content: center;
   align-items: center;
 `;
@@ -492,6 +497,10 @@ export const NotUserDeleteModalContentButtonConfirm = styled.button`
   border: 1px solid #000;
   padding: 1rem 4rem;
   margin-right: 2rem;
+
+  &:hover {
+    background-color: #ededed;
+  }
 `;
 
 export const NotUserDeleteModalContentButtonCancle = styled.button`
@@ -502,4 +511,89 @@ export const NotUserDeleteModalContentButtonCancle = styled.button`
   border-radius: 20px;
   border: 1px solid #000;
   padding: 1rem 4rem;
+
+  &:hover {
+    background-color: #ededed;
+  }
+`;
+
+// 나의 후기 헤더
+export const AiServiceDetailReviewCommentMyReviewWrap = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 7rem;
+  margin-left: 3rem;
+`;
+
+export const AiServiceDetailReviewCommentMyReviewListIcon = styled.img`
+  width: 2.3rem;
+  margin-right: 0.8rem;
+`;
+
+export const AiServiceDetailReviewCommentMyReviewText = styled.div`
+  display: flex;
+  color: #4285f4;
+  font-size: 2rem;
+  font-weight: 700;
+`;
+
+// 회원 삭제창
+export const DeleteModalContentTitle = styled.div`
+  display: flex;
+  color: #4285f4;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+`;
+
+export const DeleteModalContentButtonWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8.5rem;
+`;
+
+export const RatingBox = styled.div`
+  margin: 0 auto;
+
+  & svg {
+    color: #c4c4c4;
+    cursor: pointer;
+  }
+  :hover svg {
+    color: black;
+  }
+  & svg:hover ~ svg {
+    color: #c4c4c4;
+  }
+  .black {
+    color: black;
+  }
+`;
+
+export const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Stars = styled.div`
+  display: flex;
+  padding: 0.6rem;
+  & svg {
+    color: #d9d9d9;
+    cursor: pointer;
+  }
+
+  :hover svg {
+    color: #ffd600;
+  }
+
+  & svg:hover ~ svg {
+    color: #d9d9d9;
+  }
+
+  .yellowStar {
+    color: #ffd600;
+  }
 `;

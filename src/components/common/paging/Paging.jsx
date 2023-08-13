@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as S from "./style";
 import "./style.css";
 
@@ -32,9 +32,10 @@ function Paging({ page, count, postPerPage, setPage }) {
           .map((_, i) => (
             <S.Button
               key={currentPageSection * pageRangeDisplayed + i + 1}
-              onClick={() =>
-                setPage(currentPageSection * pageRangeDisplayed + i + 1)
-              }
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setPage(currentPageSection * pageRangeDisplayed + i + 1);
+              }}
               aria-current={
                 page === currentPageSection * pageRangeDisplayed + i + 1
                   ? "page"

@@ -53,7 +53,7 @@ export const AiServiceWrapper = styled.div`
   border-radius: 10px;
   width: 100%;
   flex-shrink: 0;
-
+  transition: transform 450ms;
   &:hover {
     transform: scale(1.05);
   }

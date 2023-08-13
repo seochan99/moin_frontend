@@ -14,8 +14,21 @@ function Main() {
   const [showData, setShowData] = useState([]);
 
   const categoriesJob = {
-    title: "직군",
-    tags: ["전체", "개발자", "디자인"]
+    title: "직업군",
+    tags: [
+      "1 sss",
+      "2 ss s",
+      "3 sss",
+      "4 sss sss",
+      "5 sssss",
+      "6  sss",
+      "7  s sa",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ]
   };
   const [currentCategoryTagJob, setCurrentCategoryTagJob] = useState(0);
   const getCurrentCategoryTagJob = tag => {
@@ -136,6 +149,171 @@ function Main() {
         like_cnt: 200,
         rating_point: 3.05,
         rating_cnt: 332
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4.75,
+        rating_cnt: 202
+      },
+      {
+        id: 2,
+        title: "Bing",
+        content: "빙빙",
+        keyword: ["챗봇", "심서현", "논문"],
+        thumbnail:
+          "http://image.koreatimes.com/article/2023/02/13/20230213105650631.jpg",
+        like_cnt: 403,
+        rating_point: 0.15,
+        rating_cnt: 332
+      },
+      {
+        id: 3,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
+        like_cnt: 10,
+        rating_point: 1.75,
+        rating_cnt: 202
+      },
+      {
+        id: 4,
+        title: "Bing",
+        content: "빙빙",
+        keyword: ["챗봇", "심서현", "논문"],
+        thumbnail:
+          "https://i.pinimg.com/236x/20/54/47/20544776a249886254358f5da2d74229.jpg",
+        like_cnt: 100,
+        rating_point: 2.45,
+        rating_cnt: 332
+      },
+      {
+        id: 5,
+        title: "서현",
+        content: "서현현",
+        keyword: ["챗봇", "농담곰"],
+        thumbnail:
+          "https://i.namu.wiki/i/YUl8OYhqGEIkaSdhdBVKfG1HIc-zsq3-1-2JLHKjroWUbWEVV5NSoAUjgJHWuKvbb72P9K1VrwQcK0AN8P86ew.webp",
+        like_cnt: 200,
+        rating_point: 3.05,
+        rating_cnt: 332
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4.75,
+        rating_cnt: 202
+      },
+      {
+        id: 2,
+        title: "Bing",
+        content: "빙빙",
+        keyword: ["챗봇", "심서현", "논문"],
+        thumbnail:
+          "http://image.koreatimes.com/article/2023/02/13/20230213105650631.jpg",
+        like_cnt: 403,
+        rating_point: 0.15,
+        rating_cnt: 332
+      },
+      {
+        id: 3,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
+        like_cnt: 10,
+        rating_point: 1.75,
+        rating_cnt: 202
+      },
+      {
+        id: 4,
+        title: "Bing",
+        content: "빙빙",
+        keyword: ["챗봇", "심서현", "논문"],
+        thumbnail:
+          "https://i.pinimg.com/236x/20/54/47/20544776a249886254358f5da2d74229.jpg",
+        like_cnt: 100,
+        rating_point: 2.45,
+        rating_cnt: 332
+      },
+      {
+        id: 5,
+        title: "서현",
+        content: "서현현",
+        keyword: ["챗봇", "농담곰"],
+        thumbnail:
+          "https://i.namu.wiki/i/YUl8OYhqGEIkaSdhdBVKfG1HIc-zsq3-1-2JLHKjroWUbWEVV5NSoAUjgJHWuKvbb72P9K1VrwQcK0AN8P86ew.webp",
+        like_cnt: 200,
+        rating_point: 3.05,
+        rating_cnt: 332
+      },
+      {
+        id: 1,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
+        like_cnt: 599,
+        rating_point: 4.75,
+        rating_cnt: 202
+      },
+      {
+        id: 2,
+        title: "Bing",
+        content: "빙빙",
+        keyword: ["챗봇", "심서현", "논문"],
+        thumbnail:
+          "http://image.koreatimes.com/article/2023/02/13/20230213105650631.jpg",
+        like_cnt: 403,
+        rating_point: 0.15,
+        rating_cnt: 332
+      },
+      {
+        id: 3,
+        title: "chat GPT",
+        content: "chan AI가 개발했지요?",
+        keyword: ["챗봇", "과제"],
+        thumbnail:
+          "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
+        like_cnt: 10,
+        rating_point: 1.75,
+        rating_cnt: 202
+      },
+      {
+        id: 4,
+        title: "Bing",
+        content: "빙빙",
+        keyword: ["챗봇", "심서현", "논문"],
+        thumbnail:
+          "https://i.pinimg.com/236x/20/54/47/20544776a249886254358f5da2d74229.jpg",
+        like_cnt: 100,
+        rating_point: 2.45,
+        rating_cnt: 332
+      },
+      {
+        id: 5,
+        title: "서현",
+        content: "서현현",
+        keyword: ["챗봇", "농담곰"],
+        thumbnail:
+          "https://i.namu.wiki/i/YUl8OYhqGEIkaSdhdBVKfG1HIc-zsq3-1-2JLHKjroWUbWEVV5NSoAUjgJHWuKvbb72P9K1VrwQcK0AN8P86ew.webp",
+        like_cnt: 200,
+        rating_point: 3.05,
+        rating_cnt: 332
       }
     ];
 
@@ -143,34 +321,37 @@ function Main() {
   }, []);
 
   return (
-    <S.MainWrapper>
+    <>
       <MainBannerList />
-      <SearchForm />
-      {/* 직군 카테고리 */}
-      <MainCategory
-        category={categoriesJob}
-        currentCategoryTag={currentCategoryTagJob}
-        getCurrentCategoryTag={getCurrentCategoryTagJob}
-      />
-      {/* 키워드 카테고리 */}
-      <MainCategory
-        category={categoriesKeyword}
-        currentCategoryTag={currentCategoryTagKeyword}
-        getCurrentCategoryTag={getCurrentCategoryTagKeyword}
-      />
-      <S.MainTitleWrapper>
-        <S.MainTitle>
-          <AiOutlineSearch size={"25px"} style={{ marginRight: "5px" }} />{" "}
-          모아보기
-        </S.MainTitle>
-        <Selector
-          options={SelectorOption}
-          getCurrentOption={getCurrentOption}
-        />
-      </S.MainTitleWrapper>
 
-      <AiServiceList data={showData} />
-    </S.MainWrapper>
+      <S.MainWrapper>
+        <SearchForm />
+        {/* 직군 카테고리 */}
+        <MainCategory
+          category={categoriesJob}
+          currentCategoryTag={currentCategoryTagJob}
+          getCurrentCategoryTag={getCurrentCategoryTagJob}
+        />
+        {/* 키워드 카테고리 */}
+        <MainCategory
+          category={categoriesKeyword}
+          currentCategoryTag={currentCategoryTagKeyword}
+          getCurrentCategoryTag={getCurrentCategoryTagKeyword}
+        />
+        <S.MainTitleWrapper>
+          <S.MainTitle>
+            <AiOutlineSearch size={"25px"} style={{ marginRight: "5px" }} />{" "}
+            모아보기
+          </S.MainTitle>
+          <Selector
+            options={SelectorOption}
+            getCurrentOption={getCurrentOption}
+          />
+        </S.MainTitleWrapper>
+
+        <AiServiceList data={showData} />
+      </S.MainWrapper>
+    </>
   );
 }
 

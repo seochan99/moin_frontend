@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { useNavigate } from "react-router-dom";
-
+import axios from "../../../api/axios";
 function Signup() {
   //유저 이메일, 직군, 비밀번호, 닉네임, 한줄소개 입력받음
   // 이를 위한 유저 useState 객체 생성
@@ -21,7 +21,7 @@ function Signup() {
 
   const jobList = [
     "개발자",
-    "디자이너",
+    "디자인",
     "기획자",
     "마케터",
     "영상/사진 작가",
@@ -36,7 +36,7 @@ function Signup() {
     setJobs(jobList);
   }, []);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     // 모든 필수 정보가 입력되었는지 확인
     if (
@@ -46,13 +46,21 @@ function Signup() {
       user.nickname &&
       user.job
     ) {
-      // use try catch to handle errors for POST request user Info
       try {
-        // axios.post("/signup", user);
-        alert("회원가입이 완료되었습니다.");
-        navigate("/login");
+        const response = await axios.post("auth/signup", {
+          nickname: user.nickname,
+          email: user.email,
+          job: user.job,
+          description: user.introduce ?? null,
+          password: user.password
+        });
+        if (response.status === 200) {
+          alert("회원가입이 완료되었습니다.");
+          navigate("/login");
+        }
       } catch (error) {
         alert("회원가입에 실패했습니다.");
+        console.log(error);
       }
     } else {
       alert("모든 필수 정보를 입력해주세요.");
@@ -164,6 +172,7 @@ function Signup() {
           isvaild="true"
         />
       </S.SignUpInputWrapper>
+      {/* --------------- 직군 --------------- */}
       <S.SignUpInputWrapper>
         <S.SignUpInputTitleText>*직군</S.SignUpInputTitleText>
 
@@ -183,6 +192,7 @@ function Signup() {
           ))}
         </S.Select>
       </S.SignUpInputWrapper>
+      {/* --------------- 한줄소개 --------------- */}
       <S.SignUpInputWrapper>
         <S.SignUpInputTitleText>한줄소개</S.SignUpInputTitleText>
         <S.SignUpInput

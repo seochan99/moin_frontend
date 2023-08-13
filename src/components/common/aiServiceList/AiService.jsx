@@ -14,7 +14,7 @@ function AiService({ item }) {
   return (
     <S.AiServiceWrapper
       onClick={() =>
-        navigate(`AiService/${item.id}`, {
+        navigate(`AiService/${item.title}`, {
           state: {
             item: item
           }

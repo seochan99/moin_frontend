@@ -7,11 +7,9 @@ const Banner = ({ titleKorean, titleEnglish, image }) => {
       <S.ProfileBannerHeaderWrapper>
         <S.ProfileBannerHeaderContainer>
           <S.ProfileBannerHeaderTitleBox>
-            {titleKorean}
-          </S.ProfileBannerHeaderTitleBox>
-          <S.ProfileBannerHeaderTitle>
             {titleEnglish}
-          </S.ProfileBannerHeaderTitle>
+          </S.ProfileBannerHeaderTitleBox>
+          <S.ProfileBannerHeaderTitle>{titleKorean}</S.ProfileBannerHeaderTitle>
         </S.ProfileBannerHeaderContainer>
         {image}
       </S.ProfileBannerHeaderWrapper>

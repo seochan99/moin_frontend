@@ -67,7 +67,6 @@ export const ProfileInfoWrapper = styled.div`
   width: 100%;
   margin-top: 13rem;
   margin-bottom: 13rem;
-  /* border: 1px solid black; */
 `;
 
 export const ProfileInfoHeaderWrapper = styled.div`
@@ -121,10 +120,24 @@ export const ProfileInfoContentWrapper = styled.div`
   display: flex;
   flex-direction: row;
   // gap 10px 씩
-
   justify-content: space-between;
-
   margin-bottom: 4rem;
+
+  @media (max-width: 1024px) {
+    display: grid;
+    grid-template-rows: 4fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    // grid  가운데 정렬
+    justify-items: center;
+  }
+
+  @media (max-width: 668px) {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    // grid  가운데 정렬
+    justify-items: center;
+  }
 `;
 
 export const ProfileInfoContent = styled.div`

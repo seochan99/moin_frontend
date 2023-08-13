@@ -21,9 +21,7 @@ const CommentForm = ({ onSubmit, userInfo }) => {
     return null;
   }
  */
-  console.log("폼 작성 부분");
-  console.log(userInfo);
-  console.log("폼 작성 부분");
+
   return (
     <>
       <S.AiServiceDetailReviewCommentWrap>

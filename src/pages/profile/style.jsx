@@ -89,6 +89,9 @@ export const ProfileInfoWrapper = styled.div`
   margin-top: 13rem;
   margin-bottom: 13rem;
   animation: ${fadeInAnimation} 0.5s ease-in-out;
+  @media (max-width: 1200px) {
+    width: 90%;
+  }
 `;
 
 export const ProfileInfoHeaderWrapper = styled.div`

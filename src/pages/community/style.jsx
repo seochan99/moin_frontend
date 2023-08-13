@@ -15,3 +15,12 @@ export const CommunityIconImg = styled(CommunityIcon)`
   height: 12rem;
   margin-top: 16.5rem;
 `;
+
+export const CommunityContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  max-width: 1178px;
+  width: 100%;
+`;

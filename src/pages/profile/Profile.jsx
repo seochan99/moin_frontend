@@ -7,15 +7,6 @@ import * as S from "./style";
 import Banner from "../../components/common/banner/Banner";
 
 function Profile() {
-  const [userInfo, setUserInfo] = useRecoilState(userState);
-
-  useEffect(() => {
-    const storedUserInfo = JSON.parse(localStorage.getItem("userInfo"));
-    if (storedUserInfo) {
-      setUserInfo(storedUserInfo);
-    }
-  }, []);
-
   return (
     <S.ProfileWrapper>
       <Banner

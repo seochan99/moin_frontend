@@ -1,0 +1,14 @@
+.w-md-editor-fullscreen {
+  width: 100vw;
+}
+
+.w-md-editor:not(.w-md-editor-fullscreen) {
+  max-width: 1160px;
+  width: calc(100vw * 0.96);
+}
+
+.w-md-editor * {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}

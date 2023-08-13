@@ -10,12 +10,12 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "./pagination.css";
 
-// 나중에 베너 데이터 생기면 삭제할게요!
 import bannerImg1 from "./banner1.png";
 import bannerImg2 from "./banner2.png";
+import bannerImg3 from "./banner3.png";
 
 function MainBannerList() {
-  const banners = [bannerImg1, bannerImg2];
+  const banners = [bannerImg1, bannerImg2, bannerImg3];
   return (
     <>
       <S.BannerListWrapper>

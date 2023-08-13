@@ -24,17 +24,17 @@ export const AiServiceDetailHeader = styled.div`
   flex-direction: column;
   color: #fff;
   position: relative;
+  margin-left: -12rem;
 `;
 
 export const AiServiceDetailShare = styled.div`
   display: flex;
   margin-top: 2.9rem;
-  margin-right: 3.5rem;
+  margin-right: -12rem;
   justify-content: right;
-  cursor: pointer;
-
+  transition: transform 450ms;
   :hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 
@@ -42,6 +42,7 @@ export const AiServiceDetailShareImg = styled.img`
   display: flex;
   width: 4rem;
   height: 4rem;
+  cursor: pointer;
 `;
 
 // 클립보드
@@ -76,7 +77,7 @@ export const AiServiceThumbnailImg = styled.img`
 export const AiServiceDetailContentDescription = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 4.3rem;
+  margin-left: 6rem;
 `;
 
 export const AiServiceDetailContentDescriptionCompany = styled.div`
@@ -157,8 +158,10 @@ export const AiServiceDetailContentDescriptionStarCnt = styled.div`
 export const AiServiceDetailContentDescriptionKeywordWrap = styled.div`
   display: flex;
   justify-content: end;
+  align-items: center;
+  margin-right: -12rem;
   margin-top: 0.5rem;
-  margin-left: 41.5rem;
+  width: 100%;
 `;
 
 export const AiServiceDetailContentDescriptionKeyword = styled.div`
@@ -181,7 +184,7 @@ export const AiServiceDetailContentDescriptionBottom = styled.div`
 `;
 
 export const AiServiceDetailContentDescriptionBottomLink = styled.div`
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   :hover {
     color: white;
     background-color: #4285f4;
@@ -209,7 +212,12 @@ export const AiServiceDetailContentDescriptionBottomHeart = styled.div`
 
 export const AiServiceDetailContentDescriptionBottomHeartIcon = styled.div`
   display: flex;
-  margin-top: 0.8rem;
+  margin-top: 0.2rem;
+
+  transition: transform 200ms;
+  :hover {
+    transform: scale(1.03);
+  }
 `;
 
 export const AiServiceDetailContentDescriptionBottomHeartCnt = styled.div`
@@ -229,6 +237,7 @@ export const AiServiceDetailContentDescriptionEndWrap = styled.div`
 
 export const AiServiceDetailContentDescriptionViews = styled.div`
   display: flex;
+  width: 20rem;
   font-size: 1.2rem;
   font-weight: 600;
 `;

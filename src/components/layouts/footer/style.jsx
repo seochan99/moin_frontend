@@ -13,8 +13,8 @@ export const FooterWrapper = styled.div`
 export const FooterContent = styled.div`
   position: relative;
   width: 100%;
-  max-width: 1178px;
-  padding: 0 1rem;
+
+  padding: 0 3rem;
   padding-bottom: 2rem;
   border-bottom: solid 1px;
   border-color: ${props => props.theme.colors.primary2};
@@ -48,15 +48,15 @@ export const FooterText = styled.div`
 export const FooterCopyRight = styled.div`
   color: ${props => props.theme.colors.gray4};
   width: 100%;
-  max-width: 1178px;
+
   display: flex;
   justify-content: end;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 3rem;
 `;
 
 export const NavLogo = styled.div`
   bottom: 0;
-  right: 0;
+  right: 3rem;
   position: absolute;
   display: flex;
   align-items: center;

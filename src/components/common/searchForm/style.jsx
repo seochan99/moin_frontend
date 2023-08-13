@@ -9,7 +9,7 @@ export const SearchInputWrapper = styled.form`
   margin-bottom: 1.5rem;
   padding: 0 2rem;
   border-radius: 20px;
-  border: 0.5rem solid;
+  border: 0.4rem solid;
   border-color: ${props => props.theme.colors.primary2};
 
   color: ${props => props.theme.colors.primary2};
