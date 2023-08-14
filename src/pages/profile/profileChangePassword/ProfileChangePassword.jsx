@@ -52,7 +52,7 @@ function ProfileChangePassword() {
         new_password1: pwd, // 변경할 비밀번호
         new_password2: confirmPwd // 변경할 비밀번호 확인
       };
-      const response = await axios.post("auth/password/change/", requestData, {
+      const response = await axios.post("auth/password/change", requestData, {
         headers
       });
 

@@ -3,41 +3,23 @@ import * as S from "./style";
 
 import Paging from "./Paging";
 
-function ListView({ items, postPerPage, children }) {
+function ListView({
+  items,
+  count,
+  postPerPage,
+  currentPage,
+  getCurrentPage,
+  children
+}) {
   function childrenWithProps(item, idx) {
     const chlid = cloneElement(children, { item: item, key: idx });
     return chlid;
   }
-  const [count, setCount] = useState(0);
-  const [currentpage, setCurrentpage] = useState(1); //현재페이지
-
-  const [indexOfLastPost, setIndexOfLastPost] = useState(0);
-  const [indexOfFirstPost, setIndexOfFirstPost] = useState(0);
-  const [currentPosts, setCurrentPosts] = useState(0);
-
-  //items호출
-  useEffect(() => {
-    setCount(items.length);
-    setIndexOfLastPost(currentpage * postPerPage);
-    setIndexOfFirstPost(indexOfLastPost - postPerPage);
-    setCurrentPosts(items.slice(indexOfFirstPost, indexOfLastPost));
-  }, [
-    items,
-    count,
-    currentpage,
-    indexOfFirstPost,
-    indexOfLastPost,
-    postPerPage
-  ]);
-
-  const setPage = e => {
-    setCurrentpage(e);
-  };
 
   return (
     <>
-      {currentPosts && items.length > 0 ? (
-        currentPosts.map((item, idx) => {
+      {items && items.length > 0 ? (
+        items.map((item, idx) => {
           return childrenWithProps(item, idx);
         })
       ) : (
@@ -45,10 +27,10 @@ function ListView({ items, postPerPage, children }) {
       )}
 
       <Paging
-        page={currentpage}
+        page={currentPage}
         count={count}
         postPerPage={postPerPage}
-        setPage={setPage}
+        setPage={getCurrentPage}
       />
     </>
   );

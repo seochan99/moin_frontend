@@ -37,9 +37,6 @@ export function AiServiceDetailIntro({ introContent }) {
     });
   };
 
-  console.log("durl");
-  console.log(introContent);
-
   return (
     <>
       {/* {item.name} */} <ToastContainer />
@@ -79,7 +76,7 @@ export function AiServiceDetailIntro({ introContent }) {
                 {introContent.title}
               </S.AiServiceDetailContentDescriptionName>
               <S.AiServiceDetailContentDescriptionIntro>
-                {introContent.content}
+                {introContent.description}
               </S.AiServiceDetailContentDescriptionIntro>
 
               {/* 인기직군 */}
@@ -112,7 +109,7 @@ export function AiServiceDetailIntro({ introContent }) {
                 {/* 키워드 */}
                 <S.AiServiceDetailContentDescriptionKeywordWrap>
                   <Keyword
-                    keyword={introContent.keyword}
+                    keyword={introContent.keywords}
                     keywordFontSize={"1.5rem"}
                   />
                   {/* {introContent.keyword.map((keyword, index) => (
@@ -148,7 +145,7 @@ export function AiServiceDetailIntro({ introContent }) {
                     </S.LikeButton>
                   </S.AiServiceDetailContentDescriptionBottomHeartIcon>
                   <S.AiServiceDetailContentDescriptionBottomHeartCnt>
-                    {introContent.like_cnt}
+                    {introContent.likes_cnt}
                   </S.AiServiceDetailContentDescriptionBottomHeartCnt>
                 </S.AiServiceDetailContentDescriptionBottomHeart>
               </S.AiServiceDetailContentDescriptionBottom>

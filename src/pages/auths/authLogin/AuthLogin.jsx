@@ -53,7 +53,7 @@ export default function AuthLogin() {
         email: email,
         password: pwd
       });
-
+      console.log(response);
       // accessToken 받아오기
       const accessToken = response.data.token.access;
       const refreshToken = response.data.token.refresh;

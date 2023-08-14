@@ -33,7 +33,7 @@ function ProfileMain() {
       };
       console.log(headers);
 
-      const response = await axios.get("mypage/profile/", {
+      const response = await axios.get("mypage/profile", {
         headers
       });
 

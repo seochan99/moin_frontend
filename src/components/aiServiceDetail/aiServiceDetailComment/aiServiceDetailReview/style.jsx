@@ -10,7 +10,7 @@ export const AiServiceDetailReviewWrap = styled.div`
   justify-content: center;
 `;
 
-// 별점
+// 별점wrap
 export const AiServiceDetailReviewStarWrap = styled.div`
   display: flex;
   margin-left: 3rem;

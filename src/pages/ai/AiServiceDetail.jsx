@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import * as S from "./style";
 
 // 컴포넌트
@@ -7,31 +8,37 @@ import { AiServiceDetailReview } from "../../components/aiServiceDetail/aiServic
 import { AiServiceDetailTip } from "../../components/aiServiceDetail/aiServiceDetailComment/aiServiceDetailTip/AiServiceDetailTip";
 import { AiServiceDescription } from "../../components/aiServiceDetail/aiServiceDescription/AiServiceDescription";
 
-function AiServiceDetail() {
-  const [introContent, setIntroContent] = useState();
+import axios from "../../api/axios";
 
+function AiServiceDetail() {
+  const [data, setData] = useState();
+  const [introContent, setIntroContent] = useState();
+  const [title, setTitle] = useState("new");
+  const location = useLocation();
+  const aiName = decodeURI(location.pathname.split("/")[2]);
+
+  console.log(aiName);
   useEffect(() => {
-    const introContentData = {
-      id: 1,
-      title: "Chat GPT",
-      content: "chan AI가 개발했지요?",
-      url: "https://chat.openai.com/",
-      company: "Open AI",
-      applier: "admin",
-      keyword: ["챗봇", "과제"],
-      popular_job: ["개발자", "디자이너"], // 추가
-      thumbnail:
-        "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
-      is_liked: false,
-      like_cnt: 599,
-      view_cnt: 92,
-      avg_point: 3.7,
-      my_rating_point: 4,
-      rating_cnt: 202,
-      views: 402333
-    };
-    setIntroContent(introContentData);
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`/moin/detail/${aiName}`);
+      console.log("gd", response.data);
+
+      const detailData = response.data;
+
+      setIntroContent(detailData);
+      setData(detailData);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  console.log("gdd", data);
+  console.log("gd2", introContent);
+  console.log(introContent);
 
   // 탭 기능 구현
   const [currentTab, setCurrentTab] = useState(0);

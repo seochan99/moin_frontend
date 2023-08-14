@@ -129,7 +129,9 @@ export function AiServiceDetailReview({ introContent }) {
             <S.AiServiceDetailReviewStarAvgContent>
               <S.AiServiceDetailReviewStarAvgContentResult>
                 <S.AiServiceDetailReviewStarAvgContentResultAi>
-                  {introContent.avg_point}
+                  {introContent.avg_point === Math.floor(introContent.avg_point)
+                    ? introContent.avg_point.toFixed(1)
+                    : introContent.avg_point}
                 </S.AiServiceDetailReviewStarAvgContentResultAi>
                 <S.AiServiceDetailReviewStarAvgContentResultTotal>
                   / 5.0

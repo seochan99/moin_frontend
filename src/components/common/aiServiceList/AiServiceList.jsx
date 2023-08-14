@@ -4,13 +4,25 @@ import * as S from "./style";
 import AiService from "./AiService";
 import ListView from "../paging/ListView";
 
-function AiServiceList({ data }) {
+function AiServiceList({
+  data,
+  count,
+  currentPage,
+  getCurrentPage,
+  searchTerm
+}) {
   return (
     <>
       <S.MainAiServiceListWrapper>
         <S.MainAiServices>
-          <ListView items={data} postPerPage={12}>
-            <AiService />
+          <ListView
+            items={data}
+            count={count}
+            postPerPage={12}
+            currentPage={currentPage}
+            getCurrentPage={getCurrentPage}
+          >
+            <AiService searchTerm={searchTerm} />
           </ListView>
         </S.MainAiServices>
       </S.MainAiServiceListWrapper>

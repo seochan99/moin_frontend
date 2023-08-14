@@ -11,6 +11,7 @@ function Paging({ page, count, postPerPage, setPage }) {
   useEffect(() => {
     setPage(currentPageSection * pageRangeDisplayed + 1);
   }, [currentPageSection]);
+
   return (
     <>
       <S.Nav>

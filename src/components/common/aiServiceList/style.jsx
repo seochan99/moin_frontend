@@ -54,6 +54,7 @@ export const AiServiceWrapper = styled.div`
   width: 100%;
   flex-shrink: 0;
   transition: transform 450ms;
+
   &:hover {
     transform: scale(1.05);
   }
@@ -90,11 +91,28 @@ export const AiServiceBody = styled.div`
 export const AiServiceTitle = styled.div`
   font-size: 2.5rem;
   font-weight: 700;
+  width: 100%;
 `;
 
 export const AiServiceDescription = styled.div`
-  font-size: 1.5rem;
   padding: 1rem 0;
+  max-width: 18rem;
+  overflow: hidden;
+  font-size: 1.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @media (max-width: 560px) {
+    max-width: 18rem;
+  }
+  @media (min-width: 560px) {
+    max-width: 34rem;
+  }
+  @media (min-width: 768px) {
+    max-width: 20rem;
+  }
+  @media (min-width: 992px) {
+    max-width: 18rem;
+  }
 `;
 
 export const AiServiceStar = styled.div`

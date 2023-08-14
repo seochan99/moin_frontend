@@ -8,26 +8,29 @@ import Selector from "../../components/common/selector/Selector";
 
 import { AiOutlineSearch } from "react-icons/ai";
 import SearchForm from "../../components/common/searchForm/SearchForm";
+import axios from "../../api/axios";
 
 function Main() {
   const [data, setData] = useState([]);
-  const [showData, setShowData] = useState([]);
+  const [count, setCount] = useState(0);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const getCurrentPage = currentPage => setCurrentPage(currentPage);
 
   const categoriesJob = {
     title: "직업군",
     tags: [
-      "1 sss",
-      "2 ss s",
-      "3 sss",
-      "4 sss sss",
-      "5 sssss",
-      "6  sss",
-      "7  s sa",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12"
+      "전체",
+      "IT",
+      "디자인",
+      "교육",
+      "마케팅",
+      "연구",
+      "금융",
+      "학생",
+      "서현",
+      "유진",
+      "기타"
     ]
   };
   const [currentCategoryTagJob, setCurrentCategoryTagJob] = useState(0);
@@ -37,7 +40,19 @@ function Main() {
 
   const categoriesKeyword = {
     title: "키워드",
-    tags: ["전체", "챗봇", "논문", "과제", "심서현"]
+    tags: [
+      "전체",
+      "챗봇",
+      "개발",
+      "디자인",
+      "영상",
+      "마케팅",
+      "분석",
+      "음성",
+      "언어",
+      "유료",
+      "무료"
+    ]
   };
   const [currentCategoryTagKeyword, setCurrentCategoryTagKeyword] = useState(0);
   const getCurrentCategoryTagKeyword = tag => {
@@ -46,6 +61,8 @@ function Main() {
 
   const SelectorOption = [
     { value: "recent", title: "최신순" },
+    { value: "popular", title: "조회순" },
+    { value: "like", title: "좋아요순" },
     { value: "rating", title: "평점순" }
   ];
   const [currentOption, setCurrentOption] = useState("recent");
@@ -53,272 +70,42 @@ function Main() {
     setCurrentOption(option);
   };
 
-  const sortByRecent = (a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
-  const sortByRating = (a, b) =>
-    a.rating_point > b.rating_point
-      ? -1
-      : a.rating_point < b.rating_point
-      ? 1
-      : 0;
-
-  //옵셥변경
-  useEffect(() => {
-    let sortedData = [];
-
-    switch (currentOption) {
-      case "recent":
-        sortedData = data.sort(sortByRecent);
-        break;
-      case "rating":
-        sortedData = data.sort(sortByRating);
-        break;
-    }
-
-    setData(sortedData.slice(0, sortedData.length));
-  }, [currentOption]);
-
-  //카테고리변경
-  useEffect(() => {
-    if (currentCategoryTagKeyword != 0) {
-      const results = data.filter(Ai =>
-        Ai.keyword.includes(
-          categoriesKeyword.tags[currentCategoryTagKeyword],
-          0
-        )
-      );
-      setShowData(results);
-    } else {
-      setShowData(data);
-    }
-  }, [data, currentCategoryTagJob, currentCategoryTagKeyword]);
-
-  //데이터입력
-  useEffect(() => {
-    const aiData = [
-      {
-        id: 1,
-        title: "chat GPT",
-        content: "chan AI가 개발했지요?",
-        keyword: ["챗봇", "과제"],
-        thumbnail:
-          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
-        like_cnt: 599,
-        rating_point: 4.75,
-        rating_cnt: 202
-      },
-      {
-        id: 2,
-        title: "Bing",
-        content: "빙빙",
-        keyword: ["챗봇", "심서현", "논문"],
-        thumbnail:
-          "http://image.koreatimes.com/article/2023/02/13/20230213105650631.jpg",
-        like_cnt: 403,
-        rating_point: 0.15,
-        rating_cnt: 332
-      },
-      {
-        id: 3,
-        title: "chat GPT",
-        content: "chan AI가 개발했지요?",
-        keyword: ["챗봇", "과제"],
-        thumbnail:
-          "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
-        like_cnt: 10,
-        rating_point: 1.75,
-        rating_cnt: 202
-      },
-      {
-        id: 4,
-        title: "Bing",
-        content: "빙빙",
-        keyword: ["챗봇", "심서현", "논문"],
-        thumbnail:
-          "https://i.pinimg.com/236x/20/54/47/20544776a249886254358f5da2d74229.jpg",
-        like_cnt: 100,
-        rating_point: 2.45,
-        rating_cnt: 332
-      },
-      {
-        id: 5,
-        title: "서현",
-        content: "서현현",
-        keyword: ["챗봇", "농담곰"],
-        thumbnail:
-          "https://i.namu.wiki/i/YUl8OYhqGEIkaSdhdBVKfG1HIc-zsq3-1-2JLHKjroWUbWEVV5NSoAUjgJHWuKvbb72P9K1VrwQcK0AN8P86ew.webp",
-        like_cnt: 200,
-        rating_point: 3.05,
-        rating_cnt: 332
-      },
-      {
-        id: 1,
-        title: "chat GPT",
-        content: "chan AI가 개발했지요?",
-        keyword: ["챗봇", "과제"],
-        thumbnail:
-          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
-        like_cnt: 599,
-        rating_point: 4.75,
-        rating_cnt: 202
-      },
-      {
-        id: 2,
-        title: "Bing",
-        content: "빙빙",
-        keyword: ["챗봇", "심서현", "논문"],
-        thumbnail:
-          "http://image.koreatimes.com/article/2023/02/13/20230213105650631.jpg",
-        like_cnt: 403,
-        rating_point: 0.15,
-        rating_cnt: 332
-      },
-      {
-        id: 3,
-        title: "chat GPT",
-        content: "chan AI가 개발했지요?",
-        keyword: ["챗봇", "과제"],
-        thumbnail:
-          "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
-        like_cnt: 10,
-        rating_point: 1.75,
-        rating_cnt: 202
-      },
-      {
-        id: 4,
-        title: "Bing",
-        content: "빙빙",
-        keyword: ["챗봇", "심서현", "논문"],
-        thumbnail:
-          "https://i.pinimg.com/236x/20/54/47/20544776a249886254358f5da2d74229.jpg",
-        like_cnt: 100,
-        rating_point: 2.45,
-        rating_cnt: 332
-      },
-      {
-        id: 5,
-        title: "서현",
-        content: "서현현",
-        keyword: ["챗봇", "농담곰"],
-        thumbnail:
-          "https://i.namu.wiki/i/YUl8OYhqGEIkaSdhdBVKfG1HIc-zsq3-1-2JLHKjroWUbWEVV5NSoAUjgJHWuKvbb72P9K1VrwQcK0AN8P86ew.webp",
-        like_cnt: 200,
-        rating_point: 3.05,
-        rating_cnt: 332
-      },
-      {
-        id: 1,
-        title: "chat GPT",
-        content: "chan AI가 개발했지요?",
-        keyword: ["챗봇", "과제"],
-        thumbnail:
-          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
-        like_cnt: 599,
-        rating_point: 4.75,
-        rating_cnt: 202
-      },
-      {
-        id: 2,
-        title: "Bing",
-        content: "빙빙",
-        keyword: ["챗봇", "심서현", "논문"],
-        thumbnail:
-          "http://image.koreatimes.com/article/2023/02/13/20230213105650631.jpg",
-        like_cnt: 403,
-        rating_point: 0.15,
-        rating_cnt: 332
-      },
-      {
-        id: 3,
-        title: "chat GPT",
-        content: "chan AI가 개발했지요?",
-        keyword: ["챗봇", "과제"],
-        thumbnail:
-          "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
-        like_cnt: 10,
-        rating_point: 1.75,
-        rating_cnt: 202
-      },
-      {
-        id: 4,
-        title: "Bing",
-        content: "빙빙",
-        keyword: ["챗봇", "심서현", "논문"],
-        thumbnail:
-          "https://i.pinimg.com/236x/20/54/47/20544776a249886254358f5da2d74229.jpg",
-        like_cnt: 100,
-        rating_point: 2.45,
-        rating_cnt: 332
-      },
-      {
-        id: 5,
-        title: "서현",
-        content: "서현현",
-        keyword: ["챗봇", "농담곰"],
-        thumbnail:
-          "https://i.namu.wiki/i/YUl8OYhqGEIkaSdhdBVKfG1HIc-zsq3-1-2JLHKjroWUbWEVV5NSoAUjgJHWuKvbb72P9K1VrwQcK0AN8P86ew.webp",
-        like_cnt: 200,
-        rating_point: 3.05,
-        rating_cnt: 332
-      },
-      {
-        id: 1,
-        title: "chat GPT",
-        content: "chan AI가 개발했지요?",
-        keyword: ["챗봇", "과제"],
-        thumbnail:
-          "https://www.headmind.com/wp-content/uploads/2023/01/CHAT-GPT.png",
-        like_cnt: 599,
-        rating_point: 4.75,
-        rating_cnt: 202
-      },
-      {
-        id: 2,
-        title: "Bing",
-        content: "빙빙",
-        keyword: ["챗봇", "심서현", "논문"],
-        thumbnail:
-          "http://image.koreatimes.com/article/2023/02/13/20230213105650631.jpg",
-        like_cnt: 403,
-        rating_point: 0.15,
-        rating_cnt: 332
-      },
-      {
-        id: 3,
-        title: "chat GPT",
-        content: "chan AI가 개발했지요?",
-        keyword: ["챗봇", "과제"],
-        thumbnail:
-          "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
-        like_cnt: 10,
-        rating_point: 1.75,
-        rating_cnt: 202
-      },
-      {
-        id: 4,
-        title: "Bing",
-        content: "빙빙",
-        keyword: ["챗봇", "심서현", "논문"],
-        thumbnail:
-          "https://i.pinimg.com/236x/20/54/47/20544776a249886254358f5da2d74229.jpg",
-        like_cnt: 100,
-        rating_point: 2.45,
-        rating_cnt: 332
-      },
-      {
-        id: 5,
-        title: "서현",
-        content: "서현현",
-        keyword: ["챗봇", "농담곰"],
-        thumbnail:
-          "https://i.namu.wiki/i/YUl8OYhqGEIkaSdhdBVKfG1HIc-zsq3-1-2JLHKjroWUbWEVV5NSoAUjgJHWuKvbb72P9K1VrwQcK0AN8P86ew.webp",
-        like_cnt: 200,
-        rating_point: 3.05,
-        rating_cnt: 332
+  const fetchData = async () => {
+    try {
+      let Api_Url = "";
+      if (currentCategoryTagJob != 0 && currentCategoryTagKeyword != 0) {
+        //job keyword 선택된경우
+        Api_Url = `/moin?job=${categoriesJob.tags[currentCategoryTagJob]}&keyword=${categoriesKeyword.tags[currentCategoryTagKeyword]}&ordering=${currentOption}&page=${currentPage}`;
+      } else if (currentCategoryTagJob != 0 && currentCategoryTagKeyword == 0) {
+        //job 선택된경우
+        Api_Url = `/moin?job=${categoriesJob.tags[currentCategoryTagJob]}&ordering=${currentOption}&page=${currentPage}`;
+      } else if (currentCategoryTagJob == 0 && currentCategoryTagKeyword != 0) {
+        //keyword 선택된경우
+        Api_Url = `/moin?keyword=${categoriesKeyword.tags[currentCategoryTagKeyword]}&ordering=${currentOption}&page=${currentPage}`;
+      } else if (currentCategoryTagJob == 0 && currentCategoryTagKeyword == 0) {
+        //job keyword 선택 안 된 경우
+        Api_Url = `/moin?page=${currentPage}&ordering=${currentOption}`;
       }
-    ];
 
-    setData(aiData);
-  }, []);
+      const response = await axios.get(Api_Url);
+
+      setCount(response.data.count);
+      setData(response.data.results.slice(0, response.data.results.length));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  //옵션, 카테고리 변경
+  useEffect(() => {
+    setCurrentPage(1);
+    fetchData();
+  }, [currentOption, currentCategoryTagJob, currentCategoryTagKeyword]);
+
+  //페이지변경
+  useEffect(() => {
+    fetchData();
+  }, [currentPage]);
 
   return (
     <>
@@ -349,7 +136,12 @@ function Main() {
           />
         </S.MainTitleWrapper>
 
-        <AiServiceList data={showData} />
+        <AiServiceList
+          data={data}
+          count={count}
+          currentPage={currentPage}
+          getCurrentPage={getCurrentPage}
+        />
       </S.MainWrapper>
     </>
   );
