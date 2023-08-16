@@ -21,8 +21,9 @@
 }
 .mainCategorySwiper .swiper-button-prev,
 .mainCategorySwiper .swiper-button-next {
+  font-size: 1.3rem;
   position: absolute;
-  font-size: 0.7rem;
+
   top: 50%;
   transform: translate(0, -50%);
 
@@ -80,12 +81,12 @@
 }
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {
-  content: "<";
+  content: "◀";
 }
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev {
 }
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
-  content: ">";
+  content: "▶";
 }

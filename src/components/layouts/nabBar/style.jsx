@@ -10,7 +10,7 @@ export const NavWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 1178px;
-  height: 6rem;
+  height: 60px;
   padding: 0 2rem;
 
   z-index: 2;
@@ -136,6 +136,7 @@ export const NavSideBarMenu = styled.div`
 
 export const NavSideBarHeader = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 10rem;
   margin-bottom: 4rem;

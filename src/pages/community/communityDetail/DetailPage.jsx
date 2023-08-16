@@ -10,11 +10,11 @@ import { AiServiceDetailContentDescriptionCompanyImg } from "../../../components
 import CommunityDetailContent from "../../../components/common/communityDetailContent/CommunityDetailContent";
 import { userState } from "../../../context/authState";
 import { useRecoilState } from "recoil";
-import CommentInput from "../../../components/common/CommentInput/CommentInput";
+import CommentInput from "../../../components/common/commentInput/CommentInput";
 import CommonCommentList from "../../../components/common/commonCommentList/CommonCommentList";
 
 function DetailPage() {
-  const [user] = useRecoilState(userState);
+  const [user, setUser] = useRecoilState(userState);
 
   const [comments, setComments] = useState({
     count: 24,
@@ -60,17 +60,13 @@ function DetailPage() {
 
   // detail와서 ai name받기
   const [aiName, setAiName] = useState("ChatGPT-3");
-  const [isWriter, setIsWriter] = useState(true);
   const [isUser, setIsUser] = useState(true);
-
+  const [isWriter, setIsWriter] = useState(false);
   const [detail, setDetail] = useState({});
   const [likeCount, setLikeCount] = useState(0);
   const [likeImage, setLikeImage] = useState(ThumbOutlineIcon);
 
   const handleLike = async islike => {
-    // 비어 토큰
-
-    // 유저 있는지 없는지 체크
     try {
       // islike is true
       // 좋아요 취소
@@ -94,40 +90,46 @@ function DetailPage() {
     }
   };
 
-  useEffect(() => {
-    fetchDetail();
-  }, []);
-
   const fetchDetail = async () => {
     try {
-      // const response = await axios.get(`community/${type}/${id}/`);
-      // console.log(response.data);
-      // setDetail(response.data);
+      const response = await axios.get(`communities/${type}/${id}`);
+      console.log(response);
+      setDetail(response.data);
 
-      // 임시 데이터
-      const response = {
-        data: {
-          id: 1,
-          category: "",
-          writer: "서찬",
-          title: "서차나ㅇ아난",
-          content: "안녕하세요! 서찬입니다.",
-          is_liked: false,
-          view_cnt: 302,
-          comments_cnt: 3,
-          likes_cnt: 2,
-          images:
-            "https://velog.velcdn.com/images/seochan99/post/f69eadaf-46d2-4910-927d-e187ceaee4ab/image.png",
-          created_at: "2023.01.01 8:20",
-          updated_at: "202301.01 8:40"
-        }
-      };
       setLikeCount(response.data.likes_cnt);
       setDetail(response.data);
+      setAiName(response.data.ai);
     } catch (error) {
       console.log(error);
     }
   };
+
+  // writer 확인
+  const fetchIsWriter = async () => {
+    try {
+      const accessToken = user.accessToken; // 추출한 accessToken
+      console.log(user);
+      const headers = {
+        Authorization: `Bearer ${accessToken}` // Bearer Token 설정
+      };
+
+      const response = await axios.get(`users/check?type=community&id=${id}`, {
+        headers
+      });
+      setIsWriter(response.data.is_writer);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // 처음 Detail 렌더링
+  useEffect(() => {
+    // 유저가 있을 경우 writer인지 확인
+    if (user) {
+      fetchIsWriter();
+    }
+    fetchDetail();
+  }, []);
 
   // 디테일 렌더링
   const renderDetail = () => {
@@ -138,7 +140,12 @@ function DetailPage() {
       </>
     ) : (
       <>
-        <CommunityDetailContent detail={detail} isWriter={isWriter} id={1} />
+        <CommunityDetailContent
+          detail={detail}
+          isWriter={isWriter}
+          id={detail.id}
+          user={user}
+        />
         <S.DetailDiviner />
         <S.LikeViewWrapper>
           <S.Thumbnailimg src={EyeOutlineIcon} alt="조회수" />

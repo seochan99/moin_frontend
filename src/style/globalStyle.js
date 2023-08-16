@@ -18,6 +18,13 @@ export const GlobalStyle = createGlobalStyle`
   figure, figcaption, footer, header, hgroup,
   main, menu, nav, output, ruby, section, summary,
   time, mark, audio, video {
+
+    @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    } 
     margin: 0;
     border: 0;
     padding: 0;
@@ -27,7 +34,7 @@ export const GlobalStyle = createGlobalStyle`
     @media (max-width: 768px) {
         font-size: 7px;
     }
-    font-family: "Pretendard";
+    font-family: "Pretendard-Regular";
   }
   article, aside, details, figcaption, figure,
   footer, header, hgroup, main, menu, nav, section {
@@ -36,6 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   *[hidden] {
       display: none;
   }
+
   body {
     touch-action: manipulation;
     line-height: 1;

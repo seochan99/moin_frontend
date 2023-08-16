@@ -17,30 +17,12 @@ function NoticeDetailPage() {
 
   const fetchDetail = async () => {
     try {
-      // const response = await axios.get(`community/${type}/${id}/`);
-      // console.log(response.data);
-      // setDetail(response.data);
-
-      // 임시 데이터
-      const response = {
-        data: {
-          id: 1,
-          category: "",
-          writer: "서찬",
-          title: "서차나ㅇ아난",
-          content: "안녕하세요! 서찬입니다.",
-          is_liked: false,
-          view_cnt: 302,
-          comments_cnt: 3,
-          likes_cnt: 2,
-          images:
-            "https://velog.velcdn.com/images/seochan99/post/f69eadaf-46d2-4910-927d-e187ceaee4ab/image.png",
-          created_at: "2023.01.01 8:20",
-          updated_at: "202301.01 8:40"
-        }
-      };
-
-      setDetail(response.data);
+      // /api/v1/notifications/{notification_id}
+      const response = await axios.get(`notifications/${id}`);
+      if (response.status === 200) {
+        const data = response.data;
+        setDetail(data);
+      }
     } catch (error) {
       console.log(error);
     }

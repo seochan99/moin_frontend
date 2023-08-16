@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Star from "../star/Star";
 import Like from "../like/Like";
 import Keyword from "../keyword/Keyword";
-import ColoredItem from "../highLightItem/HighLightItem";
+
 import HightLightItem from "../highLightItem/HighLightItem";
 
 function AiService({ item, searchTerm }) {

@@ -7,58 +7,73 @@ import CommunityDetailContent from "../../../components/common/communityDetailCo
 import EyeOutlineIcon from "../../../assets/images/icon/eye_outline.png";
 import * as AS from "../../../components/aiServiceDetail/aiServiceDetailComment/aiServiceDetailReview/style";
 import EditDelete from "../../../components/common/editDelete/EditDelete";
+import { userState } from "../../../context/authState";
+import { useRecoilState } from "recoil";
 function SuggestionDetailPage() {
   // type에는 common,tips, qnas 들어갈 수 있음
   const { id } = useParams();
+  const [user] = useRecoilState(userState);
 
   const [detail, setDetail] = useState({});
+  const [aiName, setAiName] = useState("");
+  const [isWriter, setIsWriter] = useState(false);
+  const [isUser, setIsUser] = useState(true);
 
-  const [comment, setComment] = useState({
-    id: 1,
-    community: 17,
-    writer: "haha",
-    created_at: "2023/08/12 20:07",
-    updated_at: "2023/08/12 20:07",
-    content: "댓글 달았찡!"
-  });
+  const [comment, setComment] = useState({});
+
+  const fetchComment = async () => {
+    try {
+      const response = await axios.get(`suggestions/${id}/comments`);
+      console.log(response);
+      setComment(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // writer 확인
+  const fetchIsWriter = async () => {
+    try {
+      const accessToken = user.accessToken; // 추출한 accessToken
+      console.log(user);
+      const headers = {
+        Authorization: `Bearer ${accessToken}` // Bearer Token 설정
+      };
+
+      const response = await axios.get(`users/check?type=suggestion&id=${id}`, {
+        headers
+      });
+      setIsWriter(response.data.is_writer);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // 처음 Detail 렌더링
   useEffect(() => {
+    // 유저가 있을 경우 writer인지 확인
+    if (user) {
+      fetchIsWriter();
+    }
     fetchDetail();
+    fetchComment();
   }, []);
 
   const fetchDetail = async () => {
     try {
-      // const response = await axios.get(`community/${type}/${id}/`);
-      // console.log(response.data);
-      // setDetail(response.data);
+      const response = await axios.get(`suggestions/${id}`);
+      console.log(response);
+      setDetail(response.data);
+      setAiName(response.data.ai);
 
-      // 임시 데이터
-      const response = {
-        data: {
-          id: 2,
-          writer: "sad",
-          title: "tt",
-          content: "gggg",
-          url: "",
-          comments: [],
-          images: [
-            {
-              image:
-                "http://127.0.0.1:8000/media/suggestion/2/%ED%8B%B0%EA%B1%B0.jpg"
-            }
-          ],
-          created_at: "2023/08/13 03:09",
-          updated_at: "2023/08/13 03:09",
-          reflected_status: 0
-        }
-      };
-
+      setLikeCount(response.data.likes_cnt);
       setDetail(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // 디테일 렌더링
+  // ------------------ 디테일 렌더링 ------------------
   const renderDetail = () => {
     return !detail ? (
       <>
@@ -67,7 +82,7 @@ function SuggestionDetailPage() {
       </>
     ) : (
       <>
-        <CommunityDetailContent detail={detail} isWriter={false} id={id} />
+        <CommunityDetailContent detail={detail} isWriter={isWriter} id={id} />
         <S.DetailDiviner />
         <S.LikeViewWrapper>
           <S.DetailViewText>
@@ -84,14 +99,18 @@ function SuggestionDetailPage() {
     );
   };
 
-  return (
-    <S.DetailPageWrapper>
-      <CommuntiyDetailPageType type={"suggestion"} aiName={null} />
-      <S.DetailDiviner />
-      {renderDetail()}
-      <S.DetailCommentHeader>MOIN 답변</S.DetailCommentHeader>
-      <S.DetailDiviner />
-      <AS.AiServiceDetailReviewMyWrap>
+  // ------------------ 댓글 렌더링 ------------------
+  const renderComment = () => {
+    return !comment || comment.length ? (
+      <>
+        <AS.AiServiceDetailReviewListContent
+          style={{ marginLeft: "0rem", color: "#282828" }}
+        >
+          작성된 답변이 없습니다.
+        </AS.AiServiceDetailReviewListContent>
+      </>
+    ) : (
+      <>
         <AS.AiServiceDetailReviewListHeader>
           <AS.AiServiceDetailReviewListHeaderWrapper>
             <AS.AiServiceDetailReviewListWriter>
@@ -106,6 +125,20 @@ function SuggestionDetailPage() {
         <AS.AiServiceDetailReviewListContent>
           {comment.content}
         </AS.AiServiceDetailReviewListContent>
+      </>
+    );
+  };
+
+  return (
+    <S.DetailPageWrapper>
+      <CommuntiyDetailPageType type={"suggestion"} aiName={aiName} />
+      <S.DetailDiviner />
+      {renderDetail()}
+
+      <S.DetailCommentHeader>MOIN 답변</S.DetailCommentHeader>
+      <S.DetailDiviner />
+      <AS.AiServiceDetailReviewMyWrap>
+        {renderComment()}
       </AS.AiServiceDetailReviewMyWrap>
     </S.DetailPageWrapper>
   );

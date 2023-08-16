@@ -38,6 +38,24 @@ export default function AuthLogin() {
     }));
   };
 
+  // const onClickSocialLogin = async provider => {
+  //   try {
+  //     const response = await axios.get(`auth/${provider}/login/`);
+
+  //     console.log(response);
+  //     // accessToken 받아오기
+  //     const accessToken = response.data.token.access;
+  //     const refreshToken = response.data.token.refresh;
+
+  //     console.log(response);
+  //     const nickname = response.data.user.nickname;
+  //   } catch (error) {
+  //     // Handle login error (e.g., display an error message)
+  //     console.error("Login failed:", error.message);
+  //     alert("비밀번호를 다시 입력해주세요!");
+  //   }
+  // };
+
   const handleSubmit = async event => {
     event.preventDefault();
     const { email, pwd } = loginData;
@@ -79,14 +97,12 @@ export default function AuthLogin() {
         })
       );
 
-      alert("로그인에 성공했습니다.");
-
       // 메인 페이지로 이동
       navigate("/");
     } catch (error) {
       // Handle login error (e.g., display an error message)
       console.error("Login failed:", error.message);
-      alert("로그인에 실패했습니다. 다시 시도해주세요.");
+      alert("비밀번호를 다시 입력해주세요!");
     }
   };
 
@@ -129,7 +145,7 @@ export default function AuthLogin() {
 
               <AuthSocialButton
                 onClick={() => {
-                  console.log("자체회원가입");
+                  onClickSocialLogin("kakao");
                 }}
                 imgSrc={KakaoIcon}
                 altText="카카오 로고"

@@ -1,125 +1,93 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import List from "../../common/list/List";
+import axios from "../../../api/axios";
+import TipsList from "../../common/tipsList/TipsList";
 
 function CommunityQna() {
   const [qnaContent, setQnaContent] = useState([]);
 
-  useEffect(() => {
-    const qnaData = [
-      {
-        id: 1,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 2,
-        title: "챗지피티에 ",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 3,
-        title: "챗지피티에 대해 보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 4,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 5,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 6,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 7,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 8,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 9,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 10,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 11,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 12,
-        title: "챗지피티에 ",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 13,
-        title: "챗지피티에 해자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      }
+  // 현재 페이지
+  const [aiOption, setAiOption] = useState([]);
+  const [currentAiOption, setCurrentAiOption] = useState("");
 
-      // 추가.....
-    ];
-    setQnaContent(qnaData);
+  const getCurrentAiOption = option => {
+    setCurrentAiOption(option);
+  };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [count, setCount] = useState(1);
+
+  const SelectorOption = [
+    { value: "recent", title: "최신순" },
+    { value: "popular", title: "조회순" },
+    { value: "like", title: "좋아요순" }
+  ];
+
+  const [currentOption, setCurrentOption] = useState("recent");
+
+  const getCurrentOption = option => {
+    setCurrentOption(option);
+  };
+
+  // ai option state
+  const fetchAiContent = async () => {
+    try {
+      const response = await axios.get("moin/all/ai");
+      const aiData = response.data;
+      setAiOption(aiData);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const fetchQnaContent = async () => {
+    try {
+      const DecodeAiOption = decodeURI(currentAiOption);
+      const response = await axios.get(
+        `/communities/qnas?ordering=${currentOption}&page=${currentPage}&search=${DecodeAiOption}`
+      );
+
+      const qnaContentData = response.data.results;
+      setCount(response.data.count);
+      setQnaContent(qnaContentData);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  // 초기 ai option
+  useEffect(() => {
+    fetchAiContent();
   }, []);
+
+  // 옵션 선택시
+  useEffect(() => {
+    setCurrentPage(1);
+    fetchQnaContent();
+  }, [currentOption, currentAiOption]);
+
+  //페이지변경시
+  useEffect(() => {
+    fetchQnaContent();
+  }, [currentPage]);
 
   return (
     <>
-      <List data={qnaContent} url={"/community/qnas/"} />
+      <TipsList
+        data={qnaContent}
+        url={"/community/qnas/"}
+        writeUrl={"/community/create"}
+        currentOption={currentOption}
+        currentAiOption={currentAiOption}
+        SelectorOption={SelectorOption}
+        aiOption={aiOption}
+        getCurrentOption={getCurrentOption}
+        getCurrentAiOption={getCurrentAiOption}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        count={count}
+      />
     </>
   );
 }

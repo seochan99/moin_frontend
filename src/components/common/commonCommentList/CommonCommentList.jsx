@@ -4,26 +4,34 @@ import Paging from "../paging/Paging";
 import Comment from "../../aiServiceDetail/aiServiceDetailComment/aiServiceDetailReview/Comment";
 
 const CommonCommentList = ({
-  currentItems,
   comments,
   itemsPerPage,
   currentPage,
   handlePageChange,
-  onUpdate,
-  onDelete,
-  userInfo
+  userInfo,
+  count
 }) => {
+  // 댓글 내용 부분만 추출
+  const commentsContent = comments.results;
+
+  if (!commentsContent) {
+    return <>Loading comments...</>;
+  }
+
+  // 댓글 데이터를 최신순으로 정렬
+  // const sortedComments = commentsContent.slice().reverse();
+
   return (
     <S.AiServiceDetailReviewListWrap>
       <S.AiServiceDetailReviewListUl>
-        {currentItems.map(comment => (
+        {commentsContent.map((comment, idx) => (
           <Comment
-            key={comment.id}
+            key={idx}
+            id={comment.id}
+            isTemp={comment.is_tmp}
             content={comment.content}
             writer={comment.writer}
             created_at={comment.created_at}
-            onUpdate={updatedComment => onUpdate(comment.id, updatedComment)}
-            onDelete={() => onDelete(comment.id)}
             userInfo={userInfo}
           />
         ))}
@@ -32,7 +40,7 @@ const CommonCommentList = ({
         <S.AiServiceDetailReviewListPaging>
           <Paging
             page={currentPage}
-            count={comments.length}
+            count={count}
             postPerPage={itemsPerPage}
             setPage={handlePageChange}
           />

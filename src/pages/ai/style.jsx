@@ -13,7 +13,7 @@ export const AiServiceDetailCommentWrap = styled.div`
 
 export const AiServiceDetailCommentCategory = styled.div`
   display: flex;
-  width: 110rem;
+  width: 93%;
   border-bottom: 3px solid #f0f0f0;
 `;
 
@@ -31,6 +31,8 @@ export const AiServiceDetailCommentTip = styled.div`
   font-weight: 600;
   padding-bottom: 1.8rem;
 `;
+
+export const TabMenuWrap = styled.div``;
 
 // 탭 메뉴
 export const AiServiceDetailCommentCategoryTabMenu = styled.ul`

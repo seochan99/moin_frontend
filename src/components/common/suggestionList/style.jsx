@@ -13,6 +13,31 @@ const fadeInAnimation = keyframes`
     transform: translateY(0);
   }
 `;
+export const SuggestionHeaderText = styled.strong`
+  color: #4285f4;
+  text-align: center;
+  margin-right: 3.5rem;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 16px */
+`;
+
+export const SuggestionHeaderWrapper = styled.div`
+  display: flex;
+  justify-content: row;
+  width: 95%;
+  padding: 1.5rem 3rem;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  margin-top: 2.5rem;
+  color: #606067;
+  text-align: center;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+`;
 
 export const AiServiceDetailTipWrap = styled.div`
   display: flex;
@@ -25,7 +50,8 @@ export const AiServiceDetailTipWrap = styled.div`
 // 헤더 (글쓰기, 정렬순)
 export const AiServiceDetailTipHeader = styled.div`
   display: flex;
-  justify-content: space-around;
+
+  width: 95%;
   margin-top: 3.1rem;
 `;
 
@@ -34,6 +60,11 @@ export const AiServiceDetailTipHeaderWrite = styled.div`
     color: white;
     background-color: #4285f4;
   }
+  display: flex;
+  flex-direction: row;
+  // start
+  justify-self: flex-start;
+  align-items: flex-start;
 `;
 
 export const AiServiceDetailTipHeaderWriteContent = styled.div`
@@ -45,7 +76,7 @@ export const AiServiceDetailTipHeaderWriteContent = styled.div`
   border-radius: 10px;
   border: 2px solid #4285f4;
   padding: 0.7rem 1rem;
-  margin-right: 88rem;
+
   cursor: pointer;
 
   :hover {
@@ -78,13 +109,22 @@ export const AiServiceDetailTipTable = styled.table`
 `;
 
 export const AiServiceDetailTipTableThead = styled.thead``;
-export const AiServiceDetailTipTableTbody = styled.tbody``;
+export const AiServiceDetailTipTableTbody = styled.tbody`
+  animation: ${fadeInAnimation} 0.5s ease-in-out;
+`;
 
 export const AiServiceDetailTipTableTr = styled.tr``;
 export const AiServiceDetailTipTableTh = styled.th`
   padding: 2rem;
   font-size: 1.6rem;
   border-bottom: 2px solid #f0f0f0;
+`;
+export const AiServiceDetailTipTableTrContent = styled.tr`
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
 `;
 
 export const AiServiceDetailTipTableTd = styled.td`

@@ -1,0 +1,85 @@
+.display_none {
+  opacity: 0;
+}
+
+.AboutSection1 {
+  animation-duration: 1s;
+  animation-name: fadein;
+}
+
+.AboutSection1_Smartphone {
+  animation-duration: 1.2s;
+  animation-name: slideup;
+}
+
+.AboutSection1_Floating {
+  animation: floating infinite linear;
+}
+
+.AboutSection2 {
+  animation-duration: 2s;
+  animation-name: fadein;
+}
+
+.AboutSection2_Popup1 {
+  opacity: 0;
+  animation-duration: 1s;
+  animation-name: slideup;
+  animation-fill-mode: forwards;
+}
+
+.AboutSection2_Popup2 {
+  opacity: 0;
+  animation-duration: 1s;
+  animation-name: slidedown;
+  animation-fill-mode: forwards;
+}
+
+.AboutSection3_Fadein {
+  opacity: 0;
+  animation-duration: 0.7s;
+  animation-name: fadein;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100;
+  }
+}
+
+@keyframes slideup {
+  from {
+    margin-top: 40%;
+  }
+
+  to {
+    margin-top: 0%;
+    opacity: 100%;
+  }
+}
+
+@keyframes slidedown {
+  from {
+    margin-bottom: 40%;
+  }
+
+  to {
+    margin-bottom: 0%;
+    opacity: 100%;
+  }
+}
+
+@keyframes floating {
+  0%,
+  100% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -60%);
+  }
+}

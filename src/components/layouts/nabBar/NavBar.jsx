@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import NavBarTranslate from "./NavBarTranslate";
 
 import { AiOutlineMenu } from "react-icons/ai";
+import { BsChevronCompactRight } from "react-icons/bs";
 
 import * as S from "./style";
 import { userState } from "../../../context/authState";
@@ -117,13 +118,14 @@ export default function NavBar() {
               <S.NavSideBarHeader>
                 {userInfo ? (
                   <S.NavLink to={`/mypage`} $isActive={true}>
-                    {userInfo.nickname} 님 {" >"}
+                    {userInfo.nickname} 님
                   </S.NavLink>
                 ) : (
                   <S.NavLink to={`/login`} $isActive={true}>
-                    로그인하세요! {" >"}
+                    로그인하세요!
                   </S.NavLink>
                 )}
+                <BsChevronCompactRight />
               </S.NavSideBarHeader>
 
               <S.NavSideBarBody>{setMenu()}</S.NavSideBarBody>

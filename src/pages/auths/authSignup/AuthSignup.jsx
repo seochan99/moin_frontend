@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { useNavigate } from "react-router-dom";
 import axios from "../../../api/axios";
+
 function Signup() {
   //유저 이메일, 직군, 비밀번호, 닉네임, 한줄소개 입력받음
   // 이를 위한 유저 useState 객체 생성
@@ -12,6 +13,7 @@ function Signup() {
     nickname: "",
     introduce: ""
   });
+
   const [pwd, setPwd] = useState("");
   const [passwordIsVaild, setpasswordIsVaild] = useState(false);
   const [pwdMatchMessage, setPwdMatchMessage] = useState("");
@@ -20,13 +22,13 @@ function Signup() {
   const [jobs, setJobs] = useState([]);
 
   const jobList = [
-    "개발자",
+    "IT",
     "디자인",
-    "기획자",
-    "마케터",
-    "영상/사진 작가",
-    "번역가",
-    "대학생",
+    "학생",
+    "마케팅",
+    "연구",
+    "금융",
+    "교육",
     "기타"
   ];
 

@@ -16,6 +16,7 @@ function ProfileChangePassword() {
 
   // 로그인 정보 불러오기
   const [userInfo, setUserInfo] = useRecoilState(userState);
+
   // 비밀번호 입력
   const handlePwd0 = e => {
     e.preventDefault();

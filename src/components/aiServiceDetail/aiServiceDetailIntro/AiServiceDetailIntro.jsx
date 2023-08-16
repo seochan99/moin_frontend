@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from "react";
+import {
+  useLocation,
+  useNavigate,
+  useNavigation,
+  useParams
+} from "react-router-dom";
 import * as S from "./style";
 
 // 아이콘
@@ -17,17 +23,58 @@ import "react-toastify/dist/ReactToastify.css";
 import Keyword from "../../common/keyword/Keyword";
 import { useRecoilState } from "recoil";
 import { userState } from "../../../context/authState";
+import axios from "../../../api/axios";
 
-export function AiServiceDetailIntro({ introContent }) {
+export function AiServiceDetailIntro({ introContent, isLiked, setIsLiked }) {
   if (!introContent) {
     return null; // introContent가 없을 때 아무 것도 렌더링하지 않음
   }
-
-  // 좋아요
-  const [isLiked, setIsLiked] = useState(introContent.is_liked);
+  const navigate = useNavigate();
 
   // 회원 정보
   const [userInfo, setUserInfo] = useRecoilState(userState);
+
+  // 조회수
+  const [viewCnt, setViewCnt] = useState(introContent.view_cnt);
+  const location = useLocation();
+  const aiName = decodeURI(location.pathname.split("/")[2]);
+
+  const handleLikeToggle = async () => {
+    if (!userInfo) {
+      // 로그인하지 않은 경우 로그인 페이지로 이동
+      navigate("/login");
+      return;
+    }
+
+    try {
+      // 좋아요 상태 확인
+
+      const accessToken = userInfo.accessToken;
+      const headers = {
+        Authorization: `Bearer ${accessToken}`
+      };
+
+      // isLiked가 true이면 좋아요 취소, delete 요청보내기
+      if (isLiked) {
+        const response = await axios.delete(`moin/detail/${aiName}/like`, {
+          headers
+        });
+
+        if (response.status === 200) {
+          setIsLiked(false);
+          setLikeCnt(likeCnt - 1);
+        }
+      } else {
+        const response = await axios.post(`moin/detail/${aiName}/like`, null, {
+          headers
+        });
+        if (response.status === 200) {
+          setIsLiked(true);
+          setLikeCnt(likeCnt + 1);
+        }
+      }
+    } catch (error) {}
+  };
 
   // Toast
   const notify = () => {
@@ -94,7 +141,7 @@ export function AiServiceDetailIntro({ introContent }) {
               {/* 별점 */}
               <S.AiServiceDetailContentDescriptionStar>
                 <S.AiServiceDetailContentDescriptionStarIcon>
-                  <Star starNum={introContent.rating_point} starSize={2.4} />
+                  <Star starNum={introContent.avg_point} starSize={2.4} />
                 </S.AiServiceDetailContentDescriptionStarIcon>
                 <S.AiServiceDetailContentDescriptionStarCnt>
                   ({introContent.rating_cnt})
@@ -104,7 +151,7 @@ export function AiServiceDetailIntro({ introContent }) {
               <S.AiServiceDetailContentDescriptionEndWrap>
                 {/* 조회수 */}
                 <S.AiServiceDetailContentDescriptionViews>
-                  조회 {introContent.view_cnt.toLocaleString()}
+                  조회 {viewCnt.toLocaleString()}
                 </S.AiServiceDetailContentDescriptionViews>
                 {/* 키워드 */}
                 <S.AiServiceDetailContentDescriptionKeywordWrap>
@@ -132,13 +179,7 @@ export function AiServiceDetailIntro({ introContent }) {
                   <S.AiServiceDetailContentDescriptionBottomHeartIcon>
                     <S.LikeButton
                       onClick={() => {
-                        if (!userInfo) {
-                          // 로그인하지 않은 경우 로그인 페이지로 이동
-                          window.location.href = "/login";
-                          return;
-                        }
-
-                        setIsLiked(!isLiked);
+                        handleLikeToggle();
                       }}
                     >
                       <Like likeSize={"4rem"} likeCheck={isLiked} />

@@ -11,8 +11,17 @@ import MypageVector from "../../../assets/images/icon/mypageVector.png";
 import AuthContentBox from "../../../components/auths/authContentBox/AuthContentBox";
 import { useNavigate } from "react-router-dom";
 import axios from "../../../api/axios";
+import Modal from "../../../components/common/modal/Modal";
 
 function ProfileMain() {
+  // 모달창
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // 로그아웃 버튼 클릭 시 모달창 띄우기
+  const LogoutSubmit = () => {
+    setIsModalOpen(true);
+  };
+
   // 유저 정보 불러오기
   const [userInfo, setUserInfo] = useRecoilState(userState);
 
@@ -55,10 +64,6 @@ function ProfileMain() {
 
   const navigate = useNavigate();
   const handleLogout = async () => {
-    const shouldLogout = window.confirm("로그아웃 하시겠습니까?");
-    if (!shouldLogout) {
-      return;
-    }
     try {
       const accessToken = userInfo.accessToken;
       const headers = {
@@ -69,8 +74,6 @@ function ProfileMain() {
       });
 
       if (response.status === 200) {
-        alert("로그아웃 되었습니다.");
-        console.log(response);
         setUserInfo(null);
         // 로컬 스토리지에서 로그인 정보 삭제
         localStorage.removeItem("userInfo");
@@ -103,9 +106,16 @@ function ProfileMain() {
           <S.ProfileInfoHeaderButton onClick={handleChangePassword}>
             암호변경
           </S.ProfileInfoHeaderButton>
-          <S.ProfileInfoHeaderButton onClick={handleLogout}>
+          <S.ProfileInfoHeaderButton onClick={LogoutSubmit}>
             로그아웃
           </S.ProfileInfoHeaderButton>
+          {/* 로그아웃 클릭 시 띄우는 모달창 */}
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onConfirm={handleLogout}
+            content={"로그아웃 하시겠습니까?"}
+          />
         </S.ProfileInfoHeaderButtonWrapper>
       </S.ProfileInfoHeaderWrapper>
       {/* 프로필 내용물 박스  */}

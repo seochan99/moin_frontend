@@ -14,6 +14,13 @@ const fadeInAnimation = keyframes`
   }
 `;
 
+export const AiServiceDetailTipTableTrContent = styled.tr`
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+`;
 export const AiServiceDetailTipWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -87,7 +94,9 @@ export const AiServiceDetailTipTable = styled.table`
 `;
 
 export const AiServiceDetailTipTableThead = styled.thead``;
-export const AiServiceDetailTipTableTbody = styled.tbody``;
+export const AiServiceDetailTipTableTbody = styled.tbody`
+  animation: ${fadeInAnimation} 0.5s ease-in-out;
+`;
 
 export const AiServiceDetailTipTableTr = styled.tr``;
 export const AiServiceDetailTipTableTh = styled.th`

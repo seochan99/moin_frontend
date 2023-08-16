@@ -28,6 +28,8 @@ import DetailPage from "./pages/community/communityDetail/DetailPage";
 import SuggestionDetailPage from "./pages/suggestion/suggestionDetail/SuggestionDetailPage";
 import NoticeDetailPage from "./pages/notice/noticeDetail/noticeDetail";
 import CommunityCreatPost from "./pages/community/communityCreatePost/CommunityCreatPost";
+import CommunityEdit from "./pages/community/communityEdit/CommunityEdit";
+import SuggestionCreate from "./pages/suggestion/suggestionCreate/SuggestionCreate";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +66,10 @@ const router = createBrowserRouter([
         children: [
           {
             path: "create",
+            element: <AuthSignup />
+          },
+          {
+            path: "create/soical",
             element: <AuthSignup />
           },
           {
@@ -124,12 +130,24 @@ const router = createBrowserRouter([
         element: <SuggestionDetailPage />
       },
       {
+        path: "suggestion/create",
+        element: <SuggestionCreate />
+      },
+      {
+        path: "suggestion/edit/:id",
+        element: <CommunityCreatPost />
+      },
+      {
         path: "notice/:id",
         element: <NoticeDetailPage />
       },
       {
         path: "community/create",
         element: <CommunityCreatPost />
+      },
+      {
+        path: "community/edit/:id",
+        element: <CommunityEdit />
       }
     ],
     errorElement: <NotFoundError />

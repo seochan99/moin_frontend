@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 
-import axios from "axios";
+import axios from "../../../../api/axios";
 
 // 아이콘
 import MyStar from "../../../../assets/images/icon/starMy.png";
@@ -14,15 +14,14 @@ import Star from "../../../common/star/Star";
 import Review from "./Review";
 import { userState } from "../../../../context/authState";
 import { useRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 const ARRAY = [0, 1, 2, 3, 4];
 
-export function AiServiceDetailReview({ introContent }) {
+export function AiServiceDetailReview({ introContent, setRating }) {
   // 회원 정보
   const [userInfo, setUserInfo] = useRecoilState(userState);
-
-  // 별점 등록
-  const [rating, setRating] = useState(0);
+  const navigate = useNavigate();
 
   // 별점 기본값 설정
   const [clicked, setClicked] = useState(
@@ -41,31 +40,41 @@ export function AiServiceDetailReview({ introContent }) {
     setClicked(clickStates);
   };
 
-  useEffect(() => {
-    sendReview();
-  }, [clicked]);
+  // useEffect(() => {
+  //   sendReview();
+  // }, [clicked]);
 
-  const sendReview = () => {
+  const sendReview = async () => {
     let score = clicked.filter(Boolean).length;
     setRating(score);
     console.log("Selected Rating:", score);
-    // 서버 전송
-    // fetch('http://52.78.63.175:8000/movie', {
-    //   method: 'POST',
-    //   Headers: {
-    //     Authroization: 'e7f59ef4b4900fe5aa839fcbe7c5ceb7',
-    //   },
-    //   body: JSON.stringify({
-    //     movie_id:1
-    //     star: score,
-    //   }),
-    // });
+
+    // moin/detail/{title}/rate로 patch 요청
+    // bearer token 필요
+
+    try {
+      const accessToken = userInfo.accessToken; // 추출한 accessToken
+      console.log(userInfo);
+      const headers = {
+        Authorization: `Bearer ${accessToken}` // Bearer Token 설정
+      };
+      const response = await axios.patch(
+        `moin/detail/${introContent.title}/rate`,
+        {
+          rating: score
+        },
+        { headers: headers }
+      );
+      if (response.status === 200) {
+        setRating(score);
+      }
+    } catch (e) {}
   };
 
+  // 로그인하지 않은 경우 로그인 페이지로 이동
   const handleSubmit = () => {
     if (!userInfo) {
-      // 로그인하지 않은 경우 로그인 페이지로 이동
-      window.location.href = "/login";
+      navigate("/login");
       return;
     }
     sendReview();
@@ -110,7 +119,7 @@ export function AiServiceDetailReview({ introContent }) {
               <S.AiServiceDetailReviewStarMyContentSubmit
                 onClick={handleSubmit}
               >
-                등록
+                {introContent.my_rating_point === 0 ? "등록" : `수정`}
               </S.AiServiceDetailReviewStarMyContentSubmit>
             </S.AiServiceDetailReviewStarMyContent>
           </S.AiServiceDetailReviewStarMy>

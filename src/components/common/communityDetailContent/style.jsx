@@ -8,6 +8,11 @@ export const DetailTitle = styled.h1`
   margin-bottom: 1rem;
 `;
 
+export const MarkdownWrapper = styled.div`
+  font-size: 1600px; /* 원하는 글자 크기로 수정 */
+  /* 다른 스타일 속성도 추가 가능 */
+`;
+
 export const DetailTitleInfoWrapper = styled.div`
   display: flex;
   // row

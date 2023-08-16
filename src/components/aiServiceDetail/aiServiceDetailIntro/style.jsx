@@ -108,6 +108,7 @@ export const AiServiceDetailContentDescriptionIntro = styled.div`
   margin-top: 1rem;
   font-size: 2rem;
   font-weight: 500;
+  white-space: pre-line;
 `;
 
 export const AiServiceDetailContentDescriptionJob = styled.div`
@@ -208,6 +209,7 @@ export const AiServiceDetailContentDescriptionBottomHeart = styled.div`
   text-align: center;
   flex-direction: column;
   margin-right: 2rem;
+  margin-left: 2rem;
 `;
 
 export const AiServiceDetailContentDescriptionBottomHeartIcon = styled.div`

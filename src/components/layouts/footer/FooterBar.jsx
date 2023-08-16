@@ -4,6 +4,7 @@ import * as S from "./style";
 import { CiLocationOn, CiMail, CiInstagram } from "react-icons/ci";
 
 import MainLogo from "../../../assets/images/moin_logo.png";
+import { Link } from "react-router-dom";
 
 function FooterBar() {
   return (
@@ -18,12 +19,16 @@ function FooterBar() {
 
           <S.FooterInfo>
             <CiMail />
-            <S.FooterText>Ourstudio@hello.com</S.FooterText>
+            <S.FooterText>서울특별시 중구 필동로1길 30</S.FooterText>
           </S.FooterInfo>
 
           <S.FooterInfo>
             <CiInstagram />
-            <S.FooterText>@moin.dgu</S.FooterText>
+            <S.FooterText>
+              <Link to={`https://www.instagram.com/moin.dgu/`} target="_blank">
+                @moin.dgu
+              </Link>
+            </S.FooterText>
           </S.FooterInfo>
         </S.FooterBody>
         <S.NavLogo>

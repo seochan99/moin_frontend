@@ -4,108 +4,35 @@ import * as CS from "../community/style";
 import Banner from "../../components/common/banner/Banner";
 import List from "../../components/common/list/List";
 import NoticeList from "../../components/common/noticeList/NoticeList";
+import axios from "../../api/axios";
 
 function Notice() {
   const [noticeContent, setNoticeContent] = useState([]);
+  // 현재 페이지
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const noticeData = [
-      {
-        id: 1,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 2,
-        title: "챗지피티에 ",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 3,
-        title: "챗지피티에 대해 보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 4,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 5,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 6,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 7,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 8,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 9,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 10,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 11,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 12,
-        title: "챗지피티에 ",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      },
-      {
-        id: 13,
-        title: "챗지피티에 해자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        view_cnt: 5
-      }
-
-      // 추가.....
-    ];
-    setNoticeContent(noticeData);
+    fetchNoticeContent();
   }, []);
+
+  const fetchNoticeContent = async () => {
+    try {
+      const response = await axios.get(`/notifications?page=${currentPage}`);
+
+      const ContentData = response.data.results;
+      setCount(response.data.count);
+
+      setNoticeContent(ContentData);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  //페이지변경
+  useEffect(() => {
+    fetchNoticeContent();
+  }, [currentPage]);
 
   return (
     <S.NoticeWrapper>
@@ -115,7 +42,13 @@ function Notice() {
         image={<S.NoticeIconImg />}
       />
       <CS.CommunityContentWrapper>
-        <NoticeList data={noticeContent} url={"/notice/"} />
+        <NoticeList
+          data={noticeContent}
+          url={"/notice/"}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          count={count}
+        />
       </CS.CommunityContentWrapper>
     </S.NoticeWrapper>
   );

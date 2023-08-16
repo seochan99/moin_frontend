@@ -1,4 +1,15 @@
-import { styled } from "styled-components";
+import { styled, keyframes } from "styled-components";
+
+const fadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const MainWrapper = styled.div`
   display: flex;
@@ -9,6 +20,7 @@ export const MainWrapper = styled.div`
 
   max-width: 1178px;
   width: 100%;
+  animation: ${fadeInAnimation} 0.5s ease-in-out;
 `;
 
 export const MainTitleWrapper = styled.div`

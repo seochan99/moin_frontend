@@ -12,6 +12,7 @@ const CommentForm = ({ onSubmit, userInfo }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(comment, password);
+
     setComment("");
     setPassword("");
     setIsRegist(true);
@@ -21,6 +22,13 @@ const CommentForm = ({ onSubmit, userInfo }) => {
     return null;
   }
  */
+
+  const handlePasswordChange = event => {
+    const inputValue = event.target.value;
+    if (/^[0-9]*$/.test(inputValue)) {
+      setPassword(inputValue);
+    }
+  };
 
   return (
     <>
@@ -44,7 +52,7 @@ const CommentForm = ({ onSubmit, userInfo }) => {
                 type="password"
                 inputMode="numeric"
                 value={password}
-                onChange={e => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
                 pattern="\d{4}"
                 minLength={4}
                 maxLength={4}
@@ -63,7 +71,6 @@ const CommentForm = ({ onSubmit, userInfo }) => {
                 required
                 placeholder="당신의 후기를 남겨주세요"
               />
-
               <S.AiServiceDetailReviewCommentFormWriteButton type="submit">
                 등록
               </S.AiServiceDetailReviewCommentFormWriteButton>

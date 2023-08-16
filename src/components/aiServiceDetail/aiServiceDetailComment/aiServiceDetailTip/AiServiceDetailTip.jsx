@@ -3,125 +3,63 @@ import * as S from "./style";
 
 // 컴포넌트
 import List from "../../../common/list/List";
+import axios from "../../../../api/axios";
 
-export function AiServiceDetailTip() {
+export function AiServiceDetailTip({ aiName }) {
+  // 현재 페이지
+  const [currentPage, setCurrentPage] = useState(1);
+  const [count, setCount] = useState(0);
   const [tipContent, setTipContent] = useState([]);
 
-  useEffect(() => {
-    const tipData = [
-      {
-        id: 1,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 2,
-        title: "챗지피티에 ",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 3,
-        title: "챗지피티에 대해 보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 4,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 5,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 6,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 7,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 8,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 9,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 10,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 11,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 12,
-        title: "챗지피티에 ",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 13,
-        title: "챗지피티에 해자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      }
+  const SelectorOption = [
+    { value: "recent", title: "최신순" },
+    { value: "popular", title: "조회순" },
+    { value: "like", title: "좋아요순" }
+  ];
 
-      // 추가.....
-    ];
-    setTipContent(tipData);
-  }, []);
+  const [currentOption, setCurrentOption] = useState("recent");
+  const getCurrentOption = option => {
+    setCurrentOption(option);
+  };
+
+  const fetchTipContent = async () => {
+    try {
+      const response = await axios.get(
+        `/communities/tips?ordering=${currentOption}&page=${currentPage}&search=${aiName}`
+      );
+
+      const tipContentData = response.data.results;
+      setCount(response.data.count);
+      setTipContent(tipContentData);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  // 초기 ai option
+  useEffect(() => {
+    setCurrentPage(1);
+    fetchTipContent();
+  }, [currentOption]);
+
+  // 페이지 변경 핸들러
+  useEffect(() => {
+    fetchTipContent();
+  }, [currentPage]);
 
   return (
     <>
-      <List data={tipContent} url={"/community/tips/"} />
+      <List
+        data={tipContent}
+        url={"/community/tips/"}
+        writeUrl={"/community/create"}
+        currentOption={currentOption}
+        SelectorOption={SelectorOption}
+        getCurrentOption={getCurrentOption}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        count={count}
+      />
     </>
   );
 }

@@ -1,13 +1,28 @@
-import styled, { keyframes } from "styled-components";
-
-// 컴포넌트
+import { styled, keyframes } from "styled-components";
 import Modal from "react-modal"; // 모달창
 
+const fadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+// 컴포넌트
+
+export const ReviewWrapper = styled.div`
+  animation: ${fadeInAnimation} 0.5s ease-in-out;
+`;
 export const AiServiceDetailReviewWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  animation: ${fadeInAnimation} 0.5s ease-in-out;
 `;
 
 // 별점wrap
@@ -126,7 +141,7 @@ export const AiServiceDetailReviewCommentFormWrite = styled.form`
   margin-top: 2rem;
   /* margin-left: 2rem; */
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 export const AiServiceDetailReviewCommentFormWriteTextArea = styled.textarea`
@@ -213,6 +228,7 @@ export const AiServiceDetailReviewCommentWrap = styled.div`
   display: flex;
   margin-top: 4.5rem;
   margin-left: 3rem;
+  animation: ${fadeInAnimation} 0.5s ease-in-out;
 `;
 export const AiServiceDetailReviewCommentForm = styled.div``;
 export const AiServiceDetailReviewCommentFormTitle = styled.div`
@@ -515,6 +531,10 @@ export const NotUserDeleteModalContentButtonCancle = styled.button`
   &:hover {
     background-color: #ededed;
   }
+`;
+
+export const MyCommentWrapper = styled.div`
+  animation: ${fadeInAnimation} 0.5s ease-in-out;
 `;
 
 // 나의 후기 헤더

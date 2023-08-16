@@ -2,127 +2,63 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import List from "../../common/list/List";
 import CommonList from "../../common/commonList/CommonList";
+import axios from "../../../api/axios";
 
 function CommunityCommon() {
   const [commonContent, setCommonContent] = useState([]);
+  // 현재 페이지
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [count, setCount] = useState(0);
+
+  //selector
+  const SelectorOption = [
+    { value: "recent", title: "최신순" },
+    { value: "popular", title: "조회순" },
+    { value: "like", title: "좋아요순" }
+  ];
+
+  const [currentOption, setCurrentOption] = useState("recent");
+  const getCurrentOption = option => {
+    setCurrentOption(option);
+  };
+
+  const fetchCommonContent = async () => {
+    try {
+      const response = await axios.get(
+        `/communities/commons?ordering=${currentOption}&page=${currentPage}`
+      );
+
+      const commentContentData = response.data.results;
+      setCount(response.data.count);
+      setCommonContent(commentContentData);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
-    const commonData = [
-      {
-        id: 1,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 2,
-        title: "챗지피티에 ",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 3,
-        title: "챗지피티에 대해 보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 4,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 5,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 6,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 7,
-        title: "챗지피티에 대해 알아보자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 8,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 9,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 10,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 11,
-        title: "챗지피티에",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 12,
-        title: "챗지피티에 ",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      },
-      {
-        id: 13,
-        title: "챗지피티에 해자",
-        name: "Chat GPT",
-        date: "2023/01/01 23:00",
-        like: 17,
-        comment_cnt: 5
-      }
+    setCurrentPage(1);
+    fetchCommonContent();
+  }, [currentOption]);
 
-      // 추가.....
-    ];
-    setCommonContent(commonData);
-  }, []);
+  //페이지변경
+  useEffect(() => {
+    fetchCommonContent();
+  }, [currentPage]);
+
   return (
     <>
       <CommonList
         data={commonContent}
         url={"/community/commons/"}
         writeUrl={"/community/create"}
+        currentOption={currentOption}
+        SelectorOption={SelectorOption}
+        getCurrentOption={getCurrentOption}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        count={count}
       />
     </>
   );
