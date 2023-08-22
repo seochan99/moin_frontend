@@ -5,11 +5,13 @@
 .AboutSection1 {
   animation-duration: 1s;
   animation-name: fadein;
+  animation-fill-mode: forwards;
 }
 
 .AboutSection1_Smartphone {
   animation-duration: 1.2s;
   animation-name: slideup;
+  animation-fill-mode: forwards;
 }
 
 .AboutSection1_Floating {
@@ -19,6 +21,7 @@
 .AboutSection2 {
   animation-duration: 2s;
   animation-name: fadein;
+  animation-fill-mode: forwards;
 }
 
 .AboutSection2_Popup1 {
@@ -37,7 +40,7 @@
 
 .AboutSection3_Fadein {
   opacity: 0;
-  animation-duration: 0.7s;
+  animation-duration: 1.2s;
   animation-name: fadein;
   animation-fill-mode: forwards;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
 
 // 컴포넌트
@@ -16,18 +16,48 @@ const Comment = ({
   userInfo,
   writer,
   isTemp,
-  created_at
+  created_at,
+  category,
+  fetchComments,
+  fetchDetail
 }) => {
-  const [user, setUser] = useRecoilState(userState); // 유저 정보
   const [isEditing, setIsEditing] = useState(false);
   const [editedComment, setEditedComment] = useState(content);
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달창
   const [password, setPassword] = useState(""); // 비회원 댓글 삭제 비밀번호
   const [error, setError] = useState("");
-
+  const [isWriterUser, setIsWriterUser] = useState(false);
+  const [isfirst, setIsFirst] = useState(true);
   if (!writer) {
     return <></>;
   }
+
+  // 커뮤니티 유저 본인댓글인지 확인
+  // /api/v1/users/check?type={type}&id={id}
+  const checkUser = async () => {
+    const accessToken = userInfo.accessToken; // 추출한 accessToken
+    const headers = {
+      Authorization: `Bearer ${accessToken}` // Bearer Token 설정
+    };
+    try {
+      const response = await axios.get(
+        `/users/check?type=community_comment&id=${id}`,
+        {
+          headers
+        }
+      );
+      if (response.status === 200) {
+        setIsWriterUser(true);
+      }
+    } catch (e) {
+      setIsWriterUser(false);
+    }
+  };
+  useEffect(() => {
+    if (userInfo && category === "community") {
+      checkUser();
+    }
+  }, []);
 
   const handlePasswordChange = event => {
     const inputValue = event.target.value;
@@ -58,7 +88,6 @@ const Comment = ({
           headers
         }
       );
-      console.log(response);
       if (response.status === 200) {
         alert("댓글이 수정되었습니다.");
 
@@ -66,7 +95,6 @@ const Comment = ({
         window.location.reload();
       }
     } catch (e) {
-      console.log(e);
       alert("댓글 수정에 실패했습니다.");
     }
 
@@ -91,16 +119,37 @@ const Comment = ({
         headers
       });
 
-      console.log("회원 댓글 삭제: ");
-      console.log(response);
       if (response.status === 204) {
-        alert("댓글이 삭제되었습니다.");
         setIsModalOpen(false);
-        // 새로고침
-        window.location.reload();
+        fetchComments();
+        fetchDetail();
       }
     } catch (e) {
-      console.log(e);
+      alert("댓글 삭제에 실패했습니다.");
+    }
+  };
+
+  // 유저 커뮤니티 댓글삭제
+  const userCommentCommunityOnclick = async () => {
+    const accessToken = userInfo.accessToken; // 추출한 accessToken
+    const headers = {
+      Authorization: `Bearer ${accessToken}` // Bearer Token 설정
+    };
+
+    if (confirm("정말로 삭제하시겠습니까?") === false) {
+      return;
+    }
+    try {
+      //communities/posts/comments/{comment_id}
+      const response = await axios.delete(`communities/posts/comments/${id}`, {
+        headers
+      });
+
+      if (response.status === 204) {
+        fetchComments();
+        fetchDetail();
+      }
+    } catch (e) {
       alert("댓글 삭제에 실패했습니다.");
     }
   };
@@ -119,10 +168,10 @@ const Comment = ({
       );
 
       if (response.status === 204 || response.status === 200) {
-        alert("댓글이 삭제가 됐습니다.");
         setPassword("");
         // 새로고침
-        window.location.reload();
+        fetchComments();
+        fetchDetail();
       }
     } catch (error) {
       setPassword("");
@@ -157,35 +206,30 @@ const Comment = ({
             <S.AiServiceDetailReviewMyLi>
               <S.AiServiceDetailReviewMyWrap>
                 <S.AiServiceDetailReviewMyHeader>
-                  <S.AiServiceDetailReviewMyWriter>
-                    {writer}
-                  </S.AiServiceDetailReviewMyWriter>
-                  <S.AiServiceDetailReviewMyDate>
-                    {created_at}
-                  </S.AiServiceDetailReviewMyDate>
+                  <S.AiServiceDetailReviewMyHeaderWrapper>
+                    <S.AiServiceDetailReviewMyWriter>
+                      {writer}
+                    </S.AiServiceDetailReviewMyWriter>
+                    <S.AiServiceDetailReviewMyDate>
+                      {created_at}
+                    </S.AiServiceDetailReviewMyDate>
+                  </S.AiServiceDetailReviewMyHeaderWrapper>
+
+                  <EditDelete
+                    isWriter={true}
+                    id={id}
+                    isUser={false}
+                    handleEdit={handleEdit}
+                    handleDelete={UserDeleteSubmit}
+                    isBlue={true}
+                  />
                 </S.AiServiceDetailReviewMyHeader>
+
                 <S.AiServiceDetailReviewMyContent>
                   {content}
                 </S.AiServiceDetailReviewMyContent>
               </S.AiServiceDetailReviewMyWrap>
-              <S.AiServiceDetailReviewMyButton>
-                <EditDelete
-                  isWriter={true}
-                  id={id}
-                  isUser={false}
-                  handleEdit={handleEdit}
-                  handleDelete={UserDeleteSubmit}
-                  isBlue={true}
-                />
-                {/* <S.AiServiceDetailReviewMyButtonEdit onClick={handleEdit}>
-                  수정
-                </S.AiServiceDetailReviewMyButtonEdit>
-                <S.AiServiceDetailReviewMyButtonDelete
-                  onClick={UserDeleteSubmit}
-                >
-                  삭제
-                </S.AiServiceDetailReviewMyButtonDelete> */}
-              </S.AiServiceDetailReviewMyButton>
+              {/* <S.AiServiceDetailReviewMyButton></S.AiServiceDetailReviewMyButton> */}
 
               {/* ------------ 유저 삭제 모달 ------------ */}
               <Modal
@@ -216,12 +260,26 @@ const Comment = ({
               </S.AiServiceDetailReviewListDate>
             </S.AiServiceDetailReviewListHeaderWrapper>
             {/* 비유저 삭제 쓰레기통 */}
-            <EditDelete
-              isWriter={true}
-              isUser={!isTemp}
-              id={id}
-              handleDelete={UserDeleteSubmit}
-            />
+
+            {category === "community" ? (
+              <>
+                <EditDelete
+                  isWriter={isWriterUser}
+                  isUser={!isWriterUser}
+                  id={id}
+                  handleDelete={userCommentCommunityOnclick}
+                />
+              </>
+            ) : (
+              <>
+                <EditDelete
+                  isWriter={true}
+                  isUser={!isTemp}
+                  id={id}
+                  handleDelete={UserDeleteSubmit}
+                />
+              </>
+            )}
           </S.AiServiceDetailReviewListHeader>
           <S.AiServiceDetailReviewListContent>
             {content}

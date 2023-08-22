@@ -62,7 +62,6 @@ function Signup() {
         }
       } catch (error) {
         alert("회원가입에 실패했습니다.");
-        console.log(error);
       }
     } else {
       alert("모든 필수 정보를 입력해주세요.");

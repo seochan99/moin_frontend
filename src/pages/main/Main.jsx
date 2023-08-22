@@ -10,10 +10,12 @@ import { AiOutlineSearch } from "react-icons/ai";
 import SearchForm from "../../components/common/searchForm/SearchForm";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/common/loading/Loading";
 
 function Main() {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
+  const [init, setInit] = useState(false);
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,8 +32,6 @@ function Main() {
       "연구",
       "금융",
       "학생",
-      "서현",
-      "유진",
       "기타"
     ]
   };
@@ -105,12 +105,10 @@ function Main() {
       }
 
       const response = await axios.get(Api_Url);
-
       setCount(response.data.count);
       setData(response.data.results.slice(0, response.data.results.length));
-    } catch (e) {
-      console.log(e);
-    }
+      setInit(true);
+    } catch (e) {}
   };
 
   // 유저체크
@@ -157,13 +155,20 @@ function Main() {
             getCurrentOption={getCurrentOption}
           />
         </S.MainTitleWrapper>
-
-        <AiServiceList
-          data={data}
-          count={count}
-          currentPage={currentPage}
-          getCurrentPage={getCurrentPage}
-        />
+        {init ? (
+          <>
+            <AiServiceList
+              data={data}
+              count={count}
+              currentPage={currentPage}
+              getCurrentPage={getCurrentPage}
+            />
+          </>
+        ) : (
+          <>
+            <Loading />
+          </>
+        )}
       </S.MainWrapper>
     </>
   );

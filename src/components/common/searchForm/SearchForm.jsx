@@ -15,7 +15,7 @@ function SearchForm() {
   };
   return (
     <S.SearchInputWrapper onSubmit={onSubmit}>
-      <AiOutlineSearch size={"25px"} />
+      <AiOutlineSearch size={"2.5rem"} />
       <S.SearchInput
         type="text"
         name="searchWord"

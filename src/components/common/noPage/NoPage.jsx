@@ -35,7 +35,7 @@ function NoPage() {
   return (
     <PagingNoPage>
       <PagingNoPageIcon src={MoinIcon} />
-      게시된 글이 아직 없습니다!
+      게시글이 아직 없습니다!
     </PagingNoPage>
   );
 }

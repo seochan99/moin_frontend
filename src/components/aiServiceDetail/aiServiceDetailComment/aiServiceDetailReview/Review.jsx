@@ -29,20 +29,17 @@ function Review() {
       const response = await axios.get(
         `/moin/detail/${aiName}/comments?page=${currentPage}`
       );
-      console.log(`currentPage ${currentPage}`);
-      console.log(response.data);
+
       const detailData = response.data;
       setComments(detailData);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   // 내 댓글
   const fetchDataMy = async () => {
     try {
       const accessToken = userInfo.accessToken; // 추출한 accessToken
-      console.log(userInfo);
+
       const headers = {
         Authorization: `Bearer ${accessToken}` // Bearer Token 설정
       };
@@ -51,12 +48,8 @@ function Review() {
         headers
       });
       const detailData = response.data;
-      console.log("내 댓글");
-      console.log(detailData);
       setMyComments(detailData);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   const [showForm, setShowForm] = useState(true); // 댓글 작성 폼 보이기 여부 (댓글 삭제 시 다시 댓글 보이게)
@@ -81,15 +74,12 @@ function Review() {
           }
         );
 
-        console.log("회원 댓글 등록 : ");
-        console.log(response);
         if (response.status === 200) {
-          alert("댓글이 등록되었습니다.");
+          // alert("댓글이 등록되었습니다.");
           fetchData();
           fetchDataMy();
         }
       } catch (e) {
-        console.log(e);
         alert("댓글 등록에 실패하였습니다.");
       }
     } else {
@@ -102,17 +92,15 @@ function Review() {
           `moin/detail/${aiName}/comments`,
           newComment
         );
-        console.log("비회원 댓글 등록 : ");
-        console.log(response);
+
         if (response.status === 200) {
-          alert("댓글이 등록되었습니다.");
+          // alert("댓글이 등록되었습니다.");
           fetchData();
           if (userInfo) {
             fetchDataMy();
           }
         }
       } catch (e) {
-        console.log(e);
         alert("댓글 등록에 실패하였습니다.");
       }
     }
@@ -137,6 +125,8 @@ function Review() {
       <CommentForm onSubmit={handleSubmitComment} userInfo={userInfo} />
       <CommentList
         comments={comments}
+        fetchDataMy={fetchDataMy}
+        fetchData={fetchData}
         userInfo={userInfo}
         myComments={myComments}
         currentPage={currentPage}

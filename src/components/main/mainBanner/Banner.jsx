@@ -4,9 +4,7 @@ import * as S from "./style";
 function Banner(props) {
   return (
     <S.BannerWrapper>
-      <>
-        <S.BannerImg src={props.bannerImg} />
-      </>
+      <S.BannerImg src={props.bannerImg} />
     </S.BannerWrapper>
   );
 }

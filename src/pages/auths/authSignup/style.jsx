@@ -43,7 +43,8 @@ export const Select = styled.select`
 `;
 
 export const Option = styled.option`
-  /* 스타일링을 원하는대로 설정하세요 */
+  background-color: white;
+  color: #333333;
 `;
 
 export const SignUpInputContainer = styled.form`

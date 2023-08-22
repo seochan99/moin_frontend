@@ -15,10 +15,12 @@ const fadeInAnimation = keyframes`
 // 컴포넌트
 
 export const ReviewWrapper = styled.div`
+  width: 90%;
   animation: ${fadeInAnimation} 0.5s ease-in-out;
 `;
 export const AiServiceDetailReviewWrap = styled.div`
   display: flex;
+  width: 90%;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
@@ -27,15 +29,28 @@ export const AiServiceDetailReviewWrap = styled.div`
 
 // 별점wrap
 export const AiServiceDetailReviewStarWrap = styled.div`
+  width: 100%;
   display: flex;
-  margin-left: 3rem;
-  margin-top: 3rem;
+  justify-content: space-between;
+  margin-top: 5rem;
+  @media (max-width: 550px) {
+    flex-direction: column;
+    & > :nth-child(1) {
+      margin-bottom: 2rem;
+    }
+  }
 `;
 
 export const AiServiceDetailReviewStarMy = styled.div``;
 
 export const AiServiceDetailReviewStarMyHeader = styled.div`
   display: flex;
+`;
+
+export const AiServiceDetailReviewMyHeaderWrapper = styled.div`
+  display: flex;
+
+  justify-content: space-between;
 `;
 
 export const AiServiceDetailReviewStarMyHeaderIcon = styled.img`
@@ -81,9 +96,7 @@ export const AiServiceDetailReviewStarMyContentSubmit = styled.button`
   }
 `;
 
-export const AiServiceDetailReviewStarAvg = styled.div`
-  margin-left: 26.3rem;
-`;
+export const AiServiceDetailReviewStarAvg = styled.div``;
 
 export const AiServiceDetailReviewStarAvgHeader = styled.div`
   display: flex;
@@ -97,6 +110,7 @@ export const AiServiceDetailReviewStarAvgHeaderTitle = styled.div``;
 
 export const AiServiceDetailReviewStarAvgContent = styled.div`
   display: flex;
+  justify-content: space-between;
   border: 0.5px solid #acacac;
   border-radius: 14px;
   padding: 0.75rem 4rem;
@@ -141,11 +155,10 @@ export const AiServiceDetailReviewCommentFormWrite = styled.form`
   margin-top: 2rem;
   /* margin-left: 2rem; */
   justify-content: center;
-  align-items: center;
 `;
 
 export const AiServiceDetailReviewCommentFormWriteTextArea = styled.textarea`
-  width: 91rem;
+  flex-grow: 1;
   height: 9rem;
   padding: 1rem;
   padding-left: 1.5rem;
@@ -179,12 +192,13 @@ export const AiServiceDetailReviewCommentFormWriteButton = styled.button`
 // 이용 후기 목록
 export const AiServiceDetailReviewListLi = styled.li`
   display: flex;
-
+  width: 100%;
   padding: 2.6rem;
   border-bottom: 2px solid #f0f0f0;
 `;
 
 export const AiServiceDetailReviewMyWrap = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -193,7 +207,6 @@ export const AiServiceDetailReviewListHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-left: 3rem;
 `;
 
 export const AiServiceDetailReviewListHeaderWrapper = styled.div`
@@ -213,9 +226,8 @@ export const AiServiceDetailReviewListDate = styled.div`
   font-weight: 500;
 `;
 export const AiServiceDetailReviewListContent = styled.div`
-  width: 100rem;
+  width: 100%;
   margin-top: 2.2rem;
-  margin-left: 3rem;
   color: #282828;
   font-size: 1.8rem;
   font-weight: 500;
@@ -227,10 +239,12 @@ export const AiServiceDetailReviewListContent = styled.div`
 export const AiServiceDetailReviewCommentWrap = styled.div`
   display: flex;
   margin-top: 4.5rem;
-  margin-left: 3rem;
+  width: 100%;
   animation: ${fadeInAnimation} 0.5s ease-in-out;
 `;
-export const AiServiceDetailReviewCommentForm = styled.div``;
+export const AiServiceDetailReviewCommentForm = styled.div`
+  width: 100%;
+`;
 export const AiServiceDetailReviewCommentFormTitle = styled.div`
   display: flex;
   align-items: center;
@@ -242,6 +256,7 @@ export const AiServiceDetailReviewCommentFormTitleIcon = styled.img`
 
 export const AiServiceDetailReviewCommentFormTitleText = styled.div`
   color: #4285f4;
+  width: 100%;
   font-size: 2rem;
   font-weight: 700;
 `;
@@ -249,20 +264,20 @@ export const AiServiceDetailReviewCommentFormTitleText = styled.div`
 // 내 댓글
 export const AiServiceDetailReviewMyLi = styled.li`
   display: flex;
-  width: 100rem;
+  width: 100%;
   flex-direction: row;
   padding: 2.6rem;
   border-radius: 10px;
   background: rgba(178, 191, 235, 0.39);
   margin-top: 2.2rem;
-  margin-left: 3rem;
 `;
 
 export const AiServiceDetailReviewMyHeader = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
-  margin-left: 3rem;
+  width: 100%;
+  justify-content: space-between;
 `;
 export const AiServiceDetailReviewMyWriter = styled.div`
   color: #282828;
@@ -276,9 +291,9 @@ export const AiServiceDetailReviewMyDate = styled.div`
   font-weight: 500;
 `;
 export const AiServiceDetailReviewMyContent = styled.div`
-  width: 70rem;
+  width: 100%;
   margin-top: 2.2rem;
-  margin-left: 3rem;
+
   color: #282828;
   font-size: 1.8rem;
   font-weight: 500;
@@ -336,7 +351,7 @@ export const AiServiceDetailReviewMyButtonDelete = styled.button`
 export const AiServiceDetailReviewCommentFormWriteMy = styled.div`
   display: flex;
   margin-top: 2rem;
-  margin-left: 3rem;
+
   justify-content: center;
   align-items: center;
 `;
@@ -345,7 +360,6 @@ export const AiServiceDetailReviewCommentFormWriteMy = styled.div`
 export const ReviewHeader = styled.div`
   display: flex;
   margin-top: 7.5rem;
-  margin-left: 3rem;
 `;
 export const ReviewHeaderText = styled.div`
   display: flex;
@@ -432,6 +446,7 @@ export const MyCommentsWrap = styled.div`
 export const MoreButtonWrap = styled.div`
   display: flex;
   justify-content: flex-end;
+  padding-right: 1rem;
 `;
 
 export const MoreButton = styled.button`
@@ -542,7 +557,6 @@ export const AiServiceDetailReviewCommentMyReviewWrap = styled.div`
   display: flex;
   align-items: center;
   margin-top: 7rem;
-  margin-left: 3rem;
 `;
 
 export const AiServiceDetailReviewCommentMyReviewListIcon = styled.img`

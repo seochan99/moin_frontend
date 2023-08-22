@@ -27,6 +27,8 @@ export const DetailPageWrapper = styled.div`
   }
 `;
 
+export const Wrapper = styled.div``;
+
 export const DetailDiviner = styled.hr`
   width: 100%;
   height: 0.1rem;

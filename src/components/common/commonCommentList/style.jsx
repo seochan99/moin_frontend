@@ -8,7 +8,7 @@ export const AiServiceDetailReviewListWrap = styled.div`
   border-top: 2px solid #f0f0f0;
   display: flex;
   margin-top: 1.6rem;
-  width: 95%;
+  width: 100%;
 `;
 
 export const AiServiceDetailReviewListUl = styled.ul`

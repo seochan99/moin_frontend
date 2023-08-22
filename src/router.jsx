@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-
+import React, { lazy, Suspense } from "react";
 import App from "./App";
 
 import Main from "./pages/main/Main";
@@ -30,6 +30,10 @@ import NoticeDetailPage from "./pages/notice/noticeDetail/noticeDetail";
 import CommunityCreatPost from "./pages/community/communityCreatePost/CommunityCreatPost";
 import CommunityEdit from "./pages/community/communityEdit/CommunityEdit";
 import SuggestionCreate from "./pages/suggestion/suggestionCreate/SuggestionCreate";
+import AuthReseting from "./pages/auths/authReseting/AuthReseting";
+import Loading from "./components/common/loading/Loading";
+
+const LazyAbout = lazy(() => import("./pages/about/About"));
 
 const router = createBrowserRouter([
   {
@@ -54,7 +58,11 @@ const router = createBrowserRouter([
       },
       {
         path: "about",
-        element: <About />
+        element: (
+          <Suspense fallback={<Loading />}>
+            <LazyAbout />
+          </Suspense>
+        )
       },
       {
         path: "login",
@@ -111,6 +119,10 @@ const router = createBrowserRouter([
             element: <ProfileFavoritePost />
           }
         ]
+      },
+      {
+        path: "auth/reset/:uid/:token",
+        element: <AuthReseting />
       },
 
       {

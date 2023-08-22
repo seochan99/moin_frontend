@@ -4,7 +4,7 @@ export const SearchInputWrapper = styled.form`
   display: flex;
   align-items: center;
   justify-content: start;
-  height: 50px;
+  height: 5rem;
   margin: 1rem 0;
   margin-bottom: 1.5rem;
   padding: 0 2rem;

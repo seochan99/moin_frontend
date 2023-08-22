@@ -17,7 +17,7 @@
 # 🛠️ Tech
 
 ## FrameWork
-React, jsx
+React, jsx[ 추가예정] 
 
 
 ## 1. 프로젝트 명
@@ -50,6 +50,7 @@ React, jsx
 
 ```
 
+##  영상
 
 ## 🎯 Commit Convention
 

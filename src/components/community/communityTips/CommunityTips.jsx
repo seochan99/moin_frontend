@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import * as S from "./style";
-import List from "../../common/list/List";
-import TipsList from "../../common/tipsList/TipsList";
+
 import axios from "../../../api/axios";
+import PostList from "../../common/postList/PostList";
+import Loading from "../../common/loading/Loading";
 function CommunityTips() {
   const [tipContent, setTipContent] = useState([]);
 
@@ -15,6 +15,7 @@ function CommunityTips() {
   // 현재 페이지
   const [currentPage, setCurrentPage] = useState(1);
   const [count, setCount] = useState(0);
+  const [init, setInit] = useState(false);
 
   const SelectorOption = [
     { value: "recent", title: "최신순" },
@@ -34,9 +35,8 @@ function CommunityTips() {
       const response = await axios.get("moin/all/ai");
       const aiData = response.data;
       setAiOption(aiData);
-    } catch (e) {
-      console.log(e);
-    }
+      setInit(true);
+    } catch (e) {}
   };
 
   const fetchTipContent = async () => {
@@ -48,9 +48,7 @@ function CommunityTips() {
       const tipContentData = response.data.results;
       setCount(response.data.count);
       setTipContent(tipContentData);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   // 초기 ai option
@@ -71,20 +69,31 @@ function CommunityTips() {
 
   return (
     <>
-      <TipsList
-        data={tipContent}
-        url={"/community/tips/"}
-        writeUrl={"/community/create"}
-        currentOption={currentOption}
-        currentAiOption={currentAiOption}
-        SelectorOption={SelectorOption}
-        aiOption={aiOption}
-        getCurrentOption={getCurrentOption}
-        getCurrentAiOption={getCurrentAiOption}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        count={count}
-      />
+      {init ? (
+        <>
+          {" "}
+          <PostList
+            use={"communityTips"}
+            category={"tip"}
+            data={tipContent}
+            url={"/community/tips/"}
+            writeUrl={"/community/create"}
+            currentOption={currentOption}
+            currentAiOption={currentAiOption}
+            SelectorOption={SelectorOption}
+            aiOption={aiOption}
+            getCurrentOption={getCurrentOption}
+            getCurrentAiOption={getCurrentAiOption}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            count={count}
+          />
+        </>
+      ) : (
+        <>
+          <Loading />
+        </>
+      )}
     </>
   );
 }

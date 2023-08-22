@@ -39,7 +39,7 @@ function AiServiceDetail() {
     try {
       if (userInfo) {
         const accessToken = userInfo.accessToken; // 추출한 accessToken
-        console.log(userInfo);
+
         const headers = {
           Authorization: `Bearer ${accessToken}` // Bearer Token 설정
         };
@@ -60,9 +60,7 @@ function AiServiceDetail() {
         setData(detailData);
         setIsLiked(detailData.is_liked);
       }
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   // 탭 기능 구현
@@ -90,19 +88,19 @@ function AiServiceDetail() {
         <S.AiServiceDetailCommentCategory>
           <S.AiServiceDetailCommentCategoryTabMenu>
             <S.AiServiceDetailCommentCategoryMenuItem
-              isActive={currentTab === 0}
+              $isActive={currentTab === 0}
               onClick={() => selectMenuHandler(0)}
             >
               기능소개
             </S.AiServiceDetailCommentCategoryMenuItem>
             <S.AiServiceDetailCommentCategoryMenuItem
-              isActive={currentTab === 1}
+              $isActive={currentTab === 1}
               onClick={() => selectMenuHandler(1)}
             >
               이용후기
             </S.AiServiceDetailCommentCategoryMenuItem>
             <S.AiServiceDetailCommentCategoryMenuItem
-              isActive={currentTab === 2}
+              $isActive={currentTab === 2}
               onClick={() => selectMenuHandler(2)}
             >
               이용꿀팁

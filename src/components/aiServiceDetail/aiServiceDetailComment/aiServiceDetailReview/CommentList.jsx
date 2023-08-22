@@ -11,7 +11,9 @@ const CommentList = ({
   userInfo,
   myComments,
   currentPage,
-  setCurrentPage
+  setCurrentPage,
+  fetchDataMy,
+  fetchData
   // count
 }) => {
   // 댓글 내용 부분만 추출
@@ -65,13 +67,16 @@ const CommentList = ({
               created_at={visibleComments[0].created_at}
               userInfo={userInfo}
               isRegist={true}
+              category="moin"
+              fetchComments={fetchDataMy}
+              fetchDetail={fetchData}
             />
 
             {/* 더보기 버튼 */}
             {myCommentsContent.length > 1 && (
               <S.MoreButtonWrap>
                 <S.MoreButton onClick={handleToggleShowMore}>
-                  {showMore ? "접기" : "펼치기"}
+                  {showMore ? "접기 ∧" : "펼치기 ∨"}
                 </S.MoreButton>
               </S.MoreButtonWrap>
             )}
@@ -87,6 +92,9 @@ const CommentList = ({
                   created_at={comment.created_at}
                   userInfo={userInfo}
                   isRegist={true}
+                  category="moin"
+                  fetchComments={fetchDataMy}
+                  fetchDetail={fetchData}
                 />
               ))}
             </S.SlideCommentsWrap>
@@ -119,6 +127,8 @@ const CommentList = ({
         handlePageChange={handlePageChange}
         userInfo={userInfo}
         count={comments.count}
+        fetchComments={fetchDataMy}
+        fetchDetail={fetchData}
       />
     </>
   );

@@ -10,9 +10,18 @@ import { BsChevronCompactRight } from "react-icons/bs";
 
 import * as S from "./style";
 import { userState } from "../../../context/authState";
-import MainLogo from "../../../assets/images/moin_logo.png";
+import MoinLogoBase from "../../../assets/images/moin_logo_base.svg";
 
+import { LanguageAtom } from "../../../recoil/LanguageAtom";
 export default function NavBar() {
+  const [language, setLanguage] = useRecoilState(LanguageAtom);
+  const getLanguageNum = () => {
+    if (language == "KOR") {
+      return 0;
+    } else {
+      return 1;
+    }
+  };
   //사이드바 열고 닫는 함수
   const sideBar = useRef();
   const sideBarBackground = useRef();
@@ -30,19 +39,19 @@ export default function NavBar() {
   const menuContents = [
     {
       link: `/community`,
-      title: "커뮤니티"
+      title: ["커뮤니티", "Community"]
     },
     {
       link: `/notice`,
-      title: "공지사항"
+      title: ["공지사항", "Notice"]
     },
     {
       link: `/suggestion`,
-      title: "건의사항"
+      title: ["건의사항", "Suggestion"]
     },
     {
       link: `/about`,
-      title: "서비스 소개"
+      title: ["서비스 소개", "About"]
     }
   ];
 
@@ -62,16 +71,16 @@ export default function NavBar() {
         key={idx}
         $isActive={location.pathname.startsWith(menu.link)}
       >
-        {menu.title}
+        {menu.title[getLanguageNum()]}
       </S.NavLink>
     ));
   };
 
   const [isMobile, setisMobile] = useState(false);
 
-  //윈도우가 640px 이하면  모바일버전을 연다
+  //윈도우가 550px 이하면  모바일버전을 연다
   const resizingHandler = () => {
-    if (window.innerWidth < 640) {
+    if (window.innerWidth < 550) {
       setisMobile(true);
     } else {
       setisMobile(false);
@@ -79,7 +88,7 @@ export default function NavBar() {
   };
 
   useEffect(() => {
-    if (window.innerWidth <= 640) {
+    if (window.innerWidth <= 550) {
       setisMobile(true);
     }
     window.addEventListener("resize", resizingHandler);
@@ -102,7 +111,7 @@ export default function NavBar() {
   return (
     <S.NavWrapper>
       <S.NavLogo>
-        <S.NavLogoIcon src={MainLogo} alt="MO:IN" />
+        <S.NavLogoIcon src={MoinLogoBase} alt="MO:IN" />
         <S.NavLogoTitle to={`/`}> MO:IN</S.NavLogoTitle>
       </S.NavLogo>
 
@@ -118,11 +127,12 @@ export default function NavBar() {
               <S.NavSideBarHeader>
                 {userInfo ? (
                   <S.NavLink to={`/mypage`} $isActive={true}>
-                    {userInfo.nickname} 님
+                    {userInfo.nickname}
+                    {getLanguageNum() == 0 ? " 님" : ""}
                   </S.NavLink>
                 ) : (
                   <S.NavLink to={`/login`} $isActive={true}>
-                    로그인하세요!
+                    {getLanguageNum() == 0 ? "로그인하세요!" : "Login!"}
                   </S.NavLink>
                 )}
                 <BsChevronCompactRight />
@@ -146,11 +156,11 @@ export default function NavBar() {
               to={`/mypage`}
               $isActive={location.pathname == `/mypage`}
             >
-              마이페이지
+              {getLanguageNum() == 0 ? "마이페이지" : "Mypage"}
             </S.NavLink>
           ) : (
             <S.NavLink to={`/login`} $isActive={location.pathname == `/login`}>
-              로그인
+              {getLanguageNum() == 0 ? "로그인" : "Login"}
             </S.NavLink>
           )}
           <NavBarTranslate />

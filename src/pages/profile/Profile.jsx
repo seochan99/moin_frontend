@@ -11,7 +11,7 @@ function Profile() {
     <S.ProfileWrapper>
       <Banner
         titleKorean="마이페이지"
-        titleEnglish="MyPage"
+        titleEnglish="My Page"
         image={<S.MypageBookImg />}
       />
       <S.ProfileInfoWrapper>

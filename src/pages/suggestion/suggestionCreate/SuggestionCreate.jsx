@@ -10,6 +10,7 @@ import * as AIS from "../../ai/style";
 import { userState } from "../../../context/authState";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
+import CommuntiyDetailPageType from "../../../components/community/communtiyDetailPageType/CommuntiyDetailPageType";
 
 function SuggestionCreate() {
   const navigate = useNavigate();
@@ -29,9 +30,7 @@ function SuggestionCreate() {
       const response = await axios.get("moin/all/ai");
       const aiData = response.data;
       setAiOption(aiData);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   const [title, setTitle] = useState(""); // 제목
@@ -59,7 +58,6 @@ function SuggestionCreate() {
         Authorization: `Bearer ${accessToken}` // Bearer Token 설정
       };
 
-      console.log(currentAiOption);
       const data = {
         ai: currentAiOption,
         title: title,
@@ -67,12 +65,10 @@ function SuggestionCreate() {
         url: url
       };
 
-      console.log(headers);
-      console.log(data);
       const response = await axios.post("suggestions", data, {
         headers
       });
-      console.log(response);
+
       if (response.status === 201) {
         alert("건의사항이 작성 되었습니다.");
         navigate("/suggestion");
@@ -81,26 +77,68 @@ function SuggestionCreate() {
       alert("건의사항 작성에 실패하였습니다.");
     }
   };
+
+  const handleImageUpload = async files => {
+    const image = files[0];
+    if (image.size >= 3000000) {
+      alert("3MB 이상 파일은 업로드가 불가능합니다.");
+      return;
+    }
+    const allowedFormats = ["image/png", "image/jpeg", "image/jpg"];
+    if (!allowedFormats.includes(image.type)) {
+      alert("png, jpg, jpeg 파일이 아닙니다.");
+      return;
+    }
+
+    const formdata = new FormData();
+    formdata.append("image", image);
+    formdata.append("app", "suggestion");
+
+    try {
+      const response = await fetch("http://101.101.209.178/upload-image", {
+        method: "POST",
+        body: formdata
+      });
+
+      const responseData = await response.json(); // Parse JSON response
+
+      if (response.ok) {
+        const image_url = responseData.image_url; // Assuming the JSON response has an 'image_url' property
+        const newValue = value + `\n\n![${image.name}](${image_url})`;
+        setValue(newValue);
+      } else {
+        console.error("Image upload failed with status:", response.status);
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
   return (
     <>
       <AIS.AiServiceDetailCommentWrap>
-        <S.CommuntiyCreateHeader> 건의사항 작성</S.CommuntiyCreateHeader>
+        <CommuntiyDetailPageType type={`suggestion`} aiName={null} />
+
         <S.SelcetorWrapper>
-          <S.Select
-            required
-            name="ais"
-            onChange={e => getCurrentAiOption(e.target.value)}
-          >
-            <S.Option value={null}>▿ 서비스 선택</S.Option>
-            {aiOption.map((ai, index) => (
-              <S.Option key={index} value={ai.title}>
-                {ai.title}
-              </S.Option>
-            ))}
-          </S.Select>
-          <S.SelcetorDescriptionText>
-            *서비스 선택은 선택사항 입니다.
-          </S.SelcetorDescriptionText>
+          <S.SlectorTextWrapper>
+            <S.Select
+              required
+              name="ais"
+              onChange={e => getCurrentAiOption(e.target.value)}
+            >
+              <S.Option value={null}>▿ 서비스 선택</S.Option>▿
+              {aiOption.map((ai, index) => (
+                <S.Option key={index} value={ai.title}>
+                  {ai.title}
+                </S.Option>
+              ))}
+            </S.Select>
+            <S.SelcetorDescriptionText>*선택</S.SelcetorDescriptionText>
+          </S.SlectorTextWrapper>
+          <div>
+            <S.SelcetorDescriptionText style={{ color: "#ACACAC" }}>
+              ❗️건의사항은 수정 및 삭제가 불가합니다. 신중한 작성 부탁드립니다.
+            </S.SelcetorDescriptionText>
+          </div>
         </S.SelcetorWrapper>
         <S.CommunityCreateTitle
           placeholder="제목을 입력해주세요."
@@ -112,43 +150,9 @@ function SuggestionCreate() {
         />
 
         <FileDrop
-          onDragOver={event => {
-            setBoardColor(true);
-          }}
-          onDragLeave={event => {
-            setBoardColor(false);
-          }}
-          onDrop={(files, event) => {
-            const formdata = new FormData();
-            formdata.append("image", files[0]);
-            formdata.append("id", 0); // Replace with the appropriate community id
-            const headers = { "Content-Type": files[0].type };
-            if (files[0].size >= 3000000) {
-              alert("3MB 이상 파일은 업로드가 불가능합니다.");
-            } else if (
-              files[0].type === "image/png" ||
-              files[0].type === "image/jpeg" ||
-              files[0].type === "image/jpg"
-            ) {
-              axios
-                .post("communities/upload-image", formdata, { headers })
-                .then(function (response) {
-                  const image_url = response.data.image_url;
-                  let imageName = image_url.substring(
-                    image_url.lastIndexOf("/") + 1
-                  );
-                  let newValue =
-                    value + `\n\n![${files[0].name}](${image_url})`;
-                  setValue(newValue);
-                })
-                .catch(function (error) {
-                  console.error("Error uploading image:", error);
-                });
-            } else {
-              alert("png, jpg, jpeg 파일이 아닙니다.");
-            }
-            setBoardColor(false);
-          }}
+          onDragOver={() => setBoardColor(true)}
+          onDragLeave={() => setBoardColor(false)}
+          onDrop={files => handleImageUpload(files)}
         >
           <MDEditor
             height={"400px"}
@@ -159,7 +163,7 @@ function SuggestionCreate() {
           />
         </FileDrop>
         <S.CommunityCreateTitle
-          placeholder="참고가능한 링크를 입력해주세요"
+          placeholder="수정 및 추가를 원하는 페이지에 해당하는 링크를 첨부해주세요."
           maxLength="100"
           onChange={e => {
             setUrl(e.target.value);

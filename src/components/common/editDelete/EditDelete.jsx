@@ -17,26 +17,6 @@ function EditDelete({
 }) {
   const [userInfo, setUserInfo] = useRecoilState(userState);
 
-  // const deleteComment = async () => {
-  //   const real = confirm("정말 삭제하시겠습니까?");
-  //   if (!real) return;
-  //   const accessToken = userInfo.accessToken; // 추출한 accessToken
-  //   console.log(userInfo);
-  //   const headers = {
-  //     Authorization: `Bearer ${accessToken}` // Bearer Token 설정
-  //   };
-  //   try {
-  //     const reponse = await axios.delete(`communities/posts/${id}/`, {
-  //       headers
-  //     });
-  //     if (reponse.status === 200) {
-  //       alert("게시글이 삭제되었습니다.");
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   const renderIcon = () => {
     return isBlue ? (
       <>

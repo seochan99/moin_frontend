@@ -20,6 +20,7 @@ export const AuthSocialButtonText = styled.p`
   margin: 0 auto;
   font-size: 2rem;
   font-weight: 600;
+  color: #151515;
 `;
 
 // 구글 로그인 아이콘

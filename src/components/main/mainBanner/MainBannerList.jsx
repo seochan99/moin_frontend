@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import Banner from "./Banner";
 
@@ -10,12 +10,44 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "./pagination.css";
 
-import bannerImg1 from "./banner1.png";
-import bannerImg2 from "./banner2.png";
-import bannerImg3 from "./banner3.png";
+import DeepDive from "./img/DeepDive.jpeg";
+import DeepDiveMobile from "./img/DeepDiveMovbile.jpeg";
+import EventPresent from "./img/EventPresent.png";
+import EventPresentMobile from "./img/EventPresentMobile.png";
+
+import { Link } from "react-router-dom";
 
 function MainBannerList() {
-  const banners = [bannerImg1, bannerImg2, bannerImg3];
+  const bannersDesktop = [
+    { img: EventPresent, url: "https://www.instagram.com/moin.dgu/" },
+    { img: DeepDive, url: "https://www.instagram.com/deep.daiv/" }
+  ];
+  const bannersMobile = [
+    { img: EventPresentMobile, url: "https://www.instagram.com/moin.dgu/" },
+    { img: DeepDiveMobile, url: "https://www.instagram.com/deep.daiv/" }
+  ];
+
+  const [currentBanners, setCurrentBanners] = useState(bannersDesktop);
+  //윈도우가 640px 이하면  모바일버전을 연다
+  const resizingHandler = () => {
+    if (window.innerWidth <= 550) {
+      setCurrentBanners(bannersMobile);
+    } else {
+      setCurrentBanners(bannersDesktop);
+    }
+  };
+
+  useEffect(() => {
+    if (window.innerWidth <= 550) {
+      setCurrentBanners(bannersMobile);
+    }
+    window.addEventListener("resize", resizingHandler);
+
+    return () => {
+      window.removeEventListener("resize", resizingHandler);
+    };
+  }, []);
+
   return (
     <>
       <S.BannerListWrapper>
@@ -25,9 +57,11 @@ function MainBannerList() {
           pagination={{ clickable: true }}
           autoplay={{ delay: 5000 }}
         >
-          {banners.map(banner => (
-            <SwiperSlide key={banner}>
-              <Banner bannerImg={banner} />
+          {currentBanners.map((banner, idx) => (
+            <SwiperSlide key={idx}>
+              <Link to={banner.url} target="_blank">
+                <Banner bannerImg={banner.img} />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

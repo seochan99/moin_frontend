@@ -43,7 +43,7 @@ function ProfileChangePassword() {
 
     try {
       const accessToken = userInfo.accessToken; // 추출한 accessToken
-      console.log(userInfo);
+
       const headers = {
         Authorization: `Bearer ${accessToken}` // Bearer Token 설정
       };

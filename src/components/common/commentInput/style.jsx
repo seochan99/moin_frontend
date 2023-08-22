@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const DetailCommentInputWrapper = styled.form`
+export const DetailCommentInputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 2rem;

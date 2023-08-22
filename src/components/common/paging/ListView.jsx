@@ -23,7 +23,7 @@ function ListView({
           return childrenWithProps(item, idx);
         })
       ) : (
-        <S.PagingNoPage>게시된 글이 아직 없습니다!</S.PagingNoPage>
+        <S.PagingNoPage>게시된 글이 없습니다...</S.PagingNoPage>
       )}
 
       <Paging

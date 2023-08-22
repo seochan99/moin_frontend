@@ -10,7 +10,7 @@ function CommuntiyDetailPageType({ type, aiName }) {
           <S.DetailPageAiText>{aiName}</S.DetailPageAiText>
         </>
       )}
-      <S.RightArrowBlueIcon src={RightArrowBlue}></S.RightArrowBlueIcon>
+      <S.RightArrowBlueIcon src={RightArrowBlue} />
       <S.DetailPageTypeText>
         {type === "commons"
           ? "자유게시판"
@@ -22,7 +22,7 @@ function CommuntiyDetailPageType({ type, aiName }) {
           ? "건의사항"
           : type === "notice"
           ? "공지사항"
-          : "기타"}
+          : "수정"}
       </S.DetailPageTypeText>
     </S.DetailPageType>
   );

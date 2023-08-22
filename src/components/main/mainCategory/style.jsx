@@ -7,16 +7,13 @@ export const MainCategoryWrapper = styled.div`
   height: 30px;
   margin: 0.5rem 0rem;
   margin-right: 1rem;
+  width: 100%;
+  flex-grow: 0;
+  flex-shrink: 0;
   /* border-radius: 20px;
   border: 5px solid;
   border-color: ${props => props.theme.colors.primary2}; */
-
-  @media (max-width: 700px) {
-    width: 90%;
-  }
-  @media (min-width: 700px) {
-    width: 700px;
-  }
+  width: 90%;
 `;
 
 export const MainCategoryTitle = styled.div`

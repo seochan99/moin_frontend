@@ -19,6 +19,7 @@ export const CommunityIconImg = styled(CommunityIcon)`
 export const CommunityContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0 auto;
 
   max-width: 1178px;

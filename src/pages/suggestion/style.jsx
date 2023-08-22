@@ -4,6 +4,8 @@ import { ReactComponent as suggestionIcon } from "../../assets/images/icon/sugge
 export const SuggestionWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  align-items: center;
   width: 100%;
   height: 100%;
 `;

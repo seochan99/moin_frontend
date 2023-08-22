@@ -19,7 +19,7 @@ export const MainWrapper = styled.div`
   height: 100%;
 
   max-width: 1178px;
-  width: 100%;
+  width: 95%;
   animation: ${fadeInAnimation} 0.5s ease-in-out;
 `;
 

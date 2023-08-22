@@ -4,6 +4,7 @@ import { ReactComponent as NoticeIcon } from "../../assets/images/icon/noticeBan
 export const NoticeWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
 `;

@@ -23,9 +23,7 @@ function NoticeDetailPage() {
         const data = response.data;
         setDetail(data);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   // 디테일 렌더링

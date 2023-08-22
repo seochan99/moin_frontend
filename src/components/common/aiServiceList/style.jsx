@@ -90,8 +90,24 @@ export const AiServiceBody = styled.div`
 
 export const AiServiceTitle = styled.div`
   font-size: 2.5rem;
+  line-height: 3rem;
   font-weight: 700;
-  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  @media (max-width: 560px) {
+    max-width: 18rem;
+  }
+  @media (min-width: 560px) {
+    max-width: 34rem;
+  }
+  @media (min-width: 768px) {
+    max-width: 20rem;
+  }
+  @media (min-width: 992px) {
+    max-width: 18rem;
+  }
 `;
 
 export const AiServiceDescription = styled.div`

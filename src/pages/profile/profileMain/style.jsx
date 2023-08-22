@@ -25,6 +25,13 @@ export const ProfileBannerHeaderWrapper = styled.div`
   justify-content: space-between;
 `;
 
+export const ProfileDescriptionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+`;
+
 export const ProfileBannerHeaderContainer = styled.div`
   margin-top: 18rem;
   display: flex;

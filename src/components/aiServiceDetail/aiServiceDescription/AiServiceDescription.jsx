@@ -24,14 +24,13 @@ export function AiServiceDescription() {
       const detailData = response.data[0];
 
       setData(detailData);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   return (
     <>
       <S.AiServiceDescriptionWrap>
+        {/* 서비스 소개 */}
         <S.AiServiceDescriptionIntroTitle>
           <S.AiServiceDescriptionIntroIcon
             src={DescriptionHeartIcon}
@@ -39,9 +38,12 @@ export function AiServiceDescription() {
           />
           서비스 소개
         </S.AiServiceDescriptionIntroTitle>
+
         <S.AiServiceDescriptionIntroContent>
           {data.introduce}
         </S.AiServiceDescriptionIntroContent>
+
+        {/* 상세기능 */}
         <S.AiServiceDescriptionFunctionTitle>
           <S.AiServiceDescriptionBulbIcon
             src={DescriptionBulbIcon}

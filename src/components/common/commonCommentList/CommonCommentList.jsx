@@ -9,7 +9,10 @@ const CommonCommentList = ({
   currentPage,
   handlePageChange,
   userInfo,
-  count
+  count,
+  category,
+  fetchComments,
+  fetchDetail
 }) => {
   // 댓글 내용 부분만 추출
   const commentsContent = comments.results;
@@ -33,6 +36,9 @@ const CommonCommentList = ({
             writer={comment.writer}
             created_at={comment.created_at}
             userInfo={userInfo}
+            category={category}
+            fetchComments={fetchComments}
+            fetchDetail={fetchDetail}
           />
         ))}
       </S.AiServiceDetailReviewListUl>

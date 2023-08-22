@@ -2,18 +2,25 @@ import { styled } from "styled-components";
 import colors from "../../style/theme";
 
 export const AiServiceDetailCommentWrap = styled.div`
+  width: 100%;
+  max-width: 1178px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; // 수정
-  justify-content: center;
-  margin-bottom: 10rem;
-  color: ${colors.black};
+  align-items: center;
+  justify-content: start;
+
   margin-top: 5.7rem;
+  margin-bottom: 10rem;
+  background-color: white;
+  @media (max-width: 550px) {
+    margin-top: 3rem;
+  }
+  color: ${colors.black};
 `;
 
 export const AiServiceDetailCommentCategory = styled.div`
   display: flex;
-  width: 93%;
+  width: 100%;
   border-bottom: 3px solid #f0f0f0;
 `;
 
@@ -48,8 +55,8 @@ export const AiServiceDetailCommentCategoryMenuItem = styled.li`
   font-size: 2rem;
   font-weight: 600;
   cursor: pointer;
-  color: ${props => (props.isActive ? "#4285f4" : "black")};
-  border-bottom: ${props => (props.isActive ? "3px solid #4285f4" : "none")};
+  color: ${props => (props.$isActive ? "#4285f4" : "black")};
+  border-bottom: ${props => (props.$isActive ? "3px solid #4285f4" : "none")};
   margin-left: 3rem;
   margin-bottom: -0.3rem;
 `;

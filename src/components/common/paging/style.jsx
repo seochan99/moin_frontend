@@ -22,7 +22,7 @@ export const Nav = styled.nav`
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
-  margin: 1.6rem;
+  margin: 1.6rem 0;
 `;
 
 export const Button = styled.button`

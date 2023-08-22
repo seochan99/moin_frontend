@@ -3,13 +3,17 @@ import * as S from "./style";
 import { useNavigate } from "react-router-dom";
 import { userState } from "../../../context/authState";
 import { useRecoilState } from "recoil";
-
-function CommentInput({ isUser, id }) {
+import axios from "../../../api/axios";
+function CommentInput({ isUser, id, fetchDetail, fetchComments }) {
   const [userInfo, setUserInfo] = useRecoilState(userState);
   const navigate = useNavigate();
   const [content, setContent] = useState("");
 
-  const sumbitComment = async () => {
+  const sumbitComment = async e => {
+    if (content === "") {
+      alert("댓글을 입력해주세요.");
+      return;
+    }
     // 댓글 등록
     try {
       // header
@@ -19,7 +23,7 @@ function CommentInput({ isUser, id }) {
       };
 
       const response = await axios.post(
-        `communities/posts/${id}/comments/`,
+        `communities/posts/${id}/comments`,
         {
           content: content
         },
@@ -28,16 +32,14 @@ function CommentInput({ isUser, id }) {
         }
       );
       if (response.status === 200) {
-        alert("댓글이 등록되었습니다.");
+        setContent("");
+        fetchDetail();
+        fetchComments();
       }
-    } catch (err) {
-      console.log(err);
-    }
-
-    setContent("");
+    } catch (err) {}
   };
 
-  return !isUser ? (
+  return !userInfo ? (
     <>
       <S.DetailCommentInputWrapper
         onClick={() => {
@@ -45,7 +47,7 @@ function CommentInput({ isUser, id }) {
         }}
       >
         <S.DetailCommentInput
-          placeholder="로그인 후 댓글을 작성할 수 있습니다."
+          placeholder="커뮤니티는 로그인 후 댓글을 작성할 수 있습니다."
           disabled
         />
         <S.DetailCommentButton>로그인</S.DetailCommentButton>
@@ -53,13 +55,16 @@ function CommentInput({ isUser, id }) {
     </>
   ) : (
     <>
-      <S.DetailCommentInputWrapper onSubmit={sumbitComment}>
+      <S.DetailCommentInputWrapper>
         <S.DetailCommentInput
           placeholder="답변을 작성해보세요 !"
           onChange={e => setContent(e.target.value)}
           required
+          value={content}
         />
-        <S.DetailCommentButton>등록</S.DetailCommentButton>
+        <S.DetailCommentButton onClick={sumbitComment}>
+          등록
+        </S.DetailCommentButton>
       </S.DetailCommentInputWrapper>
     </>
   );

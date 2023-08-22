@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
-import * as CS from "../community/style";
+
 import Banner from "../../components/common/banner/Banner";
-import List from "../../components/common/list/List";
-import NoticeList from "../../components/common/noticeList/NoticeList";
+
 import axios from "../../api/axios";
+import PostList from "../../components/common/postList/PostList";
+import NoticeBanner from "../../components/common/noticeBanner/NoticeBanner";
+import Loading from "../../components/common/loading/Loading";
 
 function Notice() {
   const [noticeContent, setNoticeContent] = useState([]);
@@ -12,6 +14,7 @@ function Notice() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [count, setCount] = useState(0);
+  const [init, setInit] = useState(false);
 
   useEffect(() => {
     fetchNoticeContent();
@@ -25,9 +28,8 @@ function Notice() {
       setCount(response.data.count);
 
       setNoticeContent(ContentData);
-    } catch (e) {
-      console.log(e);
-    }
+      setInit(true);
+    } catch (e) {}
   };
   //페이지변경
   useEffect(() => {
@@ -41,15 +43,27 @@ function Notice() {
         titleEnglish="NOTICE"
         image={<S.NoticeIconImg />}
       />
-      <CS.CommunityContentWrapper>
-        <NoticeList
-          data={noticeContent}
-          url={"/notice/"}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          count={count}
-        />
-      </CS.CommunityContentWrapper>
+      <NoticeBanner
+        title={"공지안내"}
+        content={"MOIN의 새로운 소식과 공지사항을 확인해보세요!"}
+      />
+
+      {init ? (
+        <>
+          <PostList
+            use={"notice"}
+            data={noticeContent}
+            url={"/notice/"}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            count={count}
+          />
+        </>
+      ) : (
+        <>
+          <Loading />
+        </>
+      )}
     </S.NoticeWrapper>
   );
 }

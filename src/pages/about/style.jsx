@@ -38,12 +38,22 @@ export const AboutSection_Body = styled.div`
   }
 `;
 
+export const AboutSection_Iframe = styled.iframe`
+  position: absolute;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+`;
+
 export const AboutSection_Box = styled.div``;
 
 export const AboutSection_Img = styled.img`
   position: absolute;
   z-index: 1;
   transform: translate(-50%, -50%);
+`;
+
+export const AboutSection_Img_r = styled.img`
+  z-index: 1;
 `;
 
 export const AboutSection1_Title = styled.img`
@@ -122,20 +132,19 @@ export const AboutSection5 = styled.div`
 
 export const AboutSection6 = styled.div`
   width: 100vw;
-  height: calc(100vh + 1px);
-
+  padding: 10rem 0;
   position: relative;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   background: linear-gradient(to bottom, white, #000a41);
 `;
 
 export const AboutSection7 = styled.div`
   width: 100vw;
-  height: 60rem;
+
   background-color: #000a41;
 
   position: relative;

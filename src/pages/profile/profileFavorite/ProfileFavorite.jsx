@@ -39,18 +39,13 @@ function ProfileFavorite() {
 
       setData(response.data.results.slice(0, response.data.results.length));
       setCount(response.data.count);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
 
   //페이지변경
   useEffect(() => {
     fetchData();
   }, [currentPage]);
-
-  console.log("data", data); // 데이터 확인용
-  console.log(count);
 
   return (
     <>

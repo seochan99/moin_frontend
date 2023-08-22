@@ -12,11 +12,12 @@ import AuthContentBox from "../../../components/auths/authContentBox/AuthContent
 import { useNavigate } from "react-router-dom";
 import axios from "../../../api/axios";
 import Modal from "../../../components/common/modal/Modal";
+import NoticeBanner from "../../../components/common/noticeBanner/NoticeBanner";
 
 function ProfileMain() {
   // 모달창
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [userDetailInfo, setUserDetailInfo] = useState({}); // 유저 상세 정보
   // 로그아웃 버튼 클릭 시 모달창 띄우기
   const LogoutSubmit = () => {
     setIsModalOpen(true);
@@ -36,17 +37,17 @@ function ProfileMain() {
   const fetchUserData = async storedUserInfo => {
     try {
       const accessToken = storedUserInfo.accessToken;
-      console.log(userInfo);
+
       const headers = {
         Authorization: `Bearer ${accessToken}` // Bearer Token 설정
       };
-      console.log(headers);
 
       const response = await axios.get("mypage/profile", {
         headers
       });
 
-      console.log(response);
+      setUserDetailInfo(response.data);
+
       if (response.status === 200) {
         // setUserInfo(response.data);
       } else {
@@ -58,11 +59,16 @@ function ProfileMain() {
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
+      // remove local stroage
+      localStorage.removeItem("userInfo");
+      localStorage.removeItem("recoil-persist");
+      navigate("/login");
       alert("유저 정보를 가져오는데 실패했습니다.");
     }
   };
 
   const navigate = useNavigate();
+
   const handleLogout = async () => {
     try {
       const accessToken = userInfo.accessToken;
@@ -118,32 +124,40 @@ function ProfileMain() {
           />
         </S.ProfileInfoHeaderButtonWrapper>
       </S.ProfileInfoHeaderWrapper>
+      <S.ProfileDescriptionWrapper>
+        👋 한줄 소개 : {userDetailInfo.description}
+      </S.ProfileDescriptionWrapper>
       {/* 프로필 내용물 박스  */}
       <S.ProfileInfoContentWrapper>
         <AuthContentBox
           content="좋아요한 서비스"
           img={MypageHeart}
           link="favorite"
+          userDetailInfo={null}
         />
         <AuthContentBox
           content="좋아요한 게시물"
           img={MypageThumb}
           link="favoritePost"
+          userDetailInfo={null}
         />
         <AuthContentBox
           content="작성한 게시물"
           img={MypageVector}
           link="post"
+          userDetailInfo={null}
         />
         <AuthContentBox
-          content="댓글 단 게시물"
+          content="내가 작성한 댓글"
           img={MypageChat}
           link="comment"
+          userDetailInfo={null}
         />
         <AuthContentBox
           content="회원정보 수정"
           img={MypageSetting}
           link="modify"
+          userDetailInfo={userDetailInfo}
         />
       </S.ProfileInfoContentWrapper>
     </>

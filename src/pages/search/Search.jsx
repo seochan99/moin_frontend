@@ -41,9 +41,7 @@ function Search() {
 
       setCount(request.data.count);
       setData(request.data.results);
-    } catch (error) {
-      console.log("Error", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {

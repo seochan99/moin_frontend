@@ -3,26 +3,34 @@ import ProfileHeader from "../../../components/profile/profileHeader/ProfileHead
 import MypageSetting from "../../../assets/images/icon/mypageSettingBlue.png";
 
 import * as S from "../../auths/authSignup/style";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "../../../api/axios";
+import { useRecoilState } from "recoil";
+import { userState } from "../../../context/authState";
+
 function ProfileModify() {
+  const { state } = useLocation();
+  const [userInfo, setUserInfo] = useRecoilState(userState);
+
   const [user, setUser] = useState({
-    job: "",
-    nickname: "",
-    introduce: ""
+    job: state.job,
+    nickname: state.nickname,
+    introduce: state.description
   });
 
   const [jobs, setJobs] = useState([]);
 
   const jobList = [
-    "개발자",
-    "디자이너",
-    "기획자",
-    "마케터",
-    "영상/사진 작가",
-    "번역가",
-    "대학생",
+    "IT",
+    "디자인",
+    "학생",
+    "마케팅",
+    "연구",
+    "금융",
+    "교육",
     "기타"
   ];
+
   const navigate = useNavigate();
   useEffect(() => {
     // 데이터 통신해서 API넣기
@@ -33,8 +41,27 @@ function ProfileModify() {
     e.preventDefault();
     // 모든 필수 정보가 입력되었는지 확인
 
+    if (user.introduce.length > 50) {
+      alert("한줄소개는 50자 이내로 입력해주세요.");
+      return;
+    }
+
     try {
-      // axios.post("/signup", user);
+      const accessToken = userInfo.accessToken; // 추출한 accessToken
+      const headers = {
+        Authorization: `Bearer ${accessToken}` // Bearer Token 설정
+      };
+      const response = axios.patch(
+        "mypage/profile",
+        {
+          email: state.email,
+          nickname: user.nickname,
+          description: user.introduce,
+          job: user.job
+        },
+        { headers }
+      );
+
       alert("수정이 완료되었습니다.");
       navigate("/mypage");
     } catch (error) {
